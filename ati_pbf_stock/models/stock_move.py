@@ -4,6 +4,7 @@ class StockMoveIb(models.Model):
 	_inherit = 'stock.move'
 	_description = 'Stock Moves'
 
+	# modifdimas
 	# def get_expiration_date_helper(self):
 	# 	for this in self:
 	# 		expiration_date_helper = ''
