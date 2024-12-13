@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="company_sale_price_wiz_form" model="ir.ui.view">
+        <field name="name">company.sale.price.wiz.form</field>
+        <field name="model">company.sale.price.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Manage Company Sales Price">
+                <group name="name">
+                    <field name="name"/>
+                </group>
+                <group string="Sales Price Detail">
+                    <field name="sales_price_ids" nolabel="1">
+                        <tree>
+                            <field name="product_id" options="{'no_create':True,'no_create_edit':True}"/>
+                            <field name="company_id" options="{'no_create':True,'no_create_edit':True}"/>
+                            <!-- <field name="currency_id" invisible="1"/>
+                            <field name="lst_price" invisible="1" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/> -->
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button string="Set" name="set_company_sales_price" default_focus="1" class="btn-primary" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_company_sale_price_wiz" model="ir.actions.act_window">
+        <field name="name">Manage Company Sales Price</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">company.sale.price.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="company_sale_price_wiz_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_product_product"/>
+        <!-- <field name="binding_view_types">list</field> -->
+    </record>
+</odoo>

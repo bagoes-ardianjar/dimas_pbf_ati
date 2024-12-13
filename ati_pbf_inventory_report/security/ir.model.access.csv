@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ati_pbf_inventory_report,access_ati_pbf_inventory_report,model_ati_pbf_inventory_report,,1,1,1,1
+access_ati_pbf_inventory_report_line,access_ati_pbf_inventory_report_line,model_ati_pbf_inventory_report_line,,1,1,1,1
+access_ati_pbf_adjustment_report,access_ati_pbf_adjustment_report,model_ati_pbf_adjustment_report,base.group_user,1,1,1,1
+

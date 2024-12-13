@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <template id="internal_layout_ati">-->
+<!--        <t t-if="not o" t-set="o" t-value="doc"/>-->
+
+<!--        <t t-if="not company">-->
+<!--            &lt;!&ndash; Multicompany &ndash;&gt;-->
+<!--            <t t-if="company_id">-->
+<!--                <t t-set="company" t-value="company_id"/>-->
+<!--            </t>-->
+<!--            <t t-elif="o and 'company_id' in o and o.company_id.sudo()">-->
+<!--                <t t-set="company" t-value="o.company_id.sudo()"/>-->
+<!--            </t>-->
+<!--            <t t-else="else">-->
+<!--                <t t-set="company" t-value="res_company"/>-->
+<!--            </t>-->
+<!--        </t>-->
+
+<!--        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">-->
+<!--            <div class="row">-->
+<!--                <div class="col-3 mb4">-->
+<!--                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>-->
+<!--                </div>-->
+<!--                <div class="col-9 text-right" style="margin-top:20px;" t-field="company.report_header" name="moto"/>-->
+<!--                <span style="font-size:30px; left:400px;">Individual Competency Assessment Result</span>-->
+<!--            </div>-->
+<!--            <div t-if="company.logo or company.report_header" class="row zero_min_height">-->
+<!--                <div class="col-12">-->
+<!--                    <div style="border-bottom: 2px solid black;"/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">-->
+<!--            <t t-raw="0"/>-->
+<!--        </div>-->
+
+<!--        <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">-->
+<!--            <div class="text-center" style="border-top: 1px solid black;">-->
+<!--                <ul class="list-inline mb4">-->
+<!--                    &lt;!&ndash; using the list-inline-item class from bootstrap causes weird behaviours in pdf report-->
+<!--                         adding d-inline class fixes the problem&ndash;&gt;-->
+<!--                    <li t-if="company.phone" class="list-inline-item d-inline"><span class="o_force_ltr" t-field="company.phone"/></li>-->
+<!--                    <li t-if="company.email" class="list-inline-item d-inline"><span t-field="company.email"/></li>-->
+<!--                    <li t-if="company.website" class="list-inline-item d-inline"><span t-field="company.website"/></li>-->
+<!--                    <li t-if="company.vat" class="list-inline-item d-inline"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>-->
+<!--                </ul>-->
+
+<!--                <div name="financial_infos">-->
+<!--                    <span t-field="company.report_footer"/>-->
+<!--                </div>-->
+
+<!--                <div t-if="report_type == 'pdf'" class="text-muted">-->
+<!--                    Page: <span class="page"/> / <span class="topage"/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </template>-->
+
+<!--    <template id="report_kartu_stock_document">-->
+<!--        <div class="page">-->
+<!--            <div class="row mt8 mb8">-->
+<!--                <span></span>-->
+<!--            </div>-->
+<!--            <h4 class="mt16 text-center">-->
+<!--                <span><b>Kartu Stok Barang</b></span><br/>-->
+<!--&lt;!&ndash;                <b><span t-field="o.start_date" t-options='{"widget": "date","format": "dd MMMM yyyy"}'/><![CDATA[&nbsp;]]>s.d</b>&ndash;&gt;-->
+<!--                <b><span t-field="o.start_date" t-options='{"widget": "date","format": "dd MMMM yyyy"}'/> s.d</b>-->
+<!--                <b><span t-field="o.end_date" t-options='{"widget": "date","format": "dd MMMM yyyy"}'/></b>-->
+<!--            </h4>-->
+<!--            <div>-->
+<!--                Barang: <span t-field="o.product_id.name"/><br/>-->
+<!--                Gudang: <span t-field="o.warehouse_id.name"/>-->
+<!--            </div><br/>-->
+
+<!--            &lt;!&ndash; <tr t-foreach="o._get_report_kartu_stock()" t-as="kartu_stock">-->
+<!--            </tr> &ndash;&gt;-->
+
+<!--            <table class="table-bordered mt16" name="appraisal_line_table" style="table-layout:auto; padding:0.20rem; width: 100%;">-->
+<!--                <thead style="display: table-row-group">-->
+<!--                    <tr style="border: 1px solid black;">-->
+<!--                        <th name="th_tanggal" style="width: 10%; text-align: center">-->
+<!--                            <strong>Tanggal</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_no_ref" style="width: 10%; text-align: center">-->
+<!--                            <strong>Nomor Ref</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_supplier_pelanggan" style="width: 10%; text-align: center">-->
+<!--                            <strong>Supplier / Pelanggan</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_batch_no" style="width: 10%; text-align: center">-->
+<!--                            <strong>Batch No.</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_exp_date" style="width: 10%; text-align: center">-->
+<!--                            <strong>Exp. Date</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_qty_awal" style="width: 10%; text-align: center">-->
+<!--                            <strong>Qty Awal</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_qty_masuk" style="width: 10%; text-align: center">-->
+<!--                            <strong>Qty Masuk</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_qty_keluar" style="width: 10%; text-align: center">-->
+<!--                            <strong>Qty Keluar</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_qty_akhir" style="width: 10%; text-align: center">-->
+<!--                            <strong>Qty Akhir</strong>-->
+<!--                        </th>-->
+<!--                        <th name="th_hpp_satuan" style="width: 10%; text-align: center">-->
+<!--                            <strong>HPP Satuan</strong>-->
+<!--                        </th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+
+<!--                <tbody>-->
+<!--                    <t t-set="total_qty_masuk" t-value="0"/>-->
+<!--                    <t t-set="total_qty_keluar" t-value="0"/>-->
+<!--                    <t t-foreach="o._get_report_kartu_stock()" t-as="kartu_stock">-->
+<!--                        <t t-set="total_qty_masuk" t-value="total_qty_masuk+kartu_stock['qty_masuk']"/>-->
+<!--                        <t t-set="total_qty_keluar" t-value="total_qty_keluar+kartu_stock['qty_keluar']"/>-->
+<!--                        <tr style="text-align: center" >-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['tanggal']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['nomor_ref']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['supplier_pelanggan']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['batch_no']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['exp_date']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['qty_awal']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['qty_masuk']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['qty_keluar']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['qty_akhir']"/>-->
+<!--                            </td>-->
+<!--                            <td>-->
+<!--                                <span t-esc="kartu_stock['hpp_satuan']"/>-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </t>-->
+<!--                    <tr style="font-size:20px; text-align: center">-->
+<!--                        <td colspan="6">-->
+<!--                            <strong>Jumlah</strong>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <strong><span t-esc="total_qty_masuk"/></strong>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            <strong><span t-esc="total_qty_keluar"/></strong>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </template>-->
+
+<!--    <template id="report_kartu_stock">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="o">-->
+<!--                <t t-call="ati_inventory_report.report_kartu_stock_document" t-lang="o.user_id.partner_id.lang"/>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+    <template id="new_report_kartu_stock">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="ati_pbf_sale.external_layout_faktur_penjualan">
+                    <div class="page" style="font-family: Arial;">
+                        <table>
+                            <thead>
+                                <tr>
+                                  <td style="text-align:center; height:25px; width:10%;"/>
+                                  <td style="text-align:center; height:25px; width:15%;"/>
+                                  <td style="text-align:center; height:25px; width:15%;"/>
+                                  <td style="text-align:center; height:25px; width:10%;"/>
+                                  <td style="text-align:center; height:25px; width:10%;"/>
+                                  <td style="text-align:center; height:25px; width:7%;"/>
+                                  <td style="text-align:center; height:25px; width:7%;"/>
+                                  <td style="text-align:center; height:25px; width:8%;"/>
+                                  <td style="text-align:center; height:25px; width:8%;"/>
+                                  <td style="text-align:center; height:25px; width:10%;"/>
+                                </tr>
+                                <tr><td colspan="10" style="text-align:left; height:25px; font-weight:100; font-size:11pt;"/></tr>
+                                <tr>
+                                    <td colspan="10" style="text-align:center; height:30px; font-size:14pt; font-weight:600;">
+                                        <t><span>Kartu Stok Barang</span></t>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td colspan="10" style="text-align:center; height:30px; font-size:14pt; font-weight:600;">
+                                        <span t-field="o.start_date" t-options='{"widget": "date","format": "dd MMMM yyyy"}'/> s.d
+                                        <span t-field="o.end_date" t-options='{"widget": "date","format": "dd MMMM yyyy"}'/>
+                                    </td>
+                                </tr>
+                                <tr><td colspan="10" style="text-align:left; height:5px; font-weight:600;"/></tr>
+                                <tr>
+                                    <td colspan="10" style="text-align:left; height:25px; font-weight:600; font-size:12pt;">
+                                        <t><span>Barang  :</span></t>
+                                            <t><span t-field="o.product_id.name"/></t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10" style="text-align:left; height:25px; font-weight:600; font-size:12pt;">
+                                        <t><span>Gudang :</span></t>
+                                            <t><span t-field="o.warehouse_id.name"/></t>
+                                    </td>
+                                </tr>
+                                <tr style="border: 1px solid black;">
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                    <t><span>Tanggal</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Nomor Ref</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Supplier/Pelanggan</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Batch No.</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Exp. Date</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>QTY Awal</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Qty In</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Qty Out</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Qty Akhir</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:12pt; border: 1px solid black;">
+                                        <t><span>Hpp Satuan</span></t>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody style="border:1px solid black;">
+                                <t t-set="total_qty_masuk" t-value="0"/>
+                                <t t-set="total_qty_keluar" t-value="0"/>
+                                <t t-foreach="o._get_report_kartu_stock()" t-as="kartu_stock">
+                                    <t t-set="total_qty_masuk" t-value="total_qty_masuk+kartu_stock['qty_masuk']"/>
+                                    <t t-set="total_qty_keluar" t-value="total_qty_keluar+kartu_stock['qty_keluar']"/>
+
+                                     <tr style="border:1px solid black;">
+                                         <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['tanggal']"/>
+                                         </td>
+                                         <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['nomor_ref']"/>
+                                         </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['supplier_pelanggan']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['batch_no']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['exp_date']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['qty_awal']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['qty_masuk']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['qty_keluar']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['qty_akhir']"/>
+                                        </td>
+                                        <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <span t-esc="kartu_stock['hpp_satuan']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr style="font-size:12px; text-align: center; border: 1px solid black;">
+                                    <td colspan="6" style="border:1px solid black; text-align:center; height:25px; font-weight:600; font-size:12pt;">
+                                        <strong>Jumlah</strong>
+                                    </td>
+                                    <td style="border:1px solid black; text-align:center; height:25px; font-weight:600; font-size:12pt;">
+                                        <strong><span t-esc="total_qty_masuk"/></strong>
+                                    </td>
+                                    <td style="border:1px solid black; text-align:center; height:25px; font-weight:600; font-size:12pt;">
+                                        <strong><span t-esc="total_qty_keluar"/></strong>
+                                    </td>
+                                    <td style="border:1px solid black; text-align:center; height:25px; font-weight:600; font-size:12pt;">
+                                    </td>
+                                    <td style="border:1px solid black; text-align:center; height:25px; font-weight:600; font-size:12pt;">
+                                    </td>
+                                </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

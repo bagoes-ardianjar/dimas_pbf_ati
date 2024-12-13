@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        
+        <!-- customize button & field in stock picking -->
+        <record id="return_stock_picking" model="ir.ui.view">
+            <field name="name">return_stock_picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- Button Submit, Approval, Reject -->
+                <xpath expr="//header" position="inside">
+                    <button name="action_submit" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': ['|', ('is_return', '!=', True), ('state', '!=', 'assigned')]}"/>
+                </xpath>
+
+                <xpath expr="//header/button[@name='action_confirm']" position="before">
+                    <button name="button_validate" type="object" string="Approve" class="oe_highlight" attrs="{'invisible': ['|', ('state', '!=', 'waiting_approval'), ('is_approval', '=', False)]}" data-hotkey="v"/>
+
+                    <button name="action_cancel" attrs="{'invisible': ['|', ('state', '!=', 'waiting_approval'), ('is_approval', '=', False)]}" string="Reject" type="object" data-hotkey="z"/>
+                </xpath>
+                <xpath expr="//header/button[@name='%(stock.act_stock_return_picking)d']" position="replace">
+                    <button name="func_new_return" string="Return" attrs="{'invisible': [('state', '!=', 'done')]}" type="object" groups="base.group_user" data-hotkey="k"/>
+<!--                    <attribute name="name">func_new_return</attribute>-->
+                </xpath>
+                <!-- add field flag -->
+                <xpath expr="//page[@name='extra']" position="inside">
+                    <group>
+                        <field name="is_return" invisible="0"/>
+                        <field name="is_approval" invisible="1"/>
+                        <field name="is_invoice" invisible="0"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- inherit button validate, field apj in stock picking -->
+        <record id="return_stock_picking_inherit_ati_pbf_stock" model="ir.ui.view">
+            <field name="name">return_stock_picking_inherit_ati_pbf_stock</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="ati_pbf_stock.ati_delivery_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='button_validate']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', '|',
+                        ('state', 'in', ('waiting','confirmed')), 
+                        ('show_validate', '=', False),
+                        ('is_return', '=', True),
+                        ('is_internal_transfer', '=', True)
+                    ]}</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='apj']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'in', ['done', 'waiting_approval'])],'invisible': [('picking_type_id_name', 'in', ['Delivery Orders', 'Receipts'])]}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        
+
+    </data>
+</odoo>

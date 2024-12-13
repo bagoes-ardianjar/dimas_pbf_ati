@@ -1,0 +1,96 @@
+<odoo>
+   <record id="m_margin_tree" model="ir.ui.view">
+        <field name="name">Margin</field>
+        <field name="model">m.margin</field>
+        <field name="arch" type="xml">
+            <tree string="Margin" edit="1" create="1" delete="1">
+                <field name="name"/>
+                <field name="value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="m_margin_form" model="ir.ui.view">
+        <field name="name">m_margin_form</field>
+        <field name="model">m.margin</field>
+        <field name="arch" type="xml">
+            <form string="Margin" edit="1" create="1" delete="1">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="value"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <notebook>
+                        <page string="Historical Margin" name="ati_historical_m_margin">
+                            <field readonly="1" name="historical_m_margin_ids" nolable="1" options="{'reload_on_button': True, 'no_open': True, 'no_create': True}">
+                                <tree string="Historical">
+                                    <field name="m_margin_id" string="Margin"
+                                           options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+                                    <field name="change_date" string="Change Date"/>
+                                    <field name="value" string="Value"/>
+                                    <field name="user_id" string="User"
+                                           options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<!--    <record id="m_margin_actions" model="ir.actions.act_window">-->
+<!--        <field name="name">Margin</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">m.margin</field>-->
+<!--        <field name="view_mode">tree</field>-->
+<!--        <field name="search_view_id" ref="" />-->
+<!--        <field name="view_id" ref="m_margin_tree"/>-->
+<!--        <field name="help" type="html">-->
+<!--          <p class="o_view_nocontent_smiling_face">-->
+<!--            Create a new margin configuration-->
+<!--          </p><p>-->
+<!--            Add customization field for margin type Configuration in Purchase module.-->
+<!--            In this menu, we can set the list of margin type.-->
+<!--          </p>-->
+<!--        </field>-->
+<!--    </record> -->
+
+
+    <record id="m_margin_actions" model="ir.actions.act_window">
+        <field name="name">Margin</field>
+        <field name="res_model">m.margin</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new margin configuration
+          </p><p>
+            Add customization field for margin type Configuration in Purchase module.
+            In this menu, we can set the list of margin type.
+          </p>
+        </field>
+    </record>
+
+    <record id="m_margin_actions_tree_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ati_contact_pbf.m_margin_tree"/>
+        <field name="act_window_id" ref="ati_contact_pbf.m_margin_actions"/>
+    </record>
+
+    <record id="m_margin_actions_form_view_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="ati_contact_pbf.m_margin_form"/>
+        <field name="act_window_id" ref="ati_contact_pbf.m_margin_actions"/>
+    </record>
+
+        <menuitem
+           action="m_margin_actions" id="menuitem_m_margin"
+           parent="purchase.menu_purchase_config" sequence="104"/>
+
+</odoo>

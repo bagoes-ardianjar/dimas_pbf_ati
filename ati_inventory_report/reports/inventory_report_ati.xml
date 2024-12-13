@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_report_kartu_stock" model="report.paperformat">
+            <field name="name">Paperformat Report Kartu Stock</field>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">100</field>
+        </record>
+        <record id="action_report_kartu_stock_html" model="ir.actions.report">
+            <field name="name">Report HTML Kartu Stock</field>
+            <field name="model">report.kartu.stock</field>
+<!--            <field name="report_type">qweb-pdf</field>-->
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">ati_inventory_report.new_report_kartu_stock</field>
+            <field name="report_file">ati_inventory_report.new_report_kartu_stock</field>
+<!--             <field name="paperformat_id" ref="ati_inventory_report.paperformat_appraisal_lowmargin"/>-->
+            <field name="paperformat_id" ref="paperformat_report_kartu_stock"/>
+            <field name="print_report_name">('Kartu Stock')</field>
+            <field name="binding_type">report</field>
+            <field name="binding_model_id" eval="False"/>
+<!--            <field name="binding_model_id" ref="ati_inventory_report.model_report_kartu_stock"/>-->
+        </record>
+    </data>
+</odoo>

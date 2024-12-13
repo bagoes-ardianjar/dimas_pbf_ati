@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PaymentScreenPaymentLinesReference" t-inherit="point_of_sale.PaymentScreenPaymentLines"
+        t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-if='line.selected']//div[hasclass('payment-amount')]" position="before">
+             <div t-if="line.payment_method.enable_payment_ref">
+                 <span class='payment-info-button' t-on-click="trigger('onclick-payment_ref', { cid: line.cid })"
+                       t-att-data-cid='line.cid'><i class='fa fa-bank' /></span>
+                 <br/>
+                 <span t-if="line.payment_ref" t-esc="line.payment_ref"/>
+             </div>
+            </xpath>
+         <xpath expr="//t[@t-else='']//div[hasclass('payment-amount')]" position="before">
+            <div t-if="line.payment_method.enable_payment_ref">
+                <span t-esc="line.payment_ref"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

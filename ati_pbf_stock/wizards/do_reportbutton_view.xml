@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_do_reportbutton_request_form" model="ir.ui.view">
+        <field name="name">do.reportbutton.req.form</field>
+        <field name="model">do.reportbutton.req</field>
+        <field name="arch" type="xml">
+            <form string="DO Request Report List" create="false" edit="false">
+                <field name="mail_message_id">
+                    <tree readonly="1" create="false" edit="false">
+                        <field name="subject"/>
+                        <field name="author_id"/>
+                        <button name="approve" type="object" class="fa fa-check"/>
+                        <button name="reject" type="object" class="fa fa-times"/>
+                    </tree>
+                </field>
+                <footer position="replace"/>
+            </form>
+        </field>
+    </record>
+</odoo>

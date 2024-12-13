@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+
+      <report
+        id="action_report_penjualan_perbarang"
+        model="report.penjualan.perbarang"
+        string="Report Penjualan Per Barang"
+        paperformat="ati_report_penjualan.paperformat_a4_penjualan"
+        name="ati_report_penjualan.so_barang_template"
+        file="ati_report_penjualan.so_barang_template"
+        report_type="qweb-html"
+        print_report_name = "Report Penjualan Per Barang"
+      />
+
+      <report
+        id="action_report_penjualan_perfaktur"
+        model="report.penjualan.perfakturr"
+        string="Report Penjualan Per Faktur"
+        paperformat="ati_report_penjualan.paperformat_a4_penjualan"
+        name="ati_report_penjualan.so_faktur_template"
+        file="ati_report_penjualan.so_faktur_template"
+        report_type="qweb-html"
+        print_report_name = "Report Penjualan Per Faktur"
+      />
+
+      <report
+        id="action_report_outstanding_penjualan"
+        model="report.outstanding.penjualan"
+        string="Outstanding Report"
+        name="ati_report_penjualan.report_outstanding_penjualan_xlsx"
+        file="Outstanding Report Penjualan.xlsx"
+        report_type="xlsx"
+        attachment_use="False"
+      />
+
+      <report
+        id="action_report_penjualan_perbarang_xlsx"
+        model="report.penjualan.perbarang"
+        string="Report Penjualan Per Barang"
+        name="ati_report_penjualan.so_barang_template_xlsx"
+        file="Report Penjualan Per Barang.xlsx"
+        report_type="xlsx"
+        attachment_use="False"
+      />
+
+      <report
+        id="action_report_penjualan_perfaktur_xlsx"
+        model="report.penjualan.perfakturr"
+        string="Report Penjualan Per Faktur"
+        name="ati_report_penjualan.so_faktur_template_xlsx"
+        file="Report Penjualan Per Faktur.xlsx"
+        report_type="xlsx"
+        attachment_use="False"
+      />
+
+      <report
+        id="action_report_alkes"
+        model="report.alkes"
+        string="Report Alkes"
+        name="ati_report_penjualan.so_alkes_xlsx"
+        file="Report Alkes.xlsx"
+        report_type="xlsx"
+        attachment_use="False"
+      />
+   </data>
+</odoo>

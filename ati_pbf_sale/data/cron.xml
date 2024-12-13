@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_auto_create_mail_activity_for_create_inv_notif" model="ir.cron">
+        <field name="name">Next activity: create invoice when product delivered more than 3 day</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=0, minute=1)).strftime('%Y-%m-%d %H:%M:%S')" />
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="code">model._create_inv_product_delivered_more_than_three_day()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="ir_cron_update_margin_so_line_existing" model="ir.cron">
+        <field name="name">Update Margin SO Line Existing</field>
+        <field name="type">ir.actions.server</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="False"/>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="code">model.func_update_so_line_existing()</field>
+        <field name="state">code</field>
+    </record>
+
+    <record id="ir_cron_cancel_sale_order" model="ir.cron">
+        <field name="name">Cancel Sale Order</field>
+        <field name="model_id" ref="ati_pbf_sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model._func_cancel_so()</field>
+        <field name="active" eval="False"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

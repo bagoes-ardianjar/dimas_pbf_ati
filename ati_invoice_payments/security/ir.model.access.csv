@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_wizard_vendor_payment,wizard_vendor_payment,ati_invoice_payments.model_wizard_vendor_payment,base.group_user,1,1,1,1

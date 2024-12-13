@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="purchase_order_form" model="ir.ui.view">
+        <field name="name">purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_confirm']" position="replace"/>
+            <xpath expr="//button[@name='button_confirm']" position="replace">
+                <button name="button_confirm" 
+                    type="object" 
+                    states="waiting_approve"
+                    string="Approve Order" 
+                    class="oe_highlight" 
+                    id="bid_confirm" 
+                    groups="purchase_cancel_reason.admin_apj"
+                    data-hotkey="v"/>
+
+                <button 
+                    name="action_reject" 
+                    type="object" 
+                    states="waiting_approve,sent" 
+                    string="Reject" 
+                    groups="purchase_cancel_reason.admin_apj"/>
+
+                <button 
+                    name="button_confirm" 
+                    type="object"
+                    string="Confirm Order" 
+                    groups="purchase_cancel_reason.admin_apj"
+                    class="oe_highlight"
+                    id="draft_confirm"
+                    invisible="1"
+                    />
+
+                
+
+                <button 
+                    name="action_confirm" 
+                    type="object" 
+                    states="draft"
+                    string="Confirm Order" 
+                    class="oe_highlight"/>
+
+
+            </xpath>
+            <xpath expr="//button[@name='button_cancel']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_cancel']" position="before">
+                <button
+                    name="%(action_purchase_order_cancel)d"
+                    states="draft,to approve,sent,purchase"
+                    string="Cancel"
+                    type="action"
+                    groups="base.group_user"
+                />
+                <button name="button_draft" 
+                    states="to_approve_apj" 
+                    string="Set to Draft" 
+                    type="object"
+                    groups="purchase_cancel_reason.admin_apj"
+                    data-hotkey="o"/>
+
+                <button
+                    name="button_cancel"
+                    confirm="Are You Sure Set To Cancel?"
+                    states="to_approve_apj"
+                    string="Approve Cancel"
+                    type="object"
+                    class="oe_highlight"
+                    groups="purchase_cancel_reason.admin_apj"
+                />
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page attrs="{'invisible':[('state', 'not in', ['to_approve_apj','cancel'])]}" string="Cancel Reasons">
+                    <group>
+                        <group>
+                        <field
+                            name="cancel_reason_id"
+                            class="oe_inline"
+                            options='{"no_open": True}'
+                        />
+                    </group>
+                </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_cancel_reason_form" model="ir.ui.view">
+        <field name="name">Purchase Order Cancel Reason</field>
+        <field name="model">purchase.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order Cancel Reasons">
+                <group>
+                    <field name="name" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_cancel_reason_tree" model="ir.ui.view">
+        <field name="name">Purchase Order Cancel Reason</field>
+        <field name="model">purchase.order.cancel.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Order Cancel Reasons">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_purchase_order_cancel_reason" model="ir.actions.act_window">
+        <field name="name">Purchase Order Cancel Reason</field>
+        <field name="res_model">purchase.order.cancel.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+      <record id="validation_expire_date" model="ir.ui.view">
+        <field name="name">po.confirm.form</field>
+        <field name="model">po.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Attention!">
+                <group>
+                    <group>
+                        <span style="font-size:20;">Vendor has expired. Are you sure you want to continue this process?</span>
+                    </group>
+                </group>
+                <footer>
+                    <button name="confirm_afterValidate" type="object" class="oe_highlight" string="Yes"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_purchase_order_cancel_reason"
+        parent="purchase.menu_purchase_config"
+        name="Purchase Order Cancel Reasons"
+        action="action_purchase_order_cancel_reason"
+        sequence="150"
+        groups="purchase.group_purchase_manager"
+    />
+</odoo>

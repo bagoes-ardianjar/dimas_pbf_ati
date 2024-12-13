@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_daily">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+                    td, th {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        padding-top: 1px;
+                        padding-bottom: 1px;
+                    }
+                </style>
+                <div class="page" style="font-family:Times New Roman;">
+                    <div style="margin-top: 10px; margin-left: 50px; margin-right: 50px; font-size: 12px;">
+                        <header>
+                            <div style="text-align:left;">
+                                <p style="font-size: 19px;">
+                                    <span><b>PBF Berkat Mahkota Putra</b></span>
+                                </p>
+                                <p style="margin-top: -15px; ">
+                                    <span style="font-size:12px;">Taman Tekno Blok K2 No 19 dan 20 Bsd, Serpong, Tangerang Selatan, 081322811117, 021-22225555</span>
+                                </p>
+                                <hr size="2" width="100%" color="black"></hr>
+                            </div>
+
+                            <div style="text-align:center;">
+                                <p>
+                                    <span style="font-size:19px;"><b>Laporan Rekap Penjualan Per Hari</b></span>
+                                </p>
+                                <p style="margin-top: -15px; font-size: 15px;">
+                                    <strong>From</strong>:
+                                    <t t-esc="start_date"/>
+                                    <strong>To</strong>:
+                                    <t t-esc="end_date"/><span> (Dalam RUPIAH)</span>
+                                </p>
+
+                            </div>
+                        </header>
+
+                        <div class="row" style="margin-top:30px;">
+                            <div class="col-12">
+                                <table>
+                                    <thead style="vertical-align : middle;text-align:center;">
+                                        <tr style="text-align:left; background-color: #dddddd; vertical-align : middle;">
+                                            <th style="border:1px solid black;font-weight:bold;width:5%;">
+                                                Tanggal
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:10%;">
+                                                Jumlah Penjualan
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:10%;">
+                                                Jumlah Pajak
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:5%;">
+                                                Jumlah Ongkir
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:10%;">
+                                                Jumlah Retur
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:10%;">
+                                                Jumlah Retur Pajak
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:15%;">
+                                                Total COD
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:15%;">
+                                                Total Tempo
+                                            </th>
+											<th style="border:1px solid black;font-weight:bold;width:15%;">
+                                                Total Debit
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="docs" t-as="docs">
+                                            <td style="border:1px solid black;text-align: left;">
+                                                <span t-esc="docs.get('tanggal')"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('pembelian'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('pajak'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+<!--                                                <span t-esc="'{0:,.2f}'.format(docs.get('ongkir'))"/>-->
+                                                <span t-esc="docs.get('ongkir')"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('retur'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                               <span t-esc="'{0:,.2f}'.format(docs.get('retur_pajak'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('total_cod'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('total_tempo'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('total_debit'))"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align:left; background-color: #dddddd; vertical-align : middle;">
+                                            <td style="border:1px solid black;text-align: center;"><span>Total</span></td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_pembelian)" />
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_pajak)" />
+                                            </td>
+                                            <td style="border:1px solid black;text-align: left;">
+<!--                                                <span t-esc="'{0:,.2f}'.format(total_ongkir)" />-->
+                                                <span t-esc="total_ongkir"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_retur)" />
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_retur_pajak)" />
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_cod_all)" />
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_tempo_all)" />
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(total_debit_all)" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

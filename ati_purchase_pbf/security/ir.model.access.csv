@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_wizard_report_purchase_daily,wizard_report_purchase_daily,ati_purchase_pbf.model_wizard_report_purchase_daily,base.group_user,1,1,1,1
+user_wizard_vendor_purchase,wizard_vendor_purchase,ati_purchase_pbf.model_wizard_vendor_purchase,base.group_user,1,1,1,1
+user_wizard_estimasi_pembelian_produk,wizard_estimasi_pembelian_produk,ati_purchase_pbf.model_wizard_estimasi_pembelian_produk,base.group_user,1,1,1,1

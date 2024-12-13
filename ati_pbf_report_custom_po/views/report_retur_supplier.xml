@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+
+
+         <record id="retur_supplier_wizard" model="ir.ui.view">
+            <field name="name">Retur Supplier</field>
+            <field name="model">wizard.po.retur</field>
+            <field name="arch" type="xml">
+                <form string="retur Supplier">
+                    <group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="get_excel_retur_supplier" string="Export(Excel)" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+       <record id="account_move_inherit" model="ir.ui.view">
+        <field name="name">ati.account.move.form.inherit.ib</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="payment_date" attrs="{'readonly': [ ('state', '=', 'posted')]}"></field>
+            </xpath>
+
+        </field>
+
+    </record>
+
+     <record model="ir.actions.act_window" id="action_open_retur_supplier">
+            <field name="name">Retur Supplier</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.po.retur</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_retur_supplier"
+            name="Retur Supplier"
+            action="action_open_retur_supplier"
+            parent="purchase.purchase_report_main"
+            sequence="105"/>
+
+  </data>
+</odoo>

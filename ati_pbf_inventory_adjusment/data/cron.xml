@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="x_email_notif_low_stok_wiz" model="ir.cron">
+          <field name="name">Notification for low stok</field>
+          <field name="model_id" ref="ati_pbf_inventory_adjusment.model_x_minimum_product_wizard"/>
+          <field name="state">code</field>
+          <field name="code">model._send_email_notif()</field>
+          <field name="active" eval="True"/>
+          <field name="user_id" ref="base.user_root"/>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>
+          <field name="numbercall">-1</field>
+          <field name="doall" eval="False"/>
+        </record>
+
+        <record id="delete_double_stock_move" model="ir.cron">
+          <field name="name">Delete Double Stock Move</field>
+          <field name="model_id" ref="ati_pbf_inventory_adjusment.model_stock_quant"/>
+          <field name="state">code</field>
+          <field name="code">model._delete_double_sm()</field>
+          <field name="active" eval="False"/>
+          <field name="user_id" ref="base.user_root"/>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>
+          <field name="numbercall">-1</field>
+          <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>

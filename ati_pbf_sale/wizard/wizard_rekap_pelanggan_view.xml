@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_rekap_pelanggan_form'>
+            <field name="name">wizard.rekap.pelanggan.form</field>
+            <field name="model">wizard.rekap.pelanggan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button type="object" name="func_print_profit_excel" string="Print Excel" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='wizard_rekap_pelanggan_action'>
+            <field name="name">Laporan Rekap Penjualan Per Pelanggan</field>
+            <field name="res_model">wizard.rekap.pelanggan</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_rekap_pelanggan_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Laporan Rekap Penjualan Per Pelanggan"
+            parent="sale.menu_sale_report"
+            id="menu_wizard_rekap_pelanggan"
+            action="wizard_rekap_pelanggan_action"
+            sequence="8"/>
+
+<!--        <report-->
+<!--            id="wizard_pnl_sale_sales_xlsx"-->
+<!--            model="wizard.pnl.sale.sales"-->
+<!--            string="Laporan Laba/Rugi Penjualan Per Sales Produk"-->
+<!--            report_type="xlsx"-->
+<!--            name="ati_pbf_sale.pnl_sale_sales.xlsx"-->
+<!--            file="Laporan Laba/Rugi Penjualan Per Sales Produk.xlsx"-->
+<!--            menu="False"-->
+<!--            attachment_use="False"/>-->
+    </data>
+</odoo>

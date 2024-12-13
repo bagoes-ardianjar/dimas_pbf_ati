@@ -1,0 +1,32 @@
+<odoo>
+   <record id="customer_type_tree" model="ir.ui.view">
+        <field name="name">Customer Type</field>
+        <field name="model">customer.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="customer_type_actions" model="ir.actions.act_window">
+        <field name="name">Customer Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.type</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="" />
+        <field name="view_id" ref="customer_type_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new Customer type configuration
+          </p><p>
+            Add customization field for Customer type Configuration in Purchase module.
+            In this menu, we can set the list of Customer type.
+          </p>
+        </field>
+    </record> 
+
+        <menuitem
+           action="customer_type_actions" id="menu_customer_type_actions"
+           parent="purchase.menu_purchase_config" sequence="103"/>
+
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_account_payment_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.account.payment.form.inherit.ib</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date']" position="attributes">
+                <attribute name="string">Payment Date</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="create_date"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+
+      <report
+        id="action_report_pembelian_perbarang"
+        model="report.pembelian.perbarang"
+        string="Report Pembelian Per Barang"
+        paperformat="ati_report_pembelian.paperformat_a4_pembelian"
+        name="ati_report_pembelian.po_barang_template"
+        file="ati_report_pembelian.po_barang_template"
+        report_type="qweb-html"
+        print_report_name = "Report Pembelian Per Barang"
+      />
+
+      <report
+        id="action_report_pembelian_perfaktur"
+        model="report.pembelian.perfaktur"
+        string="Report Pembelian Per Faktur"
+        paperformat="ati_report_pembelian.paperformat_a4_pembelian"
+        name="ati_report_pembelian.po_faktur_template"
+        file="ati_report_pembelian.po_faktur_template"
+        report_type="qweb-html"
+        print_report_name = "Report Pembelian Per Faktur"
+      />
+
+      <report
+        id="action_report_outstanding_pembelian"
+        model="report.outstanding.pembelian"
+        string="Outstanding Report"
+        name="ati_report_pembelian.report_outstanding_xlsx"
+        file="Outstanding Report.xlsx"
+        report_type="xlsx"
+        attachment_use="False"
+      />
+
+      <report
+        id="action_report_pembelian_ppn"
+        model="report.pembelian.ppn"
+        string="Report Pembelian PPN"
+        paperformat="ati_report_pembelian.paperformat_a4_pembelian"
+        name="ati_report_pembelian.po_ppn_template"
+        file="ati_report_pembelian.po_ppn_template"
+        report_type="qweb-html"
+        print_report_name = "Report Pembelian PPN"
+      />
+
+      <report
+        id="action_report_pembelian_nonppn"
+        model="report.pembelian.nonppn"
+        string="Report Pembelian Non PPN"
+        paperformat="ati_report_pembelian.paperformat_a4_pembelian"
+        name="ati_report_pembelian.po_nonppn_template"
+        file="ati_report_pembelian.po_nonppn_template"
+        report_type="qweb-html"
+        print_report_name = "Report Pembelian Non PPN"
+      />
+
+      <report
+         id="action_report_pembelian_perbarang_xlsx"
+         model="report.pembelian.perbarang"
+         string="Report Pembelian Per Barang"
+         report_type="xlsx"
+         name="ati_report_pembelian.po_barang_template_xlsx"
+         file="Report Pembelian Per Barang.xlsx"
+         menu="False"
+         attachment_use="False"/>
+
+      <report
+         id="action_report_pembelian_perfaktur_xlsx"
+         model="report.pembelian.perfakturr"
+         string="Report Pembelian Per Faktur"
+         report_type="xlsx"
+         name="ati_report_pembelian.po_faktur_template_xlsx"
+         file="Report Pembelian Per Faktur.xlsx"
+         menu="False"
+         attachment_use="False"/>
+
+      <report
+         id="action_report_pembelian_ppn_xlsx"
+         model="report.pembelian.ppn"
+         string="Report Pembelian PPN"
+         report_type="xlsx"
+         name="ati_report_pembelian.po_ppn_template_xlsx"
+         file="Report Pembelian PPN.xlsx"
+         menu="False"
+         attachment_use="False"/>
+
+      <report
+         id="action_report_pembelian_nonppn_xlsx"
+         model="report.pembelian.nonppn"
+         string="Report Pembelian Non PPN"
+         report_type="xlsx"
+         name="ati_report_pembelian.po_nonppn_template_xlsx"
+         file="Report Pembelian Non PPN.xlsx"
+         menu="False"
+         attachment_use="False"/>
+   </data>
+</odoo>

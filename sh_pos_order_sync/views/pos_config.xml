@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_pos_config_form">
+        <field name="name">pos.config.form.view.inherit</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='iface_display_categ_images']/../../.." position="after">
+                <h2 name="orders_history">Order Sync</h2>
+
+                <div class="row mt16 o_settings_container">
+                    <div id="category_reference" class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"></div>
+                        <div class="o_setting_right_pane">
+                            <label for="user_type" />
+                            <field name="user_type" widget="radio" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane"></div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_nick_name" />
+                            <div class="text-muted">
+                                Display This Name In POS
+                            </div>
+                            <field name="sh_nick_name" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('user_type','!=','receive'),('user_type', '!=', 'both')]}">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_allow_payment" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_allow_payment" />
+                            <div class="text-muted">
+                                Pay Order From Order Screen
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('user_type','!=','receive'),('user_type', '!=', 'both')]}">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_allow_edit" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_allow_edit" />
+                            <div class="text-muted">
+                                Edit Order From Order Screen
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('user_type','!=','receive'),('user_type', '!=', 'both')]}">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_allow_cancel" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_allow_cancel" />
+                            <div class="text-muted">
+                                Cancel Order From Order Screen
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible': [('user_type','!=','send'),('user_type', '!=', 'both')]}">
+                        <div class="o_setting_left_pane">
+                            <field name="sh_allow_multiple_selection" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="sh_allow_multiple_selection" />
+                            <div class="text-muted">
+                                Allow Multiple Selection Of Receiver
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

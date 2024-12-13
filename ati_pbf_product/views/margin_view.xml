@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="margin_view_form" model="ir.ui.view">
+        <field name="name">margin.product.form</field>
+        <field name="model">margin.product</field>
+        <field name="arch" type="xml">
+            <form string="Margin">
+                <sheet>
+                    <group>
+                        <group>
+                            <label for="name" string="Margin (%)" class="oe_inline"/>
+                            <div>
+                                <field name="name" string="Margin (%)" placeholder="percentages (%)" class="oe_inline"/>
+                                <span attrs="{'invisible': [('name', '=', False)]}"> %</span>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="ati_margin_product_tree_view" model="ir.ui.view">
+        <field name="name">margin.product.tree</field>
+        <field name="model">margin.product</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" string="Margin (%)"/>
+                <button type="object" icon="fa-trash-o" name="unlink"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

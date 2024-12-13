@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_picker,picker,ati_pbf_stock.model_picker,stock.group_stock_manager,1,1,1,1
+access_checker,checker,ati_pbf_stock.model_checker,stock.group_stock_manager,1,1,1,1
+access_stock_picking_koli,stock_picking_koli,ati_pbf_stock.model_stock_picking_koli,stock.group_stock_manager,1,1,1,1
+access_return_reason,return_reason,ati_pbf_stock.model_return_reason,stock.group_stock_manager,1,1,1,1
+access_report_prekusor_kemenkes,action_report_prekusor_kemenkes,model_report_prekusor_kemenkes,base.group_user,1,1,1,1
+access_do_reportbutton_click,do_reportbutton_click,model_do_reportbutton_click,base.group_user,1,1,1,1
+access_do_reportbutton_opened,do_reportbutton_opened,model_do_reportbutton_opened,base.group_user,1,1,1,1
+access_do_reportbutton_denied,do_reportbutton_denied,model_do_reportbutton_denied,base.group_user,1,1,1,1
+access_do_reportbutton_rejected,do_reportbutton_rejected,model_do_reportbutton_rejected,base.group_user,1,1,1,1
+access_do_reportbutton_req,do_reportbutton_req,model_do_reportbutton_req,base.group_user,1,1,1,1

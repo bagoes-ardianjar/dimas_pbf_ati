@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="so_barang_template">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style>
+                    td, th {
+                        padding-left: 5px;
+                        padding-right: 5px;
+                        padding-top: 1px;
+                        padding-bottom: 1px;
+                    }
+                </style>
+                <div class="page" style="font-family:Times New Roman;">
+                    <div style="margin-top: 10px; margin-left: 50px; margin-right: 50px; font-size: 12px;">
+                        <header>
+                            <div style="text-align:left;">
+                                <p style="font-size: 19px;">
+                                    <span><b>PBF Berkat Mahkota Putra</b></span>
+                                </p>
+                                <p style="margin-top: -15px; ">
+                                    <span style="font-size:12px;">Taman Tekno Blok K2 No 19 dan 20 Bsd, Serpong, Tangerang Selatan, 081322811117, 021-22225555</span>
+                                </p>
+                                <hr size="2" width="100%" color="black"></hr>
+                            </div>
+
+                            <div style="text-align:center;">
+                                <p>
+                                    <span style="font-size:19px;"><b>Laporan Rekap Penjualan Per Barang</b></span>
+                                </p>
+                                <p style="margin-top: -15px; font-size: 15px;">
+                                    <strong>From</strong>:
+                                    <t t-esc="start_date"/>
+                                    <strong>To</strong>:
+                                    <t t-esc="end_date"/><span> (Dalam RUPIAH)</span>
+                                </p>
+
+                            </div>
+                        </header>
+
+                        <div class="row" style="margin-top:30px;">
+                            <div class="col-12">
+                                <table>
+                                    <thead style="vertical-align : middle;text-align:center;">
+                                        <tr style="text-align:left; background-color: #dddddd; vertical-align : middle;">
+                                            <th style="border:1px solid black;font-weight:bold;width:10%;">
+                                                Kode PLU
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:10%;">
+                                                Barcode
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:30%;">
+                                                Nama Barang
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:5%;">
+                                                Satuan
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:5%;">
+                                                Qty
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:15%;">
+                                                Harga Rata-Rata
+                                            </th>
+                                            <th style="border:1px solid black;font-weight:bold;width:15%;">
+                                                Total Penjualan Inc Tax
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="docs" t-as="docs">
+                                            <td style="border:1px solid black;text-align: left;">
+                                                <span t-esc="docs.get('sku')"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: left;">
+                                                <span></span>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: left;">
+                                                <span t-esc="docs.get('name')"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: left;">
+                                                <span t-esc="docs.get('uom_name')"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('product_uom_qty'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('average'))"/>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span t-esc="'{0:,.2f}'.format(docs.get('total_penjualan'))"/>
+                                            </td>
+                                        </tr>
+                                        <tr style="text-align:left; background-color: #dddddd; vertical-align : middle;">
+                                            <td style="border:1px solid black;text-align: center;" colspan="4"><span>Total</span></td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span><t t-esc="'{0:,.2f}'.format(total_qty)"/></span>
+                                            </td>
+                                            <td style="border:1px solid black;text-align: left;"><span></span></td>
+                                            <td style="border:1px solid black;text-align: right;">
+                                                <span><t t-esc="'{0:,.2f}'.format(total_penjualan_all)"/></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

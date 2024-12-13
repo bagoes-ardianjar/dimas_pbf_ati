@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="x_mail_batch_expired" model="mail.template">
+            <field name="name">x_mail_batch_expired</field>
+            <field name="model_id" ref="ati_pbf_notif_expired.model_stock_production_lot"/>
+            <field name="email_from"></field>
+            <field name="email_to"></field>
+            <field name="subject">Reminder Product Expired</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dear Warehouse Team.</p>
+                <br/>
+                <p>List barang dibawah ini akan expired <b>3 bulan</b> lagi dan akan dipindahkan ke <b>Gudang Karantina</b>.</p>
+                <p>Silahkan periksa dan konfirmasi Nomor Internal Transfer (WH/INT).</p>
+                <br/>
+
+                    <table style="width:1120px !important;" class="font8px">
+                        <thead>
+                            <tr>
+                                <th
+                                    style="border:1px solid #dddddd; text-align: center; padding: 5px; font-size: 14px; width:80px !important;">
+                                    <b>Nama Barang</b></th>
+                                <th
+                                    style="border:1px solid #dddddd; text-align: center; padding: 5px; font-size: 14px; width:130px !important;">
+                                    <b>Batch</th>
+                                <th
+                                    style="border:1px solid #dddddd; text-align: center; padding: 5px; font-size: 14px; width:80px !important;">
+                                    <b>Quantity</b></th>
+                                <th
+                                    style="border:1px solid #dddddd; text-align: center; padding: 5px; font-size: 14px; width:120px !important;">
+                                    <b>Tanggal Expired</b></th>
+                                <th
+                                    style="border:1px solid #dddddd; text-align: center; padding: 5px; font-size: 14px; width:120px !important;">
+                                    <b>Lokasi Asal</b></th>
+                                <th
+                                    style="border:1px solid #dddddd; text-align: center; padding: 5px; font-size: 14px; width:120px !important;">
+                                    <b>Lokasi Tujuan</b></th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                <p><i>Note: This is a system generated email. Please do not reply to this email address.</i></p>
+                
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

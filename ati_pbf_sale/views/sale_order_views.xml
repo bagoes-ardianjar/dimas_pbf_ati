@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ati_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">ati.sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_cancel']" position="after">
+                <button name="func_lock_price"
+                        attrs="{'invisible': ['|',('is_lock_price', '=', True),('state', '!=', 'draft')]}"
+                        string="Lock Margin" type="object" class="oe_highlight"/>
+                <button name="func_unlock_price"
+                        attrs="{'invisible': ['|',('is_lock_price', '=', False),('state', '!=', 'draft')]}"
+                        string="Unlock Margin" type="object" class="oe_highlight"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree" position="attributes">
+                <attribute name="default_order">product_id asc</attribute>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='tax_id']" position="after">
+                <field name="is_lock_price" string="Lock Status" readonly="1"/>
+            </xpath>
+
+            <field name="partner_id" position="after">
+                <field name="is_lock_price" invisible="1"/>
+                <field name="sales_person" required="0"/>
+                <field name="special_discount"/>
+                <field name="add_promotion" readonly="1" force-save="1" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='tax_totals_json']" position="after">
+                <field name="global_discount" widget="monetary" attrs="{'readonly': [('special_discount', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Customer (*)</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sales_person']" position="attributes">
+                <attribute name="string">Sales Person (*)</attribute>
+            </xpath>
+            <field name="sales_person" position="after">
+                <field name="jenis_order"/>
+                <field name="check_promo" invisible="1"/>
+                <field name="confirm_date" invisible="0"/>
+            </field>
+            <xpath expr="//button[@name='action_quotation_send']" position="before">
+                <button name="approve_apj" type="object" string="Approve" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'waiting_approval_apj')]}" groups="ati_pbf_sale.sale_order_approval_apj"/>
+                <button name="reject_apj" type="object" string="Reject" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'waiting_approval_apj')]}" groups="ati_pbf_sale.sale_order_approval_apj"/>
+                <button name="approve_finance" type="object" string="Approve" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'waiting_approval_finance')]}" groups="ati_pbf_sale.sale_order_approval_finance"/>
+                <button name="reject_finance" type="object" string="Reject" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'waiting_approval_finance')]}" groups="ati_pbf_sale.sale_order_approval_finance"/>
+                <button name="approve_manager" type="object" string="Approve" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'waiting_approval_manager')]}" groups="ati_pbf_sale.sale_order_approval_manager" context="{'check_price':True}"/>
+                <button name="reject_manager" type="object" string="Reject" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'waiting_approval_manager')]}" groups="ati_pbf_sale.sale_order_approval_manager"/>
+                <button name="button_print_report_faktur_penjualan" string="  Faktur Penjualan" class="fa fa-download btn-primary" type="object" attrs="{'invisible':[('state', 'not in', ['sale', 'done'])]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="after">
+                <button name="confirm_quotation_with_apj" type="object" string="Confirm" attrs="{'invisible': [('state', 'not in', ['draft'])]}" context="{'check_price':True}"/>
+                <field name="check_cust_exp" invisible="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+<!--            <xpath expr="//button[@name='confirm_quotation_with_apj']" position="after">-->
+<!--                <button name="action_confirm" data-hotkey="v"-->
+<!--                        string="Confirm" type="object"-->
+<!--                        attrs="{'invisible': [('check_cust_exp', '=', True), '&amp;', ('state', 'not in', ['draft'])]}"/>-->
+<!--            </xpath>-->
+            <field name="sale_order_template_id" position="after">
+                <field name="pasien_panel" invisible="1"/>
+                <field name="is_pasien" attrs="{'invisible': [('pasien_panel', '=', False)]}"/>
+                <field name="pasien" attrs="{'invisible': ['|', ('is_pasien', '=', False), ('pasien_panel', '=', False)], 'required': [('is_pasien', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="paperformat_a4_faktur_so_custom" model="report.paperformat">
+        <field name="name">Paperformat A4 Faktur SO Custom</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">76</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="new_paperformat_faktur_penjualan_id" model="report.paperformat">
+        <field name="name">Faktur Penjualan Paper Format</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">100</field>
+    </record>
+
+<!--    <record id="action_report_faktur_penjualan_so_custom" model="ir.actions.report">-->
+<!--        <field name="name">Faktur Penjualan SO</field>-->
+<!--        <field name="paperformat_id" ref="new_paperformat_a4_faktur_so_custom" />-->
+<!--        <field name="model">sale.order</field>-->
+<!--&lt;!&ndash;        <field name="report_type">qweb-pdf</field>&ndash;&gt;-->
+<!--        <field name="report_type">qweb-html</field>-->
+<!--        <field name="report_name">ati_pbf_sale.report_faktur_penjualan_so_custom</field>-->
+<!--        <field name="report_file">ati_pbf_sale.report_faktur_penjualan_so_custom</field>-->
+<!--        <field name="print_report_name">'Faktur Penjualan - %s' %(object.name)</field>-->
+<!--        <field name="binding_type">report</field>-->
+<!--        <field name="binding_model_id" eval="False"/>-->
+<!--        &lt;!&ndash; <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> &ndash;&gt;-->
+<!--        &lt;!&ndash; <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> &ndash;&gt;-->
+<!--    </record>-->
+
+    <record id="action_report_faktur_penjualan_so_custom" model="ir.actions.report">
+        <field name="name">Faktur Penjualan SO</field>
+        <field name="paperformat_id" ref="new_paperformat_faktur_penjualan_id" />
+        <field name="model">sale.order</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_pbf_sale.new_report_faktur_penjualan</field>
+        <field name="report_file">ati_pbf_sale.new_report_faktur_penjualan</field>
+        <field name="print_report_name">'Faktur Penjualan - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+    <record id="sale.action_report_pro_forma_invoice" model="ir.actions.report">
+        <field name="name">Proforma Invoice PBF</field>
+        <field name="paperformat_id" ref="paperformat_a4_faktur_so_custom" />
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ati_pbf_sale.report_proforma_invoice_pbf_custom</field>
+        <field name="report_file">ati_pbf_sale.report_proforma_invoice_pbf_custom</field>
+        <field name="print_report_name">'Proforma Invoice - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <field name="binding_model_id" ref="ati_pbf_sale.model_sale_order"/>
+    </record>
+
+    <record id="ati_inherit_quotation_so_tree_id" model="ir.ui.view">
+        <field name="name">ati_inherit_quotation_so_tree_id</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='user_id']" position="after">
+                <field name="sales_person" string="Sales Person"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ati_inherit_sale_order_tree_id" model="ir.ui.view">
+        <field name="name">ati_inherit_sale_order_tree_id</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//tree/field[@name='user_id']" position="after">
+                <field name="sales_person" string="Sales Person"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="notif_price_so_line" model="ir.ui.view">
+        <field name="name">notif.price.so.line</field>
+        <field name="model">sale.order</field>
+        <field eval="20" name="priority"/>
+        <field name="arch" type="xml">
+            <form>
+                <field name="state" invisible="1"/>
+                <div colspan="2" style="font-weight:bold">
+                    Beberapa Item berikut tidak dapat diproses karena kurang dari harga modal:
+                    <br/><br/>
+                </div>
+                <field name="order_line" nolabel="1" colspan="2">
+                    <tree string="Items" create="false" delete="false" edit="false" decoration-danger="price_check == True">
+                        <field name="price_check" invisible="1"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="name" readonly="1"/>
+                        <field name="product_uom_qty" readonly="1"/>
+                        <field name="product_uom" readonly="1"/>
+                        <field name="price_unit" readonly="1"/>
+                        <field name="discount" readonly="1"/>
+                        <field name="discount_amount" readonly="1"/>
+                        <field name="price_subtotal" readonly="1"/>
+                    </tree>
+                </field>
+<!--                <div>-->
+<!--                    *Replace = Replacing HSCODE in SO and Master Product-->
+<!--                </div>-->
+                <footer>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                    <button name="action_continue_confirm" string="Continue" type="object" class="oe_highlight" context="{'state':state}"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="ati_inherit_payment_term_form_id" model="ir.ui.view">
+        <field name="name">ati_inherit_payment_term_form_id</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/group[1]/field[@name='name']" position="after">
+                <field name="is_cod"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="ati_inherit_account_move_is_pasien_form_id" model="ir.ui.view">
+        <field name="name">ati_inherit_account_move_is_pasien_form_id</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/group[1]/field[@name='payment_reference']" position="after">
+                <field name="is_pasien" readonly='1' attrs="{'invisible': [('is_pasien', '=', False)]}"/>
+                <field name="pasien" readonly='1' attrs="{'invisible': [('is_pasien', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="ati_inherit_account_move_is_pasien_tree_id" model="ir.ui.view">
+        <field name="name">ati_inherit_account_move_is_pasien_tree_id</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_out_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='invoice_date_due']" position="after">
+                <field name="is_pasien"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

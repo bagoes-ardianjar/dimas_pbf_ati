@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+    <record id="ir_cron_reset_loyalty" model="ir.cron">
+        <field name="name">Reset Loyalty</field>
+        <field name="model_id" ref="pos_loyalty.model_res_partner"/>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field name="code">model.reset_loyalty()</field>
+        <field name="active" eval="False"/>
+        <field name="interval_number">12</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+    </record>
+</odoo>

@@ -1,0 +1,253 @@
+<odoo>
+    <template id="report_pesanan_oot_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 45px;" alt="Logo"/>
+                </div>
+                <div class="col-9 text-right" style="margin-top:22px;" t-field="doc.company_id.report_header" name="moto"/>
+            </div>
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px;">
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:25%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:35%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" style="text-align:center; height:25px; font-size:15pt;">
+                                <t><span>SURAT PESANAN OBAT-OBAT TERTENTU</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span>Nomor</span></t>
+                            </td>
+                            <td colspan="4" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t><span t-field="doc.name" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span>Tanggal</span></t>
+                            </td>
+                            <td colspan="4" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="doc.date_approve"><span t-esc="doc.date_approve.strftime('%d-%m-%Y')" /></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="8" style="text-align:left; height:25px;">
+                                <t><span>Yang bertanda tangan dibawah ini:</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Nama</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>: Nurul Ainis Sakinah, S.Farm</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Jabatan</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>: Apoteker Penanggung Jawab</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>No. SIPA</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>: 446.84/1476-DPMPTSP/OL/2023</span></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="8" style="text-align:left; height:25px;">
+                                <t><span>Mengajukan pesanan obat mengandung Obat-Obat Tertentu kepada:</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Nama PBF</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="partner"><span t-field="partner.name"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Alamat</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="partner.street"><span t-field="partner.street"/></t>
+                                <t t-if="partner.street2"><span t-field="partner.street2"/></t>
+                                <t t-if="partner.city"><span t-field="partner.city"/></t>
+                                <t t-if="partner.state_id"><span t-field="partner.state_id.name"/></t>
+                                <t t-if="partner.country_id"><span t-field="partner.country_id.name"/></t>
+                                <t t-if="partner.zip"><span t-field="partner.zip"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Telp</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="partner.phone"><span t-field="partner.phone"/></t>
+                                <!-- <t t-if="partner.mobile"><span t-field="partner.mobile"/></t> -->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Tabel -->
+                <div class="row" style="padding-left: 14px; padding-right: 12px;">
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:3%;"></td>
+                            <td style="text-align:left; height:25px; width:18%;"></td>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:25%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:9%;"></td>
+                            <td style="text-align:left; height:25px; width:21%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" style="text-align:left; height:25px;">
+                                <t><span>Jenis obat mengandung Obat-Obat Tertentu yang dipesan adalah:</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span>No</span></t></td>
+                            <td colspan="2" style="border:1px solid black; text-align:center; height:25px;"><t><span>Nama Obat Mengandung Obat-Obat Tertentu</span></t></td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span>Zat Aktif Obat-Obat Tertentu</span></t></td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span>Bentuk Sediaan</span></t></td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span>Satuan</span></t></td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span>Jumlah</span></t></td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span>Keterangan</span></t></td>
+                        </tr>
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="doc.order_line" t-as="l">
+                            <tr>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><span t-esc="i"/></t></td>
+                                <td colspan="2" style="border:1px solid black; text-align:left; height:25px;"><t t-if="l.product_id.name"><span t-field="l.product_id.name" /></t></td>
+                                <td colspan="1" style="border:1px solid black; text-align:left; height:25px;"><t t-if="l.product_id.description"><span t-field="l.product_id.description" /></t></td>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t t-if="l.product_id.bentuk_sediaan"><span t-field="l.product_id.bentuk_sediaan" /></t></td>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t t-if="l.product_id.uom_id"><span t-field="l.product_id.uom_id" /></t></td>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t t-if="l.product_qty"><span t-esc="int(l.product_qty)" /></t></td>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px;"><t><t t-if="l.word_num_quantity"><span t-field="l.word_num_quantity" /></t></t></td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                        </t>
+                    </table>
+                </div>
+                <div class="row" style="padding-left: 14px; padding-right: 12px;">
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:30%;"></td>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" style="text-align:left; height:25px;">
+                                <t><span>Obat mengandung Obat-Obat Tertentu tersebut akan digunakan untuk memenuhi kebutuhan:</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Nama PBF</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="doc.company_id"><span t-field="doc.company_id.name"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Alamat PBF</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="doc.company_id.street"><span t-field="doc.company_id.street"/></t>
+                                <t t-if="doc.company_id.street2"><span t-field="doc.company_id.street2"/></t>
+                                <t t-if="doc.company_id.city"><span t-field="doc.company_id.city"/></t>
+                                <t t-if="doc.company_id.state_id"><span t-field="doc.company_id.state_id.name"/></t>
+                                <t t-if="doc.company_id.country_id"><span t-field="doc.company_id.country_id.name"/></t>
+                                <t t-if="doc.company_id.zip"><span t-field="doc.company_id.zip"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>No. Izin PBF</span></t>
+                            </td>
+                            <td colspan="6" style="text-align:left; height:25px;">
+                                <t><span>:</span></t>
+                                <t t-if="doc.company_id"><span t-field="doc.company_id.no_izin_pbf_pusat"/></t>
+                            </td>
+                        </tr>
+                        
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td colspan="3" style="text-align:left; height:25px;">
+                                <t><span>........................, ........................................</span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="8" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span>(Nurul Ainis Sakinah, S.Farm)</span></t>
+                            </td>
+                            <td colspan="1"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td colspan="3" style="text-align:left; height:25px;">
+                                <t><span>No. SIPA : 446.84/1476-DPMPTSP/OL/2023</span></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </t>
+    </template>
+    <template id="report_pesanan_oot_custom">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_purchase_pbf.report_pesanan_oot_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

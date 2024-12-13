@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_picking_work_order_batch_user,picking_batch_work_order.stock_picking_work_order_batch,model_stock_picking_work_order_batch,base.group_user,1,1,1,0
+access_stock_picking_to_batch_work_order_user,picking_batch_work_order.stock_picking_to_batch_work_order,model_stock_picking_to_batch_work_order,base.group_user,1,1,1,0
+access_res_driver_user,picking_batch_work_order.res_driver,model_res_driver,base.group_user,1,1,1,0
+access_plat_number_user,picking_batch_work_order.plat_number,model_plat_number,base.group_user,1,1,1,0

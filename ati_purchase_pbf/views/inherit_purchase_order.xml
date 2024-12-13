@@ -1,0 +1,134 @@
+<odoo>
+    <record id="inherit_purchase_order_form" model="ir.ui.view">
+        <field name="name">inherit_purchase_order_form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="replace">
+                <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True, 'show_address': True}"
+                                placeholder="Name, TIN, Email, or Reference" options='{"always_reload": True, "no_create": True}'
+                            />
+            </field>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_open': True}</attribute>
+                <attribute name="widget">many2one_no_open</attribute>
+                <attribute name="no_external_link">True</attribute>
+            </xpath>
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Supplier</attribute>
+            </field>
+            <field name="partner_ref" position="after">
+                <field name="type_po"/>
+                <field name="number_form" attrs="{'invisible':[('type_po','not in',('prekusor','oot','standar'))]}" />
+            </field>
+            <xpath expr="//button[@name='button_confirm']" position="after">
+                <button name="button_print_report_pesanan_prekursor" string="  Surat Pesanan Prekursor" class="fa fa-download btn-primary" type="object" attrs="{'invisible':['|', ('type_po', '!=', 'prekusor'), ('state', 'not in', ['purchase', 'done'])]}"/>
+                <button name="button_print_report_pesanan_oot" string="  Surat Pesanan OOT" class="fa fa-download btn-primary" type="object" attrs="{'invisible':['|', ('type_po', '!=', 'oot'), ('state', 'not in', ['purchase', 'done'])]}"/>
+                <button name="button_print_report_pesanan_standar" string="  Surat Pesanan Standar" class="fa fa-download btn-primary" type="object" attrs="{'invisible':['|', ('type_po', '!=', 'standar'), ('state', 'not in', ['purchase', 'done'])]}"/>
+                <button name="button_print_report_pesanan_alkes" string="  Surat Pesanan Alkes" class="fa fa-download btn-primary" type="object" attrs="{'invisible':['|', ('type_po', '!=', 'alkes'), ('state', 'not in', ['purchase', 'done'])]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="inherit_purchase_order_tree" model="ir.ui.view">
+        <field name="name">inherit_purchase_order_tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Supplier</attribute>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="string">No Purchase Order</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="inherit_purchase_order_view_tree" model="ir.ui.view">
+        <field name="name">inherit_purchase_order_view_tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Supplier</attribute>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="string">No Purchase Order</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="paperformat_a4_pesanan_custom" model="report.paperformat">
+        <field name="name">Paperformat A4 Pesanan Custom</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">76</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_pesanan_prekursor_custom" model="ir.actions.report">
+        <field name="name">Surat Pesanan Prekursor</field>
+        <field name="paperformat_id" ref="paperformat_a4_pesanan_custom" />
+        <field name="model">purchase.order</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_purchase_pbf.report_pesanan_prekursor_custom</field>
+        <field name="report_file">ati_purchase_pbf.report_pesanan_prekursor_custom</field>
+        <field name="print_report_name">'Surat Pesanan Prekursor - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+    <record id="action_report_pesanan_oot_custom" model="ir.actions.report">
+        <field name="name">Surat Pesanan OOT</field>
+        <field name="paperformat_id" ref="paperformat_a4_pesanan_custom" />
+        <field name="model">purchase.order</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_purchase_pbf.report_pesanan_oot_custom</field>
+        <field name="report_file">ati_purchase_pbf.report_pesanan_oot_custom</field>
+        <field name="print_report_name">'Surat Pesanan OOT - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+    <record id="action_report_pesanan_standar_custom" model="ir.actions.report">
+        <field name="name">Surat Pesanan Standar</field>
+        <field name="paperformat_id" ref="paperformat_a4_pesanan_custom" />
+        <field name="model">purchase.order</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_purchase_pbf.report_pesanan_standar_custom</field>
+        <field name="report_file">ati_purchase_pbf.report_pesanan_standar_custom</field>
+        <field name="print_report_name">'Surat Pesanan Standar - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+    <record id="action_report_pesanan_alkes_custom" model="ir.actions.report">
+        <field name="name">Surat Pesanan Alkes</field>
+        <field name="paperformat_id" ref="paperformat_a4_pesanan_custom" />
+        <field name="model">purchase.order</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_purchase_pbf.report_pesanan_alkes_custom</field>
+        <field name="report_file">ati_purchase_pbf.report_pesanan_alkes_custom</field>
+        <field name="print_report_name">'Surat Pesanan Alkes - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+    
+</odoo>

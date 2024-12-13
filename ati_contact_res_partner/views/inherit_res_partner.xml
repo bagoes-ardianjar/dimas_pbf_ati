@@ -1,0 +1,12 @@
+<odoo>
+    <record id="inherit_view_partner_form" model="ir.ui.view">
+        <field name="name">inherit_view_partner_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="ati_contact_pbf.inherit_view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='x_membership']" position="after">
+                <field name="sales_person"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

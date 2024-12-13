@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ShortcutListTips" owl="1">
+        <div class="control-button">
+            <a style="color: #565656; display: block;" class="btn btn-primary" t-on-click="trigger('click-shortcut-tips')">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                Shortcut Tips
+            </a>
+        </div>
+    </t>
+</templates>

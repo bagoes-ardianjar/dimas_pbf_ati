@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ati_pbf_promotion_so_ati_pbf_promotion_so,so_promotion.so_promotion,model_so_promotion,ati_pbf_promotion_so.akses_right_promotion_group_id,1,1,1,1
+access_read_ati_pbf_promotion_so_ati_pbf_promotion_so,read_so_promotion.so_promotion,model_so_promotion,,1,0,0,0

@@ -1,0 +1,82 @@
+<odoo>
+    <template id="report_batch_transfer_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="customer" t-value="doc.customer"></t>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:40%;"></td>
+                            <td style="text-align:left; height:25px; width:10%;"></td>
+                            <td style="text-align:left; height:25px; width:40%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="font-size:15pt; text-align:center; height:25px; font-weight:700;"><t><span>Delivery Order</span></t></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="font-size:12pt; text-align:center; height:25px; font-weight:700;"><t><span>(Batch Transfer)</span></t></td>
+                        </tr>
+                        <tr><td colspan="6" style="height:50px;"></td></tr>
+                        <tr>
+                            <td tyle="text-align:center; height:25px;"><t><span>Nomor</span></t></td>
+                            <td tyle="text-align:left; height:25px;"><span>:</span><t t-if="doc.name"><span style="padding-left: 14px;" t-field="doc.name"/></t></td>
+                            <td tyle="text-align:center; height:25px;"><t><span>Ekspedisi</span></t></td>
+                            <td tyle="text-align:left; height:25px;"><span>:</span><t t-if="doc.expedition_name"><span style="padding-left: 14px;" t-field="doc.expedition_name"/></t></td>
+                        </tr>
+                        <tr>
+                            <td tyle="text-align:center; height:25px;"><t><span>Tanggal</span></t></td>
+                            <td tyle="text-align:left; height:25px;"><span>:</span><t t-if="doc.scheduled_date"><span style="padding-left: 14px;" t-field="doc.scheduled_date"/></t></td>
+                            <td tyle="text-align:center; height:25px;"><t><span>No Plat</span></t></td>
+                            <td tyle="text-align:left; height:25px;"><span>:</span><t t-if="doc.plat_number"><span style="padding-left: 14px;" t-field="doc.plat_number"/></t></td>
+                        </tr>
+                        <tr>
+                            <td tyle="text-align:center; height:25px;"><t><span>Customer</span></t></td>
+                            <td tyle="text-align:left; height:25px;"><span>:</span><t t-if="doc.customer"><span style="padding-left: 14px;" t-field="doc.customer.name"/></t></td>
+                            <td tyle="text-align:center; height:25px;"><t><span>Supir</span></t></td>
+                            <td tyle="text-align:left; height:25px;"><span>:</span><t t-if="doc.driver_name"><span style="padding-left: 14px;" t-field="doc.driver_name"/></t></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row" style="padding-left: 14px; padding-right: 12px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:30%;"></td>
+                            <td style="text-align:left; height:25px; width:25%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:25%;"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center; height:25px; font-weight:700; border:1px solid black;"><t><span>No</span></t></td>
+                            <td style="text-align:center; height:25px; font-weight:700; border:1px solid black;"><t><span>Nama Produk</span></t></td>
+                            <td style="text-align:center; height:25px; font-weight:700; border:1px solid black;"><t><span>Batch</span></t></td>
+                            <td style="text-align:center; height:25px; font-weight:700; border:1px solid black;"><t><span>Qty</span></t></td>
+                            <td style="text-align:center; height:25px; font-weight:700; border:1px solid black;"><t><span>Nomor SO</span></t></td>
+                        </tr>
+                        <t t-foreach="doc.move_line_ids" t-as="line">
+                            <tr>
+                                <td style="text-align:center; height:25px; font-weight:400; border:1px solid black;"><t><span t-esc="i"/></t></td>
+                                <td style="text-align:left; height:25px; padding-left:10px; font-weight:400; border:1px solid black;"><t><span t-field="line.product_id.name"/></t></td>
+                                <td style="text-align:left; height:25px; padding-left:10px; font-weight:400; border:1px solid black;"><t><span t-field="line.lot_id.name"/></t></td>
+                                <td style="text-align:left; height:25px; padding-left:10px; font-weight:400; border:1px solid black;"><t><span t-esc="int(line.qty_done)"/> <span t-field="line.product_uom_id.name"/></t></td>
+                                <td style="text-align:left; height:25px; padding-left:10px; font-weight:400; border:1px solid black;"><t><span t-field="line.picking_id.origin"/></t></td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                        </t>
+                    </table>
+                </div>
+
+            </div>
+        </t>
+    </template>
+    <template id="report_batch_transfer_container">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_pbf_stock.report_batch_transfer_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

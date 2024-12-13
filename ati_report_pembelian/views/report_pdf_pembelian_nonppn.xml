@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form untuk memilih report dan tanggal mulai dan tanggal akhir -->
+        <record id="report_pembelian_nonppn_form" model="ir.ui.view">
+            <field name="name">report.pembelian.nonppn.form</field>
+            <field name="model">report.pembelian.nonppn</field>
+            <field name="arch" type="xml">
+                <form string="Report Pembelian Non PPN">
+                    <group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="action_print_report_pembelian_nonppn" string="Export (PDF)" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action untuk membuka form diatas -->
+        <record model="ir.actions.act_window" id="action_open_report_pembelian_nonppn_form">
+            <field name="name">Report Pembelian Non PPN</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.pembelian.nonppn</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_pembelian_nonppn"
+            name="Report Pembelian Non PPN"
+            action="action_open_report_pembelian_nonppn_form"
+            parent="purchase.purchase_report_main"
+            sequence="99"
+            active="False"
+        />
+    </data>
+</odoo>
+
+

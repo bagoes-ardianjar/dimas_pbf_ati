@@ -1,0 +1,76 @@
+.popup.popup-textinput.product-info-popup.shortcut_tips_popup .title {
+    margin-bottom: 0px;
+}
+.main_div_shortcut_tips {
+    font-weight: normal !important;
+    font-size: 15px !important;
+    max-height: 330px;
+    overflow: auto;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table_header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table {
+    width: 100%;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table thead {
+    background: #ccc;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table thead tr {
+    line-height: 30px;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table_header {
+    margin-bottom: 15px;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table thead {
+    background: #ddd;
+}
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table thead tr th {
+    width: 50%;
+}
+
+.shortcut_tips_popup .main_div_shortcut_tips .sh_shortcut_table tr td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.shortcut_tips_popup .footer .button.cancel {
+    background: #6ec89b;
+    color: #fff;
+    border: 0;
+    border-radius: 0;
+}
+.order-row.order_highlight {
+    color: white;
+    background-color: rgb(110, 200, 155) !important;
+}
+
+@media only screen and (max-width: 576px) {
+    .modal-dialog.sh_shortcut_modal_dialog {
+        padding: 0px !important;
+    }
+    .shortcut_tips_popup .footer .button.cancel {
+        margin-bottom: 6px !important;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .pos .modal-dialog.sh_shortcut_modal_dialog .popup-lg {
+        max-height: 765px;
+    }
+}
+@media only screen and (min-width: 1024) {
+    .pos .modal-dialog.sh_shortcut_modal_dialog .popup-lg {
+        max-height: 955px;
+    }
+}
+
+.pos .modal-dialog .shortcut_tips_popup {
+    max-width: 50% !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .pos .modal-dialog .shortcut_tips_popup {
+        max-width: 87% !important;
+    }
+}

@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Sales (ATI)',
+    'version': '1.0.5.2',
+    'author': 'Ibad - Akselerasi Teknologi Investama',
+    'category': 'Sales',
+    'maintainer': 'Ibad - Akselerasi Teknologi Investama',
+    'summary': """From quotations to invoices""",
+    'description': """
+        From quotations to invoices
+    """,
+    'website': 'https://akselerasiteknologi.id/',
+    'license': 'LGPL-3',
+    'support': 'Ahmad.Ibad@akselerasiteknologi.id',
+    'depends': [
+        'base',
+        'web',
+        'product',
+        'sale',
+        'stock',
+        'sh_message',
+        'sale_stock',
+        'sale_purchase_inter_company_rules',
+        'sale_coupon',
+        'sales_team',
+        'ati_contact_pbf',
+        'ati_pbf_product',
+        'report_xlsx'
+    ],
+    'data': [
+        'views/sale_order_views.xml',
+        'views/sale_order_line_views.xml',
+        'views/ati_partner_invoice_id_cron.xml',
+        'reports/report_faktur_penjualan_custom.xml',
+        'reports/report_proforma_invoice.xml',
+        'security/so_approval_security.xml',
+        'security/pasien_panel_access_right.xml',
+        'security/ir.model.access.csv',
+        'wizard/sale_order_reject_apj.xml',
+        'wizard/sale_order_reject_finance.xml',
+        'wizard/sale_order_reject_manager.xml',
+        'wizard/sale_order.xml',
+        'wizard/wizard_report_sale_daily.xml',
+        'wizard/wizard_customer_sale_view.xml',
+        'wizard/wizard_pnl_sale_product_view.xml',
+        'wizard/wizard_pnl_sale_sales_view.xml',
+        'wizard/pnl_sale_sales_report_view.xml',
+        'wizard/search_change_pricelist.xml',
+        'wizard/wizard_rekap_pelanggan_view.xml',
+        'data/cron.xml',
+        'reports/customer_sale_report.xml',
+        'reports/sale_daily_report.xml'
+    ],
+    'assets': {
+            'web.assets_qweb': [
+                'ati_pbf_sale/static/src/xml/**/*',
+            ],
+        },
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ati_pbf_promotion_po_ati_pbf_promotion_po,po_promotion.po_promotion,model_po_promotion,,1,1,1,1

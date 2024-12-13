@@ -1,0 +1,150 @@
+.sh_assigned_config {
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: 1px 3px;
+    text-align: center;
+    margin: 2px;
+    display: inline-block;
+}
+.save_button {
+    display: none !important;
+}
+.show_save_button {
+    display: block !important;
+}
+.popup.popup-text.popup-lg.product-configurator-popup.select_receiver_popup {
+    width: 500px;
+    height: 400px;
+}
+.footer.sh_select_receiver_footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100% !important;
+    height: 60px !important;
+    border-top: solid 1px rgba(60, 60, 60, 0.1) !important;
+}
+.select_receiver_popup header.title {
+    background: #6ec89b !important;
+    color: #fff !important;
+}
+.session_table td {
+    padding: 10px !important;
+}
+.session_table tr.lowlight {
+    transition: all 150ms linear;
+    background: rgb(216, 238, 227);
+}
+.session_table tr.highlight {
+    transition: all 150ms linear;
+    background: rgb(110, 200, 155) !important;
+    color: white;
+}
+.session_table tr:nth-child(even) {
+    background: rgb(247, 247, 247);
+}
+.session_table {
+    width: 100%;
+}
+.main_div_pos_session {
+    font-size: 16px;
+    font-weight: normal;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: relative;
+    z-index: 999999;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-info {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert-success hr {
+    border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+    color: #2b542c;
+}
+.msg_div {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+}
+@media only screen and (max-width: 414px) and (min-width: 376px) {
+    .subwindow-container-fix.touch-scrollable.scrollable-y.order-list-scroll.sh_order_screen {
+        max-width: 100%;
+        overflow: auto !important;
+        height: 100% !important;
+        width: 100%;
+        max-height: 480px !important;
+    }
+}
+@media only screen and (max-width: 375px) and (min-width: 362px) {
+    .subwindow-container-fix.touch-scrollable.scrollable-y.order-list-scroll.sh_order_screen {
+        max-width: 100%;
+        overflow: auto !important;
+        height: 100% !important;
+        width: 100%;
+        max-height: 480px !important;
+    }
+}
+
+@media only screen and (max-width: 361px) and (min-width: 322px) {
+    .subwindow-container-fix.touch-scrollable.scrollable-y.order-list-scroll.sh_order_screen {
+        max-width: 100%;
+        overflow: auto !important;
+        height: 100% !important;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 321px) {
+    .subwindow-container-fix.touch-scrollable.scrollable-y.order-list-scroll.sh_order_screen {
+        max-width: 100%;
+        overflow: auto !important;
+        height: 100% !important;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .popup.popup-text.popup-lg.product-configurator-popup.select_receiver_popup {
+        top: 35% !important;
+    }
+    .pos .scrollable-y.sh_main_body {
+        max-height: 68% !important;
+    }
+    .sh_modal_dialog {
+        padding: 0px !important;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .sh_order_screen {
+        max-height: 480px !important;
+    }
+}
+
+/* 5-2-2022 */ 
+.pos .pos-content .screen-content .top-content.sh_top_content .button{font-size: 18px;color: #555;}
+.pos .pos-content .screen-content .top-content.sh_top_content .searchbox-client.sh_searchbox_client_service input[type="date"]{padding: 8px 20px;margin-left: 10px;}
+
+@media only screen and (max-width: 767.98px){
+	.pos .pos-content .screen-content .top-content.sh_top_content .button{height: auto !important;}
+	.pos .pos-content .screen-content .top-content.sh_top_content{display: block;height: 100px !important;}
+	.pos .pos-content .screen-content .full-content.sh_full_content_service_management{top: 100px !important;}
+	.pos .pos-content .screen-content .top-content.sh_top_content .sh_searchbox_client_service{margin-top: 0px !important;}
+}
+
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <data>
+        <record id="inherit_purchase_order_form_view" model="ir.ui.view">
+            <field name="name">purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_confirm']" position="after">
+                    <button name="action_promotion" string="Promotion" class="oe_highlight" type="object" states="draft"/>
+                </xpath>
+                <xpath expr="//group[hasclass('oe_subtotal_footer')]" position="replace">
+                    <group>
+                        <group>
+                            <field name="global_discount_type" groups="discount_account_invoice.group_order_global_discount" class="oe_inline" attrs="{'required' :[('global_order_discount', '>', 0.0)], 'readonly' :[('state', 'not in', ['draft', 'sent'])]}"/>
+                            <field name="global_order_discount" groups="discount_account_invoice.group_order_global_discount" class="oe_inline" attrs="{'readonly' :[('state', 'not in', ['draft', 'sent'])]}"/>
+                            <field name="total_global_discount" groups="discount_account_invoice.group_order_global_discount" class="oe_inline" attrs="{'invisible': ['|', ('global_discount_type', '!=', 'percent'), ('global_order_discount', '=', 0.0)]}"/>
+                        </group>
+                        <group>
+                              <button name="action_promotion" string="Promotion" class="oe_highlight" type="object" invisible="1"/>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right">
+
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}" force_save="1"/>
+                            <field name="amount_tax"/>
+                            <field name="amount_pph"/>
+                            <field name="total_global_discount" widget='monetary' options="{'currency_field': 'currency_id'}" groups="discount_account_invoice.group_order_global_discount,product.group_discount_per_so_line" string="Total Global Discount"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']//form//field[@name='taxes_id']" position="after">
+                    <field name="line_sub_total" string="Subtotal" widget="monetary" groups="product.group_discount_per_so_line" force_save="1"/>
+
+                    <field name="discount" groups="product.group_discount_per_so_line" class="oe_inline" />
+                    <field name="discount_type" groups="product.group_discount_per_so_line" class="oe_inline" invisible="1" />
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']//tree//field[@name='taxes_id']" position="after">
+                    <field name="line_sub_total" string="Subtotal" widget="monetary" sum="line subtotal" groups="product.group_discount_per_so_line" force_save="1"/>
+
+                    <field name="discount_type" groups="product.group_discount_per_so_line" attrs="{'required' :[('discount', '>', 0.0)]}" invisible="1"/>
+                    <field name="discount" groups="product.group_discount_per_so_line" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="replace">
+                    <field name="price_subtotal" string="Discounted Subtotal" widget="monetary" sum="discounted subtotal" force_save="1" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                    <attribute name="string">Price After Discount</attribute>
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='taxes_id']" position="before">
+                    <field name="ati_price_unit" attrs="{'readonly': [('qty_invoiced', '!=', 0)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

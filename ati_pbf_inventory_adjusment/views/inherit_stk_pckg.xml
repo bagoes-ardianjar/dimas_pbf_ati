@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ati_inherit_stk_pckg_form" model="ir.ui.view">
+        <field name="name">ati.inherit.stk.pckg.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                    <button name="action_submit_2" type="object" string="Submit" class="oe_highlight" attrs="{'invisible': ['|', '|', ('is_internal_transfer','=', False), ('is_return', '=', True), ('state', '!=', 'assigned')]}"/>
+            </xpath>
+            <field name="location_id" position="after">
+                <field name="recipient_id" attrs="{'invisible': [('is_internal_transfer','=', False)]}"/>
+            </field>
+
+            <xpath expr="//group//group[1]//div//label[3]" position="replace">
+                    <label for="partner_id" string="Delivery Contact" style="font-weight:bold;" attrs="{'invisible': [('picking_type_code', 'in', ['incoming', 'outgoing'])]}"/>
+            </xpath>
+
+            <xpath expr="//page[@name='extra']" position="inside">
+                    <group>
+                        <field name="is_return" invisible="1"/>
+                        <field name="is_internal_transfer" invisible="1"/>
+                    </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

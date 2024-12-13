@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_item_form_view_ib" model="ir.ui.view">
+        <field name="name">product_pricelist_item_form_view.ib</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <label for="price_min_margin" position="after">
+                <field name="additional_margin" widget="percentage"/>
+            </label>
+            <label for="price_min_margin" position="replace"/>
+            <field name="price_min_margin" position="replace"/>
+            <field name="price_max_margin" position="replace"/>
+            <i class="fa fa-long-arrow-right mx-2 oe_edit_only" position="replace"/>
+        </field>
+    </record>
+</odoo>

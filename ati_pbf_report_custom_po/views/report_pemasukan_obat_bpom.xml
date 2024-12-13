@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+
+
+         <record id="pemasukan_obat_bpom_wizard" model="ir.ui.view">
+            <field name="name">Report Pemasukan Obat BPOM</field>
+            <field name="model">wizard.po</field>
+            <field name="arch" type="xml">
+                <form string="Report Pemasukan Obat BPOM">
+                    <group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="golongan_obat" />
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="get_excel_report_bpom" string="Export(Excel)" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+     <record model="ir.actions.act_window" id="action_open_report_obat_bpom">
+            <field name="name">Report Pemasukan Obat BPOM</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.po</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_obat_bpom"
+            name="Pemasukan Obat BPOM"
+            action="action_open_report_obat_bpom"
+            parent="purchase.purchase_report_main"
+            sequence="100"/>
+
+  </data>
+</odoo>

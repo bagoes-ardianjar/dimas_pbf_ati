@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_stock_move_line_detailed_operation_tree_ib" model="ir.ui.view">
+        <field name="name">stock.move.line.operations.tree.inherit.ib</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="default_order">product_id asc</attribute>
+            </xpath>
+            <field name="product_uom_id" position="after">
+                <field name="expiration_date" string="Expiration Date"/>
+            </field>
+             <field name="product_uom_id" position="after">
+                <field name="tax_ids" string="tax_ids" widget="many2many_tags" invisible="1"/>
+                 <field name="harga_satuan" string="harga_satuan" invisible="1"/>
+                 <field name="discount_amount" string="discount_amount" invisible="1"/>
+                 <field name="price_subtotal" string="price_subtotal" invisible="1"/>
+                 <field name="global_diskon_line" string="global_diskon_line" invisible="1"/>
+                 <field name="total_tax" string="total_tax" digits="[15,3]" invisible="1"/>
+            </field>
+<!--            <xpath expr="//field[@name='lot_id']" position="attributes">-->
+<!--                <attribute name="domain">[('product_id', '=', product_id),-->
+<!--                    ('company_id', '=', company_id),-->
+<!--                    ('id', '=', batch_on_location_id)]</attribute>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='lot_id']" position="attributes">
+                <attribute name="domain">[('id', 'in', lot_helper_ids)]</attribute>
+            </xpath>
+            <field name="lot_id" position="after">
+<!--                edit by ibad-->
+                <field name="lots_visible" invisible="1"/>
+                <field name="lot_helper_ids" invisible="1" widget="many2many_tags"/>
+                <field name="user_helper_id" invisible="1"/>
+                <!-- <field name="lot_id" groups="stock.group_production_lot"
+                       attrs="{'column_invisible': [('parent.show_lots_text', '=', True)], 'invisible': [('lots_visible', '=', False)]}"
+                       context="{'default_product_id': product_id, 'default_company_id': company_id, 'active_picking_id': picking_id}"
+                       optional="show" string="Batch"/> -->
+            </field>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_on_location_id" widget="many2many_tags" invisible="1" />
+                <field name="batch_on_location_id" widget="many2many_tags" invisible="1"/>
+            </xpath>
+<!--            <xpath expr="//field[@name='product_id']" position="attributes">-->
+<!--                <attribute name="domain">[('type', '!=', 'service'), '|',-->
+<!--                    ('company_id', '=', False),-->
+<!--                    ('company_id', '=', company_id),-->
+<!--                    ('id', '=', product_on_location_id)]</attribute>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+</odoo>

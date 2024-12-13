@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <data>
+        <record id="ati_stock_loc_form_inherit_ad" model="ir.ui.view">
+        <field name="name">ati.stock.loc.inherit.ad</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//group[1]//group[3]" position="after">
+                    <group string="Reference" groups="stock.group_adv_location">
+                            <field name="is_karantina"/>
+                            <field name="is_wh"/>
+                    </group>
+            </xpath>
+        </field>
+
+        </record>
+
+    </data>
+</odoo>
+

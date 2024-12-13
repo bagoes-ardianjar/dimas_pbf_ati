@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_customer_sale_form'>
+            <field name="name">wizard.customer.sale.form</field>
+            <field name="model">wizard.customer.sale</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                    </group>          
+                    <footer>
+                        <button name="button_generate_excel" type="object" default_focus="1"
+                            string="Excel Report" class="oe_highlight" icon="fa-download"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='wizard_customer_sale_action'>
+            <field name="name">Laporan Penjualan Customer</field>
+            <field name="res_model">wizard.customer.sale</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_customer_sale_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Laporan Penjualan Customer"
+            parent="sale.menu_sale_report"
+            id="menu_wizard_customer_sale"
+            action="wizard_customer_sale_action"
+            sequence="5"/>
+
+        <report
+            id="wizard_customer_sale_xlsx"
+            model="wizard.customer.sale"
+            string="Laporan Penjualan Customer"
+            report_type="xlsx"
+            name="ati_pbf_sale.customer_sale.xlsx"
+            file="Laporan Penjualan Customer.xlsx"
+            menu="False"
+            attachment_use="False"/>
+
+        <report
+            id="wizard_customer_sale"
+            model="wizard.customer.sale"
+            string="Laporan Penjualan Customer"
+            name="ati_pbf_sale.customer_sale"
+            file="ati_pbf_sale.customer_sale"
+            report_type="qweb-html"
+            print_report_name = "Laporan Penjualan Customer"
+          />
+    </data>
+</odoo>

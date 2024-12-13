@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="ati_pbf_inventory_report_id"
+        name="Laporan Triwulan E-Report Kemenkes"
+        parent="stock.menu_warehouse_report"
+        action="ati_pbf_inventory_report.ati_pbf_inventory_report_action_id"
+        sequence="6"/>
+</odoo>

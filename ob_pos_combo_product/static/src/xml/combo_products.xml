@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template id="template" xml:space="preserve">
+
+    <t t-name="ComboPopup" owl="1">
+        <div class="modal-dialog">
+            <div class="popup combo-header">
+                <p class="title"><t t-esc="props.product_name || 'Combo Product' " /></p>
+                <div class="combo-selection">
+                    <div class="combo-type">
+                        <div class="combo-head-type">Required</div>
+                        <div class="combo-required">
+                            <t t-foreach="props.required || []" t-as="combo" t-key="combo.id">
+                                <div class='combo-category' t-att-data-combo-id="combo.id">
+                                    <div class="combo-category-head"><t t-esc="combo.name"/></div>
+                                    <div>
+                                        <t t-foreach="combo.combo_products" t-as="product" t-key="product.id">
+                                            <div class="product">
+                                                <div>
+                                                    <span class="combo-select"></span>
+                                                    <img t-att-src="productImageUrl" alt="Product Image" />
+                                                </div>
+                                                <div class="product-name">
+                                                    <t t-esc="product.name"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="combo-type">
+                        <div class="combo-head-type">Optional</div>
+                        <div class="combo-optional">
+                        <t t-foreach="props.optional || []" t-as="combo" t-key="combo.id">
+                            <div class='combo-category' t-att-data-combo-id="combo.id">
+                                <div class="combo-category-head">
+                                    <span><t t-esc="combo.name"/></span>
+                                    <span style="font-size: 13px;"> ( Choose <t t-esc="combo.limit"/> item )</span>
+                                </div>
+                                <div>
+                                    <t t-foreach="combo.combo_products" t-as="product" t-key="product.id">
+                                        <div class="product combo-product-selection"
+                                             t-att-data-product-id="product.id" t-att-data-combo-id="combo.id"
+                                             t-att-data-category-id="combo.category"
+                                             t-on-click="choose_products">
+                                            <div>
+                                                <span class="combo-select"></span>
+                                                <img t-att-src="productImageUrl" alt="Product Image" />
+                                            </div>
+                                            <div class="product-name">
+                                                <t t-esc="product.name"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="button confirm" t-on-click="confirm">
+                        Confirm
+                    </div>
+                    <div class="button cancel"
+                         t-on-click="go_back_screen">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
+        <xpath expr="//ul[hasclass('info-list')]" position="replace">
+            <ul class="info-list">
+                <t t-if="props.line.get_quantity_str() !== '1' || props.line.selected ">
+                    <li class="info">
+                        <em>
+                            <t t-esc="props.line.get_quantity_str()"/>
+                        </em>
+                        <span> </span><t t-esc="props.line.get_unit().name"/>
+                        at
+                        <t t-if="props.line.display_discount_policy() == 'without_discount' and
+                            props.line.get_unit_display_price() != props.line.get_lst_price()">
+                            <s>
+                                <t t-esc="env.pos.format_currency(props.line.get_fixed_lst_price(),'Product Price')"/>
+                            </s>
+                            <t t-esc="env.pos.format_currency(props.line.get_unit_display_price(),'Product Price')"/>
+                        </t>
+                        <t t-else="">
+                            <t t-esc="env.pos.format_currency(props.line.get_unit_display_price(),'Product Price')"/>
+                        </t>
+                        /
+                        <t t-esc="props.line.get_unit().name"/>
+                    </li>
+                </t>
+                <t t-if="props.line.combo_items">
+                    <li class="info">
+                        <t t-foreach="props.line.combo_items" t-as="combo_item" t-key="combo_item.id">
+                            <div>
+                               - <t t-esc="combo_item.name"/> :
+                                <t t-esc="props.line['quantity']"/>
+                            </div>
+                        </t>
+                    </li>
+                </t>
+                <t t-if="props.line.get_discount_str() !== '0'">
+                    <li class="info">
+                        With a
+                        <em>
+                            <t t-esc="props.line.get_discount_str()"/>%
+                        </em>
+                        discount
+                    </li>
+                </t>
+            </ul>
+        </xpath>
+    </t>
+
+    <t t-name="OrderLinesReceiptExt" t-inherit="point_of_sale.OrderLinesReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//WrappedProductNameLines" position="after">
+            <t t-if='line.combo_items.length > 0'>
+                <t t-foreach="line.combo_items" t-as="combo_item" t-key="combo_item.id">
+                    <div class="combo-receipt">
+                        - <t t-esc='combo_item.name'/> with qty: <t t-esc="line['quantity']"/>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-else='']/WrappedProductNameLines" position="after">
+            <t t-if='line.combo_items.length > 0'>
+                <t t-foreach="line.combo_items" t-as="combo_item" t-key="combo_item.id">
+                    <div class="combo-receipt">
+                        - <t t-esc='combo_item.name'/> with qty: <t t-esc="line['quantity']"/>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </t>
+
+</template>

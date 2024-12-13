@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add Custom Fields in pos.config -->
+    <record model="ir.ui.view" id="pos_config_list_view">
+        <field name="name">ppos.config.list.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <div id="category_reference" position="after">
+                <div id="pos_product_view_option" class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="enable_list_view"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="enable_list_view" string="Enable List View"/>
+                        <div class="content-group mt16" attrs="{'invisible' : [('enable_list_view', '=', False)]}">
+                            <div>
+                                <field name="display_product_name" class="oe_inline"/>
+                                <label for="display_product_name" string="Display Product Name" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_type" class="oe_inline"/>
+                                <label for="display_product_type" string="Display Product Type" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_code" class="oe_inline"/>
+                                <label for="display_product_code" string="Display Product Reference Code" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_UOM" class="oe_inline"/>
+                                <label for="display_product_UOM" string="Display Product UOM" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_price" class="oe_inline"/>
+                                <label for="display_product_price" string="Display Product Price" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_on_hand_qty" class="oe_inline"/>
+                                <label for="display_product_on_hand_qty" string="Display Product On Hand Qty" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_forecast_qty" class="oe_inline"/>
+                                <label for="display_product_forecast_qty" string="Display Product Forecast Qty" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div>
+                                <field name="display_product_image" class="oe_inline"/>
+                                <label for="display_product_image" string="Display Product Image" 
+                                    class="oe_inline"/>
+                            </div>
+                            <div attrs="{'invisible' : [('display_product_image', '=', False)]}">
+                                <field name="image_size" class="oe_inline" widget="radio"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 o_setting_box" attrs="{'invisible' : [('enable_list_view', '=', False)]}">
+                    <div class="o_setting_left_pane">
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <span class="o_form_label">Default Product View</span>
+                        <div class="content-group mt16 row" style="margin-left: 10px;">
+                            <field name="default_product_view" widget="radio"/>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </field>
+    </record>
+</odoo>

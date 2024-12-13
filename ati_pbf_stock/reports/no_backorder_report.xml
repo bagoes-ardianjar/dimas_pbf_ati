@@ -1,0 +1,201 @@
+<odoo>
+    <template id="report_no_backorder_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px; font-weight:900;">
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                            <td style="text-align:left; height:25px; width:1%;"></td>
+                            <td style="text-align:left; height:25px; width:39%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5" style="height: 100px; vertical-align:middle; "><img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 100px;"/></td>
+                            <td colspan="4" style="font-size:15pt; text-align:center; height:25px; padding-right:30px;"><t><span>PT. BERKAT MAHKOTA PUTRA</span></t></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="font-size:10pt; text-align:left; height:25px; padding-left:30px;">
+                                <t><span>Kantor Pusat : </span></t>
+                                <t t-if="company.street"><span t-field="company.street"/></t>
+                                <t t-if="company.street2"><span t-field="company.street2"/></t>
+                                <t t-if="company.city"><span t-field="company.city"/></t>
+                                <t t-if="company.zip"><span t-field="company.zip"/></t>
+                            </td>
+                        </tr>
+                        <!-- <tr></tr>
+                        <tr></tr> -->
+                        <tr>
+                            <td style="text-align:left; height:25px; padding-left: 30px;"><span>IZIN PBF PUSAT</span></td>
+                            <td style="text-align:left; height:25px; padding-left: 10px;"><span>:</span></td>
+                            <td colspan="2" style="text-align:left; height:25px; padding-left:10px;">
+                                <t t-if="company.no_izin_pbf_pusat"><span t-field="company.no_izin_pbf_pusat"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left; height:25px; padding-left: 30px;"><span>IZIN PAK PUSAT</span></td>
+                            <td style="text-align:left; height:25px; padding-left: 10px;"><span>:</span></td>
+                            <td colspan="2" style="text-align:left; height:25px; padding-left:10px;">
+                                <t t-if="company.no_izin_pak_pusat"><span t-field="company.no_izin_pak_pusat"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left; height:25px; padding-left: 30px;"><span>Email</span></td>
+                            <td style="text-align:left; height:25px; padding-left: 10px;"><span>:</span></td>
+                            <td colspan="2" style="text-align:left; height:25px; padding-left:10px;">
+                                <t t-if="company.email"><span t-field="company.email"/></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:10px;"></td><td></td></tr>
+
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:25px; padding-left: 30px;"><span>Kepada Yth.</span></td>
+                            <td rowspan="4" colspan="2" style="text-align:center; height:25px; padding-left: 30px;"><span>NO. FORM : FORM/BMP-P/016</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.partner_id"><span t-field="doc.partner_id.name"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.partner_id.street"><span t-field="doc.partner_id.street"/></t>
+                                <t t-if="doc.partner_id.street2"><span t-field="doc.partner_id.street2"/></t>
+                                <t t-if="doc.partner_id.city"><span t-field="doc.partner_id.city"/></t>
+                                <t t-if="doc.partner_id.state_id"><span t-field="doc.partner_id.state_id"/></t>
+                                <t t-if="doc.partner_id.zip"><span t-field="doc.partner_id.zip"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.partner_id.country_id"><span t-field="doc.partner_id.country_id"/></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:30px;"></td></tr>
+                        <tr>
+                            <td colspan="5" style="text-align:center; height:25px; padding-left: 30px;">
+                                <t t-if="doc.sale_id"><span>SURAT PENOLAKAN PESANAN</span></t>
+                                <t t-if="doc.purchase_id"><span>SURAT KONFIRMASI KETIDAKSESUAIAN PEMESANAN</span></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:10px;"></td></tr>
+                        <tr>
+                            <td colspan="1"></td>
+                            <td colspan="4" style="text-align:left; height:25px; padding-left: 150px;">
+                                <t><span style="padding-right: 19px;">NOMOR</span></t>
+                                <t><span>:</span></t>
+                                <t t-if="doc.sale_id"><span t-field="doc.sale_id.name"/></t>
+                                <t t-if="doc.purchase_id"><span t-field="doc.purchase_id.name"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"></td>
+                            <td colspan="4" style="text-align:left; height:25px; padding-left: 150px;">
+                                <t><span style="padding-right: 8px;">TANGGAL</span></t>
+                                <t><span>:</span></t>
+                                <t t-if="doc.sale_id"><span t-esc="doc.sale_id.date_order.strftime('%d-%m-%Y')"/></t>
+                                <t t-if="doc.purchase_id"><span t-esc="doc.purchase_id.date_planned.strftime('%d-%m-%Y')"/></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:20px;"></td></tr>
+
+                        <tr>
+                            <td colspan="5" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.sale_id"><span style="padding-right: 10px;">Surat Pesanan Saudara No .</span></t>
+                                <t t-if="doc.purchase_id"><span style="padding-right: 10px;">Surat Pemesan No .</span></t>
+                                <t t-if="doc.sale_id"><span t-field="doc.sale_id.name"/></t>
+                                <t t-if="doc.purchase_id"><span t-field="doc.purchase_id.name"/></t>
+                                <t ><span style="padding-right: 10px; padding-left: 10px;">Tanggal</span></t>
+<!--                                <t t-if="doc.sale_id"><span t-esc="doc.sale_id.date_order.strftime('%d-%m-%Y')"/></t>-->
+<!--                                <t t-if="doc.purchase_id"><span t-esc="doc.purchase_id.date_planned.strftime('%d-%m-%Y')"/></t>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.sale_id"><span>Item produk berikut tidak dapat kami layani :</span></t>
+                                <t t-if="doc.purchase_id"><span>Item Produk yang tidak sesuai dengan surat no pesanan diatas adalah:</span></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:10px;"></td></tr>
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="doc.move_ids_without_package.filtered(lambda x: x.state == 'cancel')" t-as="l">
+                            <tr>
+                                <td colspan="5" style="text-align:left; height:25px;padding-left: 50px;">
+                                    <t><span t-esc="i"/></t>
+                                    <t><span>.</span></t>
+                                    <t t-if="l.product_id"><span t-field="l.product_id.name"/></t>
+                                    <t><span>QTY </span></t>
+                                    <t t-if="l.product_uom_qty"><span t-esc="int(l.product_uom_qty)"/></t>
+                                </td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                        </t>
+
+                        <tr><td colspan="5" style="text-align:left; height:10px;"></td></tr>
+                        <tr>
+                            <td colspan="5" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.sale_id"><span>Dikarenakan : Tidak ada Stok</span></t>
+                                <t t-if="doc.purchase_id"><span>Mohon Konfirmasi dari TSJ (Teman Sejawat) atas ketidaksesuaian terkait hal di atas.</span></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:10px;"></td></tr>
+                        <tr>
+                            <td colspan="5" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t t-if="doc.sale_id"><span>Demikian agar maklum.</span></t>
+                                <t t-if="doc.purchase_id"><span></span></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:15px;"></td></tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px; padding-left: 30px;">
+                                <t t-if="doc.sale_id"><span>Pelanggan</span></t>
+                                <t t-if="doc.purchase_id"><span>Supplier</span></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px; padding-left: 30px;">
+                                <t><span>Tangerang Selatan, </span></t>
+                                <t t-if="doc.sale_id"><span t-esc="doc.sale_id.date_order.strftime('%d-%m-%Y')"/></t>
+                                <t t-if="doc.purchase_id"><span t-esc="doc.purchase_id.date_planned.strftime('%d-%m-%Y')"/></t>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="5" style="text-align:left; height:90px;"></td></tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px; padding-left: 30px;">
+                                <t><span>Tanda Tangan dan Stempel APJ</span></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px; padding-left: 30px;">
+                                <t><span>Tanda Tangan dan Stempel Apoteker PJ</span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:15px;"></td></tr>
+                        <tr><td colspan="5" style="text-align:left; height:15px;"></td></tr>
+                        <tr>
+                            <td colspan="5" style="text-align:left; height:25px; padding-left: 30px;">
+                                <t><span>*Surat konfirmasi ini bisa di email ke Pbfpusatbmp@gmail.com</span></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </t>
+    </template>
+    <template id="report_no_backorder_custom">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_pbf_stock.report_no_backorder_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

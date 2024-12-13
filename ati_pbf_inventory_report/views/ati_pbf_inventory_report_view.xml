@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_pbf_inventory_report_wizard_view_id" model="ir.ui.view">
+        <field name="name">ati_pbf_inventory_report_wizard_view_id</field>
+        <field name="model">ati.pbf.inventory.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="4">
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                        <field name="golongan_obat" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="func_insert_data_prewiew" type="object" default_focus="1"
+                            string="Preview" class="oe_highlight" />
+                    <button type="object" name="func_print_excel" string="Print Excel" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="ati_pbf_inventory_form_view_id" model="ir.ui.view">
+        <field name="name">ati_pbf_inventory_form_view_id</field>
+        <field name="model">ati.pbf.inventory.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="func_print" string="Print" class="oe_highlight"/>
+                    <button type="object" name="func_cancel" string="Cancel"/>
+                </header>
+<!--                <sheet>-->
+                    <group>
+                        <group>
+                            <field name="start_date" string="Start Date" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="end_date" string="End Date" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Details">
+                                <field name="pbf_inventory_report_ids" readonly="1" mode="tree" widget="one2many_tags" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom">
+                                        <field name="kode_obat" string="Kode Obat" readonly="1"/>
+                                        <field name="nama_obat" string="Nama Obat" readonly="1"/>
+                                        <field name="kemasan" string="Kemasan" readonly="1"/>
+                                        <field name="stock_awal" string="Stock Awal" readonly="1"/>
+                                        <field name="masuk_if" string="Masuk IF" readonly="1"/>
+                                        <field name="kode_if" string="Kode IF" readonly="1"/>
+                                        <field name="masuk_pbf" string="Masuk PBF" readonly="1"/>
+                                        <field name="kode_pbf" string="Kode PBF" readonly="1"/>
+                                        <field name="masuk_lainnya" string="Masuk Lainnya" readonly="1"/>
+                                        <field name="masuk_adjustment" string="Masuk Adjustment" readonly="1"/>
+                                        <field name="return_pemasukan" string="Retur" readonly="1"/>
+                                        <field name="pbf" string="Keluar PBF" readonly="1"/>
+                                        <field name="code_pbf" string="Kode PBF" readonly="1"/>
+                                        <field name="rs" string="RS" readonly="1"/>
+                                        <field name="apotek" string="Apotek" readonly="1"/>
+                                        <field name="sarana_pemerintah" string="Sarana Pemerintah" readonly="1"/>
+                                        <field name="puskesmas" string="Puskesmas" readonly="1"  optional="hide"/>
+                                        <field name="klinik" string="Klinik" readonly="1"/>
+                                        <field name="toko_obat" string="Toko Obat" readonly="1"/>
+                                        <field name="return_delivery_order" string="Retur" readonly="1"/>
+                                        <field name="lain" string="Lainnya" readonly="1" optional="show"/>
+                                        <field name="hjd" string="HJD" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+<!--                </sheet>-->
+            </form>
+        </field>
+    </record>
+</odoo>

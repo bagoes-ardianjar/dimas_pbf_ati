@@ -1,0 +1,226 @@
+<odoo>
+    <template id="report_delivery_order_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px; font-weight:900;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:30%;"></td>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:25%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                        </tr>
+                        <!-- <tr>
+                            <td colspan="4" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t t-if="partner.name"><span t-field="partner.name" /></t>
+                            </td>
+                        </tr> -->
+                        <!-- <tr>
+                            <td colspan="4" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t t-if="partner.street"><span t-field="partner.street" /></t>
+                                <t t-if="partner.street2"><span t-field="partner.street2" /></t>
+                                <t t-if="partner.city"><span t-field="partner.city" /></t>
+                                <t t-if="partner.state_id"><span t-field="partner.state_id.name" /></t>
+                                <t t-if="partner.country_id"><span t-field="partner.country_id.name" /></t>
+                                <t t-if="partner.zip"><span t-field="partner.zip" /></t>
+                            </td>
+                        </tr> -->
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="6" style="text-align:center; height:25px; font-size:15pt;">
+                                <t><span>Delivery Order</span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:5px;"></td></tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Tanggal :</span></t>
+                                <t t-if="doc.scheduled_date"><span t-field="doc.scheduled_date" /></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>NO DO :</span></t>
+                                <t t-if="doc.name"><span t-field="doc.name" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>NO SO :</span></t>
+                                <t><span t-field="doc.origin" /></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Picker :</span></t>
+                                <t t-if="doc.picker"><span t-field="doc.picker" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Checker :</span></t>
+                                <t t-if="doc.checker"><span t-field="doc.checker" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Kasir :</span></t>
+                                <t t-if="doc.kasir"><span t-field="doc.kasir" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Nama Customer :</span></t>
+                                <t t-if="doc.partner_id"><span t-field="doc.partner_id.name" /></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Alamat Customer :</span></t>
+                                <t t-if="doc.partner_id"><span t-field="doc.partner_id.contact_address_complete" /></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:3px;"></td></tr>
+                        <tr>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px;">
+                                <t><span>No</span></t>
+                            </td>
+                            <td colspan="2" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px;">
+                                <t><span>Nama Produk</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px;">
+                                <t><span>Lokasi / Rak</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px;">
+                                <t><span>Batch</span></t>
+                            </td>
+                            <td colspan="2" style="border:1px solid black; text-align:center; height:25px;">
+                                <t><span>Qty</span></t>
+                            </td>
+                        </tr>
+                        <t t-set="i" t-value="1"/>
+<!--                        <t t-foreach="doc.move_line_ids_without_package" t-as="l">-->
+                        <t t-foreach="sorted(doc.move_line_ids_without_package, key=lambda x: x.product_id.name)" t-as="l">
+                            <tr>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px;">
+                                    <t><span t-esc="i"/></t>
+                                </td>
+                                <td colspan="2" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px;">
+                                    <t t-if="l.product_id"><span t-field="l.product_id.display_name" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px;">
+                                    <t t-if="l.location_id.complete_name"><span t-field="l.location_id.complete_name" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px;">
+                                    <t t-if="l.lot_id"><span t-field="l.lot_id.name" /></t>
+<!--                                    <t><span></span></t>-->
+                                </td>
+                                <td colspan="2" style="border:1px solid black; text-align:center; height:25px;">
+                                    <t t-if="l.qty_done"><span t-esc="int(l.qty_done)" /></t>
+                                    <t t-if="l.product_uom_id"><span t-field="l.product_uom_id.name" /></t>
+                                </td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                        </t>
+                    </table>
+                </div>
+                
+                <!-- <br></br>
+                <br></br>
+                <div class="row" style="padding-left: 14px; padding-right: 12px; font-weight:900;">
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:35%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span>Diterima oleh,</span></t>
+                            </td>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>Hormati Kami,</span></t>
+                            </td>
+                            <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>PBF Berkat Mahkota Putra</span></t>
+                            </td>
+                            <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center; height:25px;">
+                                <t><span>(</span></t>
+                                <t t-if="partner.name"><span t-field="partner.name" /></t>
+                                <t><span>)</span></t>
+                            </td>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>(.........................................................)</span></t>
+                            </td>
+                            <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div> -->
+
+            </div>
+        </t>
+    </template>
+    <template id="report_delivery_order_custom">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_pbf_stock.report_delivery_order_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

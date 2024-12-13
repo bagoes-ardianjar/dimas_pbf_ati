@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_pembelian_perbarang,action_report_pembelian_perbarang,model_report_pembelian_perbarang,base.group_user,1,1,1,1
+access_report_pembelian_perfaktur,action_report_pembelian_perfaktur,model_report_pembelian_perfakturr,base.group_user,1,1,1,1
+access_report_pembelian,action_report_pembelian,model_report_pembelian,base.group_user,1,1,1,1
+access_report_outstanding_pembelian,action_report_outstanding_pembelian,model_report_outstanding_pembelian,base.group_user,1,1,1,1
+access_report_pembelian_ppn,action_report_pembelian_ppn,model_report_pembelian_ppn,base.group_user,1,1,1,1
+access_report_pembelian_nonppn,action_report_pembelian_nonppn,model_report_pembelian_nonppn,base.group_user,1,1,1,1

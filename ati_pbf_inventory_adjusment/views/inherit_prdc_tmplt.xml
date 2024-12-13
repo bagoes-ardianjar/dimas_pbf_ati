@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <data>
+        <record id="ati_product_template_form_inherit_ad" model="ir.ui.view">
+        <field name="name">ati.product.template.form.inherit.ad</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="x_minimum_quant" string="Minimum Qty *"/>
+            </field>
+        </field>
+    </record>
+
+        <!-- <record id="ati_pbf_inventory_adjusment.action" model="ir.actions.act_window">
+            <field name="act_inv_adjusment_id" ref="action_view_inventory_tree"></field>
+            <field name="context">{'default_inventory_quantity': "0"}</field>
+        </record> -->
+    </data>
+</odoo>
+

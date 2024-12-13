@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form untuk memilih report dan tanggal mulai dan tanggal akhir -->
+        <record id="ati_pbf_adjustment_report_form" model="ir.ui.view">
+            <field name="name">ati.pbf.adjustment.report.form</field>
+            <field name="model">ati.pbf.adjustment.report</field>
+            <field name="arch" type="xml">
+                <form string="Report Adjustment">
+                    <group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="location_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="action_print_report_adjustment" string="Export (PDF)" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_open_report_adjustment_form">
+            <field name="name">Laporan Koreksi Stok</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ati.pbf.adjustment.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_adjustment"
+            name="Laporan Koreksi Stok"
+            action="action_open_report_adjustment_form"
+            parent="stock.menu_warehouse_report"
+            sequence="99"
+        />
+
+    </data>
+</odoo>

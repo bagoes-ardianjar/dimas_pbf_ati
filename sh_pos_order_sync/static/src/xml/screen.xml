@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="OrderListScreen" t-inherit="sh_pos_order_list.OrderListScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('sh_service_back_btn')]" position="after">
+            <button class="button sync_picking" t-on-click="sync_order">
+                <t t-if="!env.isMobile"> <i class="fa fa-fw fa-refresh"></i></t>
+                <t t-else="">
+                    <i class="fa fa-fw fa-refresh"></i>
+                </t>
+            </button>
+                        <button class='button sh_filter_draft' t-on-click='filter_by_draft'>
+                Draft
+            </button>
+        </xpath>
+        <xpath expr="//th[hasclass('pos_order_total_header')]" position="after">
+            <t t-if="env.pos.config.user_type == 'receive' or env.pos.config.user_type == 'both'">
+                <th style="width: 14%;">Sender</th>
+            </t>
+            <t t-if="env.pos.config.user_type == 'send' or env.pos.config.user_type == 'both'">
+                <th style="width: 20%;">Receiver</th>
+            </t>
+        </xpath>
+
+        <xpath expr="//td[hasclass('pos_order_total_td')]" position="after">
+            <t t-if="env.pos.config.user_type == 'receive' or env.pos.config.user_type == 'both'">
+                <td>
+                    <t t-if="env.pos.db.config_by_id[pos_order.config_id[0]] and env.pos.db.config_by_id[pos_order.config_id[0]].sh_nick_name">
+                        <t t-esc="env.pos.db.config_by_id[pos_order.config_id[0]].sh_nick_name" />
+                    </t>
+                    <t t-else="">
+                        <t t-if="pos_order and pos_order.config_id and pos_order.config_id[0] and env.pos.db.config_by_id[pos_order.config_id[0]] and env.pos.db.config_by_id[pos_order.config_id[0]].name">
+                            <t t-esc="env.pos.db.config_by_id[pos_order.config_id[0]].name" />
+                        </t>
+                    </t>
+                </td>
+            </t>
+            <t t-if="env.pos.config.user_type == 'send' or env.pos.config.user_type == 'both'">
+                <td>
+                    <!-- <t t-esc="each_order.assigned_config_name" /> -->
+                    <t t-if="pos_order.assigned_config">
+                        <t t-foreach="pos_order.assigned_config" t-as="each_config" t-key="each_config.id">
+                            <div class="sh_assigned_config">
+                                <t t-if="env.pos.db.config_by_id and env.pos.db.config_by_id[each_config] and env.pos.db.config_by_id[each_config].sh_nick_name">
+                                    <t t-esc="env.pos.db.config_by_id[each_config].sh_nick_name" />
+                                </t>
+                                <t t-else="">
+                                    <t t-if="each_config and env.pos.db.config_by_id[each_config] and env.pos.db.config_by_id[each_config].name">
+                                        <t t-esc="env.pos.db.config_by_id[each_config].name" />
+                                    </t>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                </td>
+            </t>
+        </xpath>
+        <xpath expr="//td[hasclass('pos_order_state')]" position="after">
+            <t t-if="env.pos.config.sh_allow_payment">
+                <td>
+                    <t t-if="pos_order.state == 'draft'">
+                        <i class="fa fa-money pay_order" aria-hidden="true" t-on-click="pay_pos_order"></i>
+                    </t>
+                </td>
+            </t>
+
+            <t t-if="env.pos.config.sh_allow_edit">
+                <td>
+                    <t t-if="pos_order.state == 'draft'">
+                        <i class="fa fa-pencil-square-o edit_order" aria-hidden="true" t-on-click="edit_pos_order"></i>
+                    </t>
+                </td>
+            </t>
+
+            <t t-if="env.pos.config.sh_allow_cancel">
+                <td>
+                    <t t-if="pos_order.state == 'draft'">
+                        <i class="fa fa-times" aria-hidden="true" t-on-click="cancel_pos_order"></i>
+                    </t>
+                </td>
+            </t>
+        </xpath>
+
+        <xpath expr="//th[hasclass('pos_order_state_th')]" position="after">
+            <t t-if="env.pos.config.sh_allow_payment">
+                <th></th>
+            </t>
+            <t t-if="env.pos.config.sh_allow_edit">
+                <th></th>
+            </t>
+
+            <t t-if="env.pos.config.sh_allow_cancel">
+                <th></th>
+            </t>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<t t-name="ProductListviews" owl="1">
+		<tr t-on-keypress="spaceClickProduct"
+		t-att-data-product-id="props.product.id"
+		t-on-click="trigger('click-product', props.product)"
+		t-attf-aria-labelledby="article_product_{{props.product.id}}">
+			<t t-if="env.pos.config.enable_list_view">
+				<t t-if="env.pos.config.display_product_image"> 
+					<td>
+						<t t-if="env.pos.config.image_size === 'small'">
+							<img t-att-src="imageUrl" height="50px" width='50px'/>	
+						</t>
+						<t t-if="env.pos.config.image_size === 'medium'">
+							<img t-att-src="imageUrl" height="100px" width='100px'/>	
+						</t>
+						<t t-if="env.pos.config.image_size === 'large'">
+							<img t-att-src="imageUrl" height="150px" width='150px'/>	
+						</t>
+						
+					</td>	
+				</t>
+				<t t-if="env.pos.config.display_product_code"> 
+					<td class="product_code">
+						<t t-esc="props.product.default_code || ''"/>
+					</td>	
+				</t>
+				<t t-if="env.pos.config.display_product_name">
+					<td class="product_name">
+						<t t-esc="props.product.name" />
+					</td>
+				</t>
+				<t t-if="env.pos.config.display_product_type">
+					<td class="product_type">
+						<t t-if="props.product.type === 'consu'">
+							Consumable
+						</t>
+						<t t-if="props.product.type === 'service'">
+							Service
+						</t>	
+						<t t-if="props.product.type === 'product'">
+							Storable Product
+						</t>
+					</td>
+				</t>
+				<t t-if="env.pos.config.display_product_UOM">
+					<td class="product_uom">
+						<t t-esc="env.pos.units_by_id[props.product.uom_id[0]].name"/>
+					</td>	
+				</t>
+				<t t-if="env.pos.config.display_product_price">
+					<td class="product_price">
+						<t t-esc="price" />
+					</td>	
+				</t>
+				<t t-if="env.pos.config.display_product_on_hand_qty">
+					<td class="on_hand_qty">
+						<t t-esc="props.product.qty_available" />
+					</td>	
+				</t>
+				<t t-if="env.pos.config.display_product_forecast_qty">
+					<td class="forecast_qty">
+						<t t-esc="props.product.virtual_available" />
+					</td>	
+				</t>
+					
+			</t>
+		</tr>
+	</t>
+
+</templates>

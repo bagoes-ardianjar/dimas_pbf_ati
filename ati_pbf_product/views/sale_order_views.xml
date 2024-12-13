@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_sale_order_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.sale.order.form.inherit.ib</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('state', '=', 'done')]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="product_margin_percent"/>
+                <field name="product_margin_amount"/>
+                <field name="additional_margin" widget="percentage" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

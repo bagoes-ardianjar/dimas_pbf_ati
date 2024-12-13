@@ -1,0 +1,1 @@
+from . import x_inherit_for_karantina

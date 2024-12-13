@@ -1,0 +1,177 @@
+<odoo>
+    <template id="report_payment_ttb_template">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px; font-weight:700;">
+                <!-- <div class="row" style="border-bottom: 1px solid black; padding-left: 14px; padding-right: 12px; font-weight:900;"> -->
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:20%;"/>
+                            <td style="text-align:left; height:25px; width:2%;"/>
+                            <td style="text-align:left; height:25px; width:30%;"/>
+                            <td style="text-align:left; height:25px; width:13%;"/>
+                            <td style="text-align:left; height:25px; width:35%;"/>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" style="height: 90px; vertical-align:middle; "><img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 90px;"/></td>
+                            <td colspan="2" style="text-align:left; height:20px; font-size:10pt;"><span t-field="company.name"/></td>
+                            <td/>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:18px; font-size:6pt;">
+                                <t t-if="company.street"><span t-field="company.street"/></t>
+                                <t t-if="company.street2"><span t-field="company.street2"/></t>
+                            </td>
+                            <td style="text-align:left; height:18px; padding-left: 30px; font-size:10pt;">
+                                <t><strong>No. : TTF/</strong></t>
+                                <t t-if="doc.name"><span t-esc="doc.name"/></t>
+                                <!-- <t t-if="doc.date"><span t-esc="doc.date.strftime('%m%y')"/></t>
+                                <t><strong>/</strong></t>
+                                <t t-if="doc.name"><span t-esc="doc.get_six_digit_payment()"/></t> -->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:18px; font-size:6pt;">
+                                <t t-if="company.city"><span t-field="company.city"/></t>
+                                <t t-if="company.state_id"><span t-field="company.state_id"/></t>
+                                <t t-if="company.zip"><span t-field="company.zip"/></t>
+                            </td>
+                            <td style="text-align:left; height:18px; padding-left: 30px;"/>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:left; height:18px; font-size:6pt;"><t t-if="company.country_id"><span t-field="company.country_id"/></t></td>
+                            <td/>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-center" style="height:25px; font-size:10pt;"><strong>TANDA TERIMA</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:8pt;height:16px;"><span>Telah terima dari </span></td>
+                            <td><span>:</span></td>
+                            <td colspan="3" style="text-align:left; height:16px; font-size:8pt;">
+                                <t t-if="partner"><span t-field="partner.name"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:8pt;height:16px;"><span>Alamat </span></td>
+                            <td><span>: </span></td>
+                            <td colspan="3" style="text-align:left; height:16px; font-size:8pt;">
+                                <t t-if="partner.street"><span t-field="partner.street"/></t>
+                                <t t-if="partner.street2"><span t-field="partner.street2"/></t>
+                                <t t-if="partner.city"><span t-field="partner.city"/></t>
+                                <t t-if="partner.state_id"><span t-field="partner.state_id.name"/></t>
+                                <t t-if="partner.zip"><span t-field="partner.zip"/></t>
+                                <t t-if="partner.country_id"><span t-field="partner.country_id"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:8pt;height:16px;"><span>Giro / AN </span></td>
+                            <td><span>: </span></td>
+                            <td colspan="3" style="text-align:left; height:16px; font-size:8pt;">
+                                <t><span>..................................................</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:8pt;height:16px;"><span>Berupa</span></td>
+                            <td><span>: </span></td>
+                            <td colspan="3" style="text-align:left; height:16px; font-size:8pt;">
+                                <span></span>
+                                <!-- <t><span>Faktur No. ............................................................</span></t>
+                                <t><span>Rp. ..............................................</span></t> -->
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:8px; font-size:9pt;"/></tr>
+                        <tr>
+                            <td style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><span>Faktur No.</span></td>
+                            <td colspan="2" style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><span>No. Faktur Supplier</span></td>
+                            <td style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><span>Bill Date</span></td>
+                            <td style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><span>Jumlah</span></td>
+                        </tr>
+<!--                        <t t-foreach="doc.temp_bill" t-as="l">-->
+<!--                            <tr>-->
+<!--                                <td style="border:1px solid black; text-align:center; height:25px;"><t t-if="l.name"><span t-field="l.name"/></t></td>-->
+<!--                                <td colspan="2" style="border:1px solid black; text-align:left; height:25px; padding-left: 20px;"><t t-if="l.ref"><span t-field="l.ref"/></t></td>-->
+<!--                                <td style="border:1px solid black; text-align:center; height:25px;"><t t-if="l.invoice_date"><span t-esc="l.invoice_date.strftime('%d-%m-%Y')"/></t></td>-->
+<!--                                <td style="border:1px solid black; text-align:center; height:25px;"><t t-if="l.amount_total_signed"><span t-esc="'{0:,.2f}'.format(l.amount_total).replace(',',',') or 0.0"/></t></td>-->
+<!--                            </tr>-->
+<!--                        </t>-->
+<!--                        <t t-set="refund_total" t-value="0"/>-->
+<!--                        <t t-foreach="doc.get_document_retur()" t-as="result">-->
+<!--                            <tr>-->
+<!--                                <td style="border:1px solid black; text-align:center; height:25px;"><span t-esc="result['name']"/></td>-->
+<!--                                <td colspan="2" style="border:1px solid black; text-align:left; height:25px; padding-left: 20px;"><span t-esc="result['product_name']"/>   (qty: <span t-esc="int(result['qty'])"/>)</td>-->
+<!--                                <td style="border:1px solid black; text-align:center; height:25px;"><t t-if="result['invoice_date']"><span t-esc="result['invoice_date'].strftime('%d-%m-%Y')"/></t></td>-->
+<!--                                <td style="border:1px solid black; text-align:center; height:25px;">(<span t-esc="'{0:,.2f}'.format(result['total']).replace(',',',') or 0.0"/>)</td>-->
+<!--                            </tr>-->
+<!--                            <t t-set="refund_total" t-value="refund_total+result['total']"/>-->
+<!--                        </t>-->
+                        <t t-foreach="doc.get_document_retur_all()" t-as="result">
+                            <tr>
+                                <td style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><span t-esc="result['name']"/></td>
+                                <td colspan="2" style="border:1px solid black; text-align:left; height:20px; padding-left: 20px; font-size:9pt;"><span t-esc="result['product_name']"/></td>
+                                <td style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><t t-if="result['invoice_date']"><span t-esc="result['invoice_date'].strftime('%d-%m-%Y')"/></t></td>
+                                <td style="border:1px solid black; text-align:center; height:20px; font-size:9pt;"><span t-esc="result['total']"/></td>
+                            </tr>
+<!--                            <t t-set="refund_total" t-value="refund_total+result['total']"/>-->
+                        </t>
+                        <!-- <t t-foreach="range(10)" t-as="l">
+                            <tr>
+                                <td><span></span></td>
+                                <td><span></span></td>
+                                <td colspan="2" style="text-align:left; height:25px;">
+                                    <t><span>Faktur No. ............................................................</span></t>
+                                    <t><span>Rp. ..............................................</span></t>
+                                </td>
+                            </tr>
+                        </t> -->
+                        <tr><td colspan="5" style="text-align:left; height:8px;"/></tr>
+                        <tr>
+                            <td colspan="4"/>
+                            <!-- <td colspan="1" style="text-align:left; height:25px; font-size:14pt;"><strong>Total Rp. ................................................ </strong></td> -->
+                            <td colspan="1" style="text-align:center; height:20px; font-size:10pt;">
+                                <span>Total</span>
+<!--                                <t t-if="doc.amount" style="padding-left: 20px;"><span t-esc="'{0:,.2f}'.format(doc.amount).replace(',',',') or 0.0"/></t>-->
+                                <t t-if="doc.get_amount_faktur()" style="padding-left: 20px;"><span t-esc="'{0:,.2f}'.format(doc.get_amount_faktur()).replace(',',',') or 0.0"/></t>
+                            </td>
+                        </tr>
+                        <tr><td style="text-align:left; height:25px;"/><td/></tr>
+                        <tr>
+                            <td colspan="2"/>
+                            <td colspan="2" style="text-align:left; height:25px; font-size:9pt;"><span>Tanggal Kembali : ......................... </span></td>
+                            <td style="text-align:center; height:25px; font-size:9pt;"><span>Tanggerang , </span><t t-if="doc.date"><span t-esc="doc.date.strftime('%d-%m-%Y')"/></t></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align:center; height:25px; font-size:9pt;">
+                                <t><span>Yang Menerima,</span></t>
+                            </td>
+                            <td style="text-align:center; height:25px; padding-left: 30px; font-size:9pt;">
+                                <!-- <t t-if="company.city"><span t-field="company.city"/></t> -->
+                                <t><span>Yang Menyerahkan,</span></t>
+                            </td>
+                        </tr>
+                        <tr><td style="text-align:left; height:25px;"/><td/></tr>
+                        <tr><td style="text-align:left; height:25px;"/><td/></tr>
+                        <tr>
+                            <td colspan="4" style="text-align:center; height:25px;">
+                                <t><span>(........................................)</span></t>
+                            </td>
+                            <td style="text-align:center; height:25px; padding-left: 30px;">
+                                <t><span>(........................................)</span></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="report_payment_ttb_container">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_invoice_payments.report_payment_ttb_template"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

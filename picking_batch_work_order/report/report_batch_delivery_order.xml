@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_batch_delivery_order_document">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <!-- <div>
+                        <div class="text-center col-auto">
+                            <h2>
+                                Surat Jalan
+                            </h2>
+                        </div>
+                    </div><br/>
+
+                    <div class="row mt32 mb32">
+                        <div t-field="o.company_id" class="col-auto"
+                            t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}'/>
+                        <div class="col-auto">
+                            Tujuan: <span t-field="o.partner_id"
+                                t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}'/>
+                        </div>
+                    </div>
+
+                    <div class="row mt32 mb32">
+                        <div class="col-auto">
+                            <strong>No</strong><br/>
+                            <strong>Tgl Kirim</strong>
+                        </div>
+                        <div class="col-auto">
+                            : <span t-field="o.name"/><br/>
+                            : <span t-field="o.scheduled_date" t-options='{"format": "dd - MMMM - yyyy"}'/>
+                        </div>
+                        <div class="col-auto">
+                            <strong>Nama Ekspedisi</strong>
+                        </div>
+                        <div class="col-auto">
+                            : <span t-field="o.expedition_name"/>
+                        </div>
+                    </div>
+                    <table class="table table-sm" name="koli_table">
+                        <thead>
+                            <tr>
+                                <th name="th_no_pl"><strong>Nomor DO</strong></th>
+                                <th name="th_no_coli"><strong>Nomor Coli</strong></th>
+                                <th name="th_tujuan"><strong>Tujuan</strong></th>
+                                <th name="th_penerima"><strong>Penerima</strong></th>
+                                <th name="th_berat_pl"><strong>Jumlah Coli</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.picking_ids" t-as="koli">
+                                <td>
+                                    <span t-field="koli.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="koli.nomor_koli"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="koli.jumlah_koli"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br/><br/><br/><br/><br/>
+                    
+                    <div class="row mt64 ml64 mr4" name="signature">
+                        <div class="offset-1">
+                            <strong>Supervisor</strong>
+                        </div>
+                        <div class="offset-2">
+                            <strong>Staff Ekspedisi</strong>
+                        </div>
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-3 mb4">
+                            <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height: 50px;" alt="Logo"/>
+                        </div>
+                        <div class="col-auto">
+                            <span style="font-size: 18px;" t-field="o.company_id.name"/><br/>
+                            Kantor Pusat: <span t-field="o.company_id.street"/><br/>
+                            Telepon: <span t-field="o.company_id.phone"/> <!-- style="font-size: 14px;" -->
+                        </div>
+                    </div><br/>
+
+                    <div>
+<!--                        <div class="text-right">-->
+<!--                            NO. FORM : <span t-field="o.name"/>-->
+<!--                        </div>-->
+                    </div>
+
+                    <div>
+                        <div class="text-left">
+                            Tangerang, <span t-field="o.scheduled_date" t-options='{"format": "dd - MMMM - yyyy"}'/><br/>
+                            Kepada Yth, <span t-field="o.partner_id.name"/>
+<!--                            <span t-field="o.partner_id.street"/>-->
+                        </div>
+                        <style>
+                            .multiline-field {
+                                display: inline-block;
+                                max-width: 40%;
+                                word-wrap: break-word;
+                            }
+                        </style>
+
+                        <div>
+                            <!-- ... -->
+                            <span class="multiline-field" t-field="o.partner_id.street"/>
+                            <!-- ... -->
+                        </div>
+<!--                        <div class="text-left">-->
+<!--                            <span t-field="o.partner_id.street"/>-->
+<!--                        </div>-->
+                    </div>
+
+                    <div>
+                        <div class="text-center col-auto">
+                            <h2>
+                                <u>Surat Jalan</u>
+                            </h2>
+                            NO. FORM : <span t-field="o.name"/>
+                        </div>
+                    </div><br/>
+
+                    <div class="row mt32 mb32">
+                        <div class="text-left col-auto">
+                            Dengan kendaraan <span t-field="o.res_driver_id.name"/><br/>
+                            No. <span t-field="o.plat_number_id.name"/><br/> Kami kirim barang-barang tersebut dibawah ini:
+                        </div>
+                    </div>
+
+                    <table class="table table-sm" name="koli_table">
+                        <thead>
+                            <tr>
+                                <th name="th_berat_pl"><strong>No</strong></th>
+                                <th name="th_no_pl"><strong>Nomor Faktur</strong></th>
+                                <th name="th_no_coli"><strong>Satuan</strong></th>
+                                <th name="th_tujuan"><strong>Jumlah</strong></th>
+                                <th name="th_penerima"><strong>Keterangan</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="no" t-value="1"/>
+                            <tr t-foreach="o.picking_ids" t-as="koli">
+                                <td>
+                                    <t t-esc="no"/>
+                                </td>
+                                <td>
+                                    <span t-field="koli.origin"/>
+                                </td>
+                                <td>
+                                    <span t-field="koli.satuan"/>
+                                </td>
+                                <td>
+                                    <span t-field="koli.jumlah_koli"/>
+                                </td>
+                                <td>
+                                    <span t-field="koli.keterangan"/>
+                                </td>
+                                <t t-set="no" t-value="no+1"/>
+                            </tr>
+                        </tbody>
+                    </table><br/>
+                    <br/>
+                    <br/>
+
+                    <div class="row">
+                        <div class="offset-2">
+                            Ekspedisi
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            (<span t-field="o.expedition_name"/>)
+                        </div>
+                        <div class="offset-6">
+                            Hormat Kami,
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            (..............................)
+                        </div>
+                    </div><br/>
+                    <div>
+                        <div class="text-center col-auto">
+                            Diterima tanggal .........................<br/>
+                            Penerima
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            (...................................)
+                        </div>
+                    </div><br/>
+                    
+                    <!-- <div class="row mt64 ml64 mr4" name="signature">
+                        <div class="offset-1">
+                            <strong>Supervisor</strong>
+                        </div>
+                        <div class="offset-2">
+                            <strong>Staff Ekspedisi</strong>
+                        </div>
+                    </div> -->
+                </div>
+            </t>
+         </t>
+    </template>
+
+    <template id="report_batch_delivery_order">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="picking_batch_work_order.report_batch_delivery_order_document" t-lang="o.user_id.partner_id.lang"/>
+        </t>
+    </template>
+</odoo>

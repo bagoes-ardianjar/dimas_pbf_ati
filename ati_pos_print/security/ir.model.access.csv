@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_/opt/odoo15/ati_pos_print_/opt/odoo15/ati_pos_print,/opt/odoo15/ati_pos_print./opt/odoo15/ati_pos_print,model_/opt/odoo15/ati_pos_print_/opt/odoo15/ati_pos_print,base.group_user,1,1,1,1

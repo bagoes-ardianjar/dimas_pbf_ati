@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ati_quotation_confirm_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.quotation.confirm.form.inherit.ib.apj</field>
+        <field name="model">quotation.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Attention!">
+                <group>
+                    <group>
+                        <span style="font-size:20;">Customer has expired. Are you sure you want to continue this process?</span>
+                    </group>
+                </group>
+                <footer>
+                    <button name="confirm_quotation" type="object" class="oe_highlight" string="Sure"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

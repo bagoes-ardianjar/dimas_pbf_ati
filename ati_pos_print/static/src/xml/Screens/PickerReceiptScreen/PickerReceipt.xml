@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PickerReceipt" owl="1">
+        <div class="pos-receipt">
+            <t t-if="receipt.company.logo">
+                <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"/>
+                <br/>
+            </t>
+            <t t-if="!receipt.company.logo">
+                <h2 class="pos-receipt-center-align">
+                    <t t-esc="receipt.company.name" />
+                </h2>
+                <br/>
+            </t>
+            <div class="pos-receipt-contact">
+                <t t-if="receipt.company.contact_address">
+                    <div><t t-esc="receipt.company.contact_address" /></div>
+                </t>
+                <t t-if="receipt.company.phone">
+                    <div>Tel:<t t-esc="receipt.company.phone" /></div>
+                </t>
+                <t t-if="receipt.company.vat">
+                    <div><t t-esc="receipt.company.vat_label"/>:<t t-esc="receipt.company.vat" /></div>
+                </t>
+                <t t-if="receipt.company.email">
+                    <div><t t-esc="receipt.company.email" /></div>
+                </t>
+                <t t-if="receipt.company.website">
+                    <div><t t-esc="receipt.company.website" /></div>
+                </t>
+                <t t-if="receipt.header_html">
+                    <t t-raw="receipt.header_html" />
+                </t>
+                <t t-if="!receipt.header_html and receipt.header">
+                    <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
+                </t>
+                <t t-if="receipt.cashier">
+                    <div class="cashier">
+                        <div>--------------------------------</div>
+                        <div>Served by <t t-esc="receipt.cashier" /></div>
+                    </div>
+                </t>
+            </div>
+            <br /><br />
+
+            <!-- Orderlines -->
+
+            <div class="orderlines">
+                <t t-call="PickerOrderLinesReceipt"/>
+            </div>
+
+            <div class="before-footer" />
+
+            <!-- Footer -->
+            <div t-if="receipt.footer_html"  class="pos-receipt-center-align">
+                <t t-raw="receipt.footer_html" />
+            </div>
+
+            <div t-if="!receipt.footer_html and receipt.footer"  class="pos-receipt-center-align" style="white-space:pre-line">
+                <br/>
+                <t t-esc="receipt.footer" />
+                <br/>
+                <br/>
+            </div>
+
+            <div class="after-footer">
+                <t t-foreach="receipt.paymentlines" t-as="line">
+                    <t t-if="line.ticket">
+                        <br />
+                        <div class="pos-payment-terminal-receipt">
+                            <t t-raw="line.ticket" />
+                        </div>
+                    </t>
+                </t>
+            </div>
+
+            <br/>
+            <div class="pos-receipt-order-data">
+                <div><t t-esc="receipt.name" /></div>
+                <t t-if="receipt.date.localestring">
+                    <div><t t-esc="receipt.date.localestring" /></div>
+                </t>
+                <t t-else="">
+                    <div><t t-esc="receipt.date.validation_date" /></div>
+                </t>
+            </div>
+        </div>
+    </t>
+    <t t-name="PickerOrderLinesReceipt" owl="1">
+        <t t-foreach="receipt.orderlines" t-as="line" t-key="line.id">
+            <t t-if="isSimple(line)">
+                <div class="responsive-price" style="font-family: Calibri, Helvetica, sans-serif; font-size: 8pt;">
+                    <t t-esc="line.product_name_wrapped[0]" /> with qty: <t t-esc="line.quantity"/>
+                </div>
+                <WrappedProductNameLines line="line" />
+                <t t-foreach="line.product_combo" t-as="combo" t-key="combo.id">
+                    <t t-if="line.product_tmpl_id == combo.combo_product_id or line.product_id == combo.combo_product_id">
+                        <div class="responsive-price" style="font-family: Calibri, Helvetica, sans-serif; font-size: 8pt;">
+                            - <t t-esc="combo.product_name"/> with qty: <t t-esc="combo.quantity"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+            <t t-else="">
+                <div style="font-family: Calibri, Helvetica, sans-serif; font-size: 8pt;">
+                    <t t-esc="line.product_name_wrapped[0]" /> with qty: <t t-esc="line.quantity"/>
+                </div>
+                <WrappedProductNameLines line="line" />
+                <t t-foreach="line.product_combo" t-as="combo" t-key="combo.id">
+                    <t t-if="line.product_tmpl_id == combo.combo_product_id or line.product_id == combo.combo_product_id">
+                        <div class="responsive-price" style="font-family: Calibri, Helvetica, sans-serif; font-size: 8pt;">
+                            - <t t-esc="combo.product_name"/> with qty: <t t-esc="combo.quantity"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+            <t t-if="line.customer_note">
+                <div class="pos-receipt-left-padding pos-receipt-customer-note">
+                    <t t-esc="line.customer_note"/>
+                </div>
+            </t>
+            <t t-if="line.pack_lot_lines">
+                <div class="pos-receipt-left-padding">
+                    <ul>
+                        <t t-foreach="line.pack_lot_lines" t-as="lot" t-key="lot.cid">
+                            <li>
+                                SN <t t-esc="lot.attributes['lot_name']"/>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+            </t>
+        </t>
+    </t>
+
+</templates>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+		<record id="x_self_sale_order" model="ir.sequence">
+		   <field name="name">Sequence Sale Order</field>
+		   <field name="code">x.self.so</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">SO/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_purchase_order" model="ir.sequence">
+		   <field name="name">Sequence Purchase Order</field>
+		   <field name="code">x.self.po</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">PO/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_do" model="ir.sequence">
+		   <field name="name">Sequence Delivery Order</field>
+		   <field name="code">x.self.do</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">WH/OUT/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_receipt" model="ir.sequence">
+		   <field name="name">Sequence Receipt</field>
+		   <field name="code">x.self.re</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">WH/IN/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_int_transfer" model="ir.sequence">
+		   <field name="name">Sequence Internal Transfer</field>
+		   <field name="code">x.self.int.transfer</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">WH/TRF/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_return_supplier" model="ir.sequence">
+		   <field name="name">Sequence Return Supplier</field>
+		   <field name="code">x.self.rs</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">RET/OUT/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_return_customer" model="ir.sequence">
+		   <field name="name">Sequence Return Customer</field>
+		   <field name="code">x.self.rc</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">RET/IN/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_krn_receipt" model="ir.sequence">
+		   <field name="name">Sequence Karantina Receipt</field>
+		   <field name="code">x.self.krn.receipts</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">KRN/IN/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>	
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_krn_do" model="ir.sequence">
+		   <field name="name">Sequence Karantina Do</field>
+		   <field name="code">x.self.krn.do</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">KRN/OUT/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>	
+		   <field name="number_increment">1</field>
+		</record>
+
+		<record id="x_self_krn_int" model="ir.sequence">
+		   <field name="name">Sequence Karantina Int Transfer</field>
+		   <field name="code">x.self.krn.int</field>
+		   <field name="active">TRUE</field>
+		   <field name="prefix">KRN/TRF/%(month)s%(y)s</field>
+		   <field name="padding">5</field>
+		   <field name="number_next">1</field>	
+		   <field name="number_increment">1</field>
+		</record>
+
+	</data>
+</odoo>

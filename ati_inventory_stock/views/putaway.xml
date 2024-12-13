@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_putaway_product" name="Putaway Rules" parent="stock.menu_stock_inventory_control"
+        action="stock.action_putaway_tree" sequence="8" groups="stock.group_stock_multi_locations"/>
+
+    <menuitem id="stock.menu_putaway" groups="ati_inventory_stock.ati_hide_menu_id"/>
+</odoo>

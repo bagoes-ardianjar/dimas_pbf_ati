@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="so_peritem_pdf_template">
+        <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family:Times New Roman;">
+                                <div style="margin-top: 10px; margin-left: 50px; margin-right: 50px; font-size: 12px;">
+                                    <header>
+
+                                            <div style="text-align:left;">
+                                                <p style="font-size: 19px;">
+                                                    <span><b>PBF Berkat Mahkota Putra</b></span>
+                                                </p>
+                                                <p style="margin-top: -15px; ">
+                                                    <span style="font-size:12px;">Taman Tekno Blok K2 No 19 dan 20 Bsd, Serpong, Tangerang Selatan, 081322811117, 021-22225555</span>
+                                                </p>
+                                                <hr size="2" width="100%" color="black"></hr>
+                                            </div>
+
+                                            <div style="text-align:center;">
+                                                <p>
+                                                    <span style="font-size:19px;"><b>Laporan Rekap Penjualan Per Item</b></span>
+                                                </p>
+                                                <p>
+                                                    <strong>Periode </strong>:
+                                                    <t t-esc="start_date"/>
+                                                    <strong>To </strong>
+                                                    <t t-esc="end_date"/>
+                                                </p>
+                                                <p style="margin-top: -15px; font-size: 15px;">
+                                                    <span>(Dalam RUPIAH)</span>
+                                                </p>
+
+                                            </div>
+                                    </header>
+
+                                    <!-- <t t-foreach="docs" t-as="o">         -->
+                                    <div class="row" style="padding-top:20px;">
+                                        <div class="col-6">
+                                            <table width="100%" style="font-size:14px;">
+                                                    <tr>
+                                                        <td>Cabang</td>
+                                                        <td>: <span t-field="cmp.name" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lokasi</td>
+                                                        <td>: <span >WH/Stock</span></td>
+                                                    </tr>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:30px;">
+                                        <div class="col-12">
+                                            <table width="100%" style="font-size:14px;">
+                                                <tr style="text-align:center; background-color: #dddddd">
+                                                    <td style="border:1px solid black;font-weight:bold;width:3%;">No</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:8%;">Nomor Ref</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:6%;">Tanggal</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:6%;">Kode PLU</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Nama Barang</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:5%;">Qty</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Customer</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:8%;">Sales Person</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:8%;">Batch/S.N/IMEI</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:6%;">Exp. Date</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:5%;">Satuan</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Harga Jual</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Jumlah Diskon Per Line</td>
+                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Global Diskon</td>
+<!--                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Jumlah Penjualan</td>-->
+                                                    <td style="border:1px solid black;font-weight:bold;width:10%;">Jumlah Penjualan Inc PPN</td>
+                                                    <!-- <td style="border:1px solid black;font-weight:bold;width:10%;">Harga Beli</td> -->
+
+                                                </tr>
+
+                                                <t t-set="no" t-value="1"/>
+                                                    <t t-foreach="docs" t-as="docs">
+<!--                                                            <t t-foreach="o.picking_ids" t-as="i">-->
+<!--                                                                <t t-foreach="i.report_move_line_helper_ids" t-as="j">-->
+                                                        <tr style="text-align:center;">
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="no" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('sales_reference')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('tanggal')"/>
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('kode_plu')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('product_name')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('qty_done')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('customer')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('sales_person')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('lot_name')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('expiration_date')"/>
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('uom')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="'{0:,.2f}'.format(docs.get('harga_satuan'))"/>
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="docs.get('diskon')" />
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="'{0:,.2f}'.format(docs.get('global_diskon_perline'))"/>
+                                                            </td>
+                                                            <td style="border:1px solid black;">
+                                                                <span t-esc="'{0:,.2f}'.format(docs.get('jumlah_penjualan'))"/>
+                                                            </td>
+                                                            <t t-set="no" t-value="no+1"/>
+                                                        </tr>
+<!--                                                                </t>-->
+<!--                                                        </t>-->
+                                                    </t>
+
+                                                    <tr>
+                                                        <t t-if="docs">
+                                                            <td colspan="5" style="border:1px solid black; text-align:center;"><b>Total</b></td>
+                                                            <td style="border:1px solid black; text-align:center;"><b><span t-esc="total_qty" /></b></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+<!--                                                                <td style="border:1px solid black;"></td>-->
+                                                            <td style="border:1px solid black;"></td>
+<!--                                                                <td style="border:1px solid black; text-align:right;"><b><span t-esc="jml_diskon" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></b></td>-->
+                                                            <td style="border:1px solid black; text-align:right;"><b><span t-esc="'{0:,.2f}'.format(total_penjualan)" /></b></td>
+                                                        </t>
+                                                        <t t-if="not docs">
+                                                            <td colspan="5" style="border:1px solid black; text-align:center;"><b>Total</b></td>
+                                                            <td style="border:1px solid black; text-align:center;"><b>0.00</b></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+<!--                                                                <td style="border:1px solid black;"></td>-->
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+<!--                                                                <td style="border:1px solid black; text-align:right;"><b>Rp 0.00</b></td>-->
+                                                            <td style="border:1px solid black; text-align:right;"><b>Rp 0.00</b></td>
+                                                        </t>
+                                                    </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                    </div>
+                </t>
+        </t>
+    </template>
+</odoo>

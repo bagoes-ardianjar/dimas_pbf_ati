@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- module category credit note -->
+        <record model="ir.module.category" id="module_ati_pbf_credit_note">
+            <field name="name">ATI PBF Credit Note</field>
+            <field name="sequence">25</field>
+        </record>
+
+        <!-- group credit note approval -->
+        <record id="credit_note_approval" model="res.groups">
+            <field name="name">Credit Note Approval</field>
+            <field name="category_id" ref="module_ati_pbf_credit_note"/>
+        </record>
+
+
+        <!-- group expense approval -->
+        <!-- <record id="hr_expense_approval" model="res.groups">
+            <field name="name">HR Expense Approval</field>
+            <field name="category_id" ref="base.module_category_human_resources_expenses"/>
+        </record> -->
+    </data>
+</odoo>

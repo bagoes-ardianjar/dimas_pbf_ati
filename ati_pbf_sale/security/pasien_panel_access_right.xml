@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <record model="ir.module.category" id="module_ati_pbf_sale_pasien_panel">
+         <field name="name">SO Panel (Pasien)</field>
+         <field name="description">Access right for Panel (Pasien)</field>
+         <field name="sequence">18</field>
+    </record>
+
+    <record id="sale_order_pasien_panel" model="res.groups">
+         <field name="name">Panel</field>
+         <field name="category_id" ref="module_ati_pbf_sale_pasien_panel"/>
+     </record>
+
+</data>
+</odoo>

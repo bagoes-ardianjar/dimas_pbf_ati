@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="x_email_notif_batch_espired_wiz" model="ir.cron">
+          <field name="name">Notification for Expired Batch</field>
+          <field name="model_id" ref="ati_pbf_notif_expired.model_x_lot_expired_wizard"/>
+          <field name="state">code</field>
+          <field name="code">model._send_email_notif_expired()</field>
+          <field name="active" eval="True"/>
+          <field name="user_id" ref="base.user_root"/>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>
+          <field name="numbercall">-1</field>
+          <field name="doall" eval="False"/>
+        </record>
+
+        <record id="x_email_notif_batch_espired_1_bulan_wiz" model="ir.cron">
+          <field name="name">Notification for Expired Batch-1 Bulan</field>
+          <field name="model_id" ref="ati_pbf_notif_expired.model_x_lot_expired_wizard"/>
+          <field name="state">code</field>
+          <field name="code">model._send_email_notif_expired_1bulan()</field>
+          <field name="active" eval="True"/>
+          <field name="user_id" ref="base.user_root"/>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>
+          <field name="numbercall">-1</field>
+          <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="external_layout_striped_inherit" inherit_id="web.external_layout_striped">
+            <xpath expr="//div[@t-attf-class='o_company_#{company.id}_layout footer o_background_footer']" position="replace">
+                <div t-attf-class="o_company_#{company.id}_layout footer o_background_footer">
+                    <!-- <div class="text-center">
+                        <ul class="list-inline">
+                            <div t-field="company.report_footer"/>
+                        </ul>
+                        <div t-if="report_type == 'pdf'" class="text-muted">
+                            Page:
+                            <span class="page"/>
+                            of
+                            <span class="topage"/>
+                        </div>
+                    </div> -->
+                </div>
+            </xpath>
+        </template>
+
+        <template id="external_layout_boxed_inherit" inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[@t-attf-class='footer o_boxed_footer o_company_#{company.id}_layout']" position="replace">
+                <div t-attf-class="footer o_boxed_footer o_company_#{company.id}_layout">
+                    <!-- <div class="text-center">
+                        <div t-field="company.report_footer"/>
+                        <div t-if="report_type == 'pdf'">
+                            Page: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div> -->
+                </div>
+            </xpath>
+        </template>
+
+        <template id="external_layout_standard_inherit" inherit_id="web.external_layout_standard">
+            <xpath expr="//div[@t-attf-class='footer o_standard_footer o_company_#{company.id}_layout']" position="replace">
+                <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+                    <!-- <div class="text-center" style="border-top: 1px solid black;">
+                        <ul class="list-inline mb4">
+                            <div t-field="company.report_footer"/>
+                        </ul>
+
+                        <div t-if="report_type == 'pdf'" class="text-muted">
+                            Page: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div> -->
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

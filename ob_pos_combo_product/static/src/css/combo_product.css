@@ -1,0 +1,53 @@
+.combo-header{
+    width: 600px !important;
+    height: 510px !important;
+}
+.combo-header .combo-selection{
+    height: 400px;
+}
+.combo-header .combo-type{
+    height: 50% !important;
+}
+.combo-required, .combo-optional{
+    overflow-y: auto;
+    height: 85% !important;
+}
+.combo-header .title{
+    background: #875a7b !important;
+    color: #ffffff;
+    padding: 10px !important;
+}
+.combo-header .combo-head-type{
+    background: #ffffff !important;
+    color: #875a7b !important;
+}
+
+.combo-header .combo-category{
+    border: 1px solid #875a7b;
+    padding-bottom: 10px;
+}
+
+.combo-header .combo-category-head {
+    background: #875a7b !important;
+    color: #ffffff;
+}
+
+.pos .combo-receipt{
+    font-size: 13px;
+    font-style: italic;
+}
+
+.pos .combo-select{
+    position: absolute;
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-weight: bold;
+    display: none;
+    width: 100%;
+    top: 52px;
+    left: 0px;
+    vertical-align: top;
+    color: white;
+    line-height: 13px;
+    background: #875a7b;
+}

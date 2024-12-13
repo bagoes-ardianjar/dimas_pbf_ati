@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_journal_form_bank_charges" model="ir.ui.view">
+            <field name="name">account.journal.form.inherit.bank.charges</field>
+            <field name="model">account.journal</field>
+            <field name="priority">10</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <field name="bank_statements_source" position="after">
+                    <field name="bank_charge_account" string="Default bank Charge Account" attrs="{'invisible':[('type','!=','bank')]}"/>
+            </field>
+            </field>
+        </record>
+    </data>
+</odoo>

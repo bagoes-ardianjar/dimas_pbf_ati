@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="search_change_pricelist_wizard_form" model="ir.ui.view">
+            <field name="name">Search &amp; Change Pricelist</field>
+            <field name="model">search.change.pricelist</field>
+            <field name="arch" type="xml">
+                <form string="Search &amp; Change Pricelist">
+                    <group>
+                        <group>
+                            <field name="pricelist" class="oe_inline" domain="[('item_ids.applied_on', 'in', ['1_product', '0_product_variant'])]"/>
+                            <field name="product_in_pricelist" class="oe_inline" invisible="1"/>
+                            <field name="search_product" widget="many2many_tags" domain="[('id', 'in', product_in_pricelist)]" attrs="{'invisible': [('change_price', '=', True)]}"/>
+                            <field name="change_product" domain="[('id', 'in', product_in_pricelist)]" attrs="{'invisible': [('change_price', '=', False)]}"/>
+                            <field name="old_price" attrs="{'invisible': [('change_price', '=', False)]}" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="change_price" class="oe_inline"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="new_price" widget="monetary" class="oe_inline" attrs="{'invisible': [('change_price', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="search_pricelist" string="Search" type="object" class="btn-primary" attrs="{'invisible': [('change_price', '=', True)]}"/>
+                        <button name="change_pricelist" string="Change" type="object" class="btn-primary" attrs="{'invisible': [('change_price', '=', False)]}"/>
+                        <button string="Cancel" special="cancel" class="btn-default"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_search_change_pricelist_wizard" model="ir.actions.act_window">
+            <field name="name">Search &amp; Change Pricelist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">search.change.pricelist</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="ati_pbf_sale.action_search_change_pricelist_wizard" id="menu_search_change_pricelist_wizard"
+                  parent="sale.product_menu_catalog" groups="sales_team.group_sale_manager" sequence="3"/>
+    </data>
+</odoo>

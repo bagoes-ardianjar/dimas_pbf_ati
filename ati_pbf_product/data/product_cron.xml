@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_update_internal_reference" model="ir.cron">
+        <field name="name">Update Internal Reference Product</field>
+        <field name="model_id" ref="ati_pbf_product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">model.func_update_internal_reference()</field>
+        <field name="active" eval="False"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

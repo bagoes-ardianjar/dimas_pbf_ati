@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_x_report_bpom_xml,action_x_report_bpom_xml,model_x_report_bpom_xml,base.group_user,1,1,1,1
+access_x_report_return_xml,action_x_report_return_xml,model_x_report_return_xml,base.group_user,1,1,1,1
+access_x_report_penjualan_so,action_x_report_penjualan_so,model_x_report_penjualan_so,base.group_user,1,1,1,1
+access_x_report_pembelian_po,action_x_report_pembelian_po,model_x_report_pembelian_po,base.group_user,1,1,1,1
+access_new_report_picking_line_helper,action_new_report_picking_line_helper,model_new_report_picking_line_helper,,1,1,1,1

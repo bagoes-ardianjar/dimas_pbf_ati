@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="SendOrderButton" owl="1">
+        <div class="control-button">
+            <a style="display: block;" class="btn btn-primary" t-on-click="trigger('click-send-order-button')">
+                <div style="display: inline-block; vertical-align: middle; align-items: center; height: 38px;">
+                    <img src="/sh_pos_order_sync/static/src/img/send.png" style="width: 20px; height: 15px;" class="send_icon" />
+                </div>
+                Send Order
+            </a>
+        </div>
+    </t>
+
+    <t t-name="SaveOrderButton" owl="1">
+        <div class="control-button save_button">
+            <a style="display: block;" class="btn btn-primary" t-on-click="trigger('click-save-order-button')">
+                <div style="display: inline-block; vertical-align: middle; align-items: center; height: 38px;">
+                    <img src="/sh_pos_order_sync/static/src/img/save.png" style="width: 20px; height: 15px;" class="send_icon" />
+                </div>
+                Save
+            </a>
+        </div>
+    </t>
+</templates>

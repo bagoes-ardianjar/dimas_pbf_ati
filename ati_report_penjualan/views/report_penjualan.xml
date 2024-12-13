@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form untuk memilih report dan tanggal mulai dan tanggal akhir -->
+        <record id="report_penjualan_form" model="ir.ui.view">
+            <field name="name">report.penjualan.form</field>
+            <field name="model">report.penjualan</field>
+            <field name="arch" type="xml">
+                <form string="Report Penjualan">
+                    <group>
+                        <group>
+                            <field name="report_type" required="1"/>
+							<field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="partner_id"
+                                   attrs="{'invisible': [('report_type', 'not in', ('Customer (XLSX)','Customer','Per Barang (XLSX)','Per Barang', 'Per Faktur','Per Faktur (XLSX)'))]}" />
+                            <field name="product_ids" widget="many2many_tags"
+                                   attrs="{'invisible': [('report_type', 'not in', ('Per Barang (XLSX)','Per Barang'))]}" />
+                            <field name="pabrik_id"
+                                   attrs="{'invisible': [('report_type', 'not in', ('Per Barang (XLSX)','Per Barang'))]}" />
+                            <field name="is_pasien" attrs="{'invisible': [('report_type', 'not in', ('Customer (XLSX)','Customer'))]}"/>
+                        </group>
+                        <group>
+                            <field name="company_id" attrs="{'invisible': [('report_type', 'not in', ('Per Item','Per Item (XLSX)'))], 'required': [('report_type', 'in', ('Per Item','Per Item (XLSX)'))]}" />
+                            <field name="product_id" attrs="{'invisible': [('report_type', 'not in', ('Per Item','Per Item (XLSX)'))]}" />
+                            <field name="partner_id" attrs="{'invisible': [('report_type', 'not in', ('Per Item','Per Item (XLSX)'))]}" />
+                            <field name="sales_person" attrs="{'invisible': [('report_type', 'not in', ('Per Item','Per Item (XLSX)'))]}" />
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="action_print_report_penjualan" string="Generate Report" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action untuk membuka form diatas -->
+        <record model="ir.actions.act_window" id="action_open_report_penjualan_form">
+            <field name="name">Report Penjualan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.penjualan</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_penjualan"
+            name="Report Penjualan"
+            action="action_open_report_penjualan_form"
+            parent="sale.menu_sale_report"
+            sequence="99"/>
+
+        <record model="ir.ui.menu" id="ati_pbf_sale.menu_wizard_report_sale_daily">
+            <field name="active">False</field>
+        </record>
+
+        <record model="ir.ui.menu" id="ati_pbf_sale.menu_wizard_customer_sale">
+            <field name="active">False</field>
+        </record>
+
+        <record model="ir.ui.menu" id="ati_report_sale.menu_report_so_peritem">
+            <field name="active">False</field>
+        </record>
+
+    </data>
+</odoo>

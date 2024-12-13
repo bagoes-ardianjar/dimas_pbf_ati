@@ -1,0 +1,223 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_pos_order_sync
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-16 07:14+0000\n"
+"PO-Revision-Date: 2021-01-16 07:14+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " (  -  ) order has been created."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " (  -  ) order has been edited."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " (  -  ) order has been paid."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " order has been cancelled."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " order has been created."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " order has been edited."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/js/chrome.js:0
+#, python-format
+msgid " order has been paid."
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model_terms:ir.ui.view,arch_db:sh_pos_order_sync.view_pos_config_form
+msgid "Allow Multiple Selection Of Receiver"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__sh_allow_multiple_selection
+msgid "Allow Multiple Selection of Validator"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__sh_allow_cancel
+msgid "Allow To Cancel Order"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__sh_allow_edit
+msgid "Allow To Edit Order"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__sh_allow_payment
+msgid "Allow To Pay Order"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_order__assigned_config
+msgid "Assigned Config"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/popup.xml:0
+#, python-format
+msgid "Cancel"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model_terms:ir.ui.view,arch_db:sh_pos_order_sync.view_pos_config_form
+msgid "Cancel Order From Order Screen"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__display_name
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model_terms:ir.ui.view,arch_db:sh_pos_order_sync.view_pos_config_form
+msgid "Display This Name In POS"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model_terms:ir.ui.view,arch_db:sh_pos_order_sync.view_pos_config_form
+msgid "Edit Order From Order Screen"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_order__floor_id
+msgid "Floor"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__id
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config____last_update
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__sh_nick_name
+msgid "Nick Name"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model_terms:ir.ui.view,arch_db:sh_pos_order_sync.view_pos_config_form
+msgid "Order Sync"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model_terms:ir.ui.view,arch_db:sh_pos_order_sync.view_pos_config_form
+msgid "Pay Order From Order Screen"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model,name:sh_pos_order_sync.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model,name:sh_pos_order_sync.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields.selection,name:sh_pos_order_sync.selection__pos_config__user_type__receive
+msgid "Receive"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/screen.xml:0
+#, python-format
+msgid "Receiver"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/action_button.xml:0
+#, python-format
+msgid "Save"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/popup.xml:0
+#, python-format
+msgid "Select Session"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/popup.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_order_sync.selection__pos_config__user_type__send
+#, python-format
+msgid "Send"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields.selection,name:sh_pos_order_sync.selection__pos_config__user_type__both
+msgid "Send / Receive"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/action_button.xml:0
+#, python-format
+msgid "Send Order"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#. openerp-web
+#: code:addons/sh_pos_order_sync/static/src/xml/screen.xml:0
+#, python-format
+msgid "Sender"
+msgstr ""
+
+#. module: sh_pos_order_sync
+#: model:ir.model.fields,field_description:sh_pos_order_sync.field_pos_config__user_type
+msgid "User Type"
+msgstr ""

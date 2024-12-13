@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018-2019 ForgeFlow, S.L.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo noupdate="1">
+    <record id="ati_sequence_product_sku" model="ir.sequence">
+        <field name="name">SKU</field>
+        <field name="code">ati.product.new.sku</field>
+        <field name="active">TRUE</field>
+        <field name="prefix">PBF-</field>
+        <field name="padding">6</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

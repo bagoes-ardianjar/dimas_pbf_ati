@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_vendor_purchase_form'>
+            <field name="name">wizard.vendor.purchase.form</field>
+            <field name="model">wizard.vendor.purchase</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                    </group>          
+                    <footer>
+                        <button name="button_generate_excel" type="object" default_focus="1"
+                            string="Excel Report" class="oe_highlight" icon="fa-download"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='wizard_vendor_purchase_action'>
+            <field name="name">Laporan Pembelian Supplier</field>
+            <field name="res_model">wizard.vendor.purchase</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_vendor_purchase_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Laporan Pembelian Supplier"
+            parent="purchase.purchase_report_main"
+            id="menu_wizard_vendor_purchase"
+            action="wizard_vendor_purchase_action"
+            sequence="5"/>
+
+        <report
+            id="wizard_vendor_purchase_xlsx"
+            model="wizard.vendor.purchase"
+            string="Laporan Pembelian Supplier"
+            report_type="xlsx"
+            name="ati_purchase_pbf.vendor_purchase.xlsx"
+            file="Laporan Pembelian Supplier.xlsx"
+            menu="False"
+            attachment_use="False"/>
+
+        <report
+            id="wizard_vendor_purchase"
+            model="wizard.vendor.purchase"
+            string="Laporan Pembelian Supplier"
+            name="ati_purchase_pbf.vendor_purchase"
+            file="ati_purchase_pbf.vendor_purchase"
+            report_type="qweb-html"
+            print_report_name = "Laporan Pembelian Supplier"
+          />
+    </data>
+</odoo>

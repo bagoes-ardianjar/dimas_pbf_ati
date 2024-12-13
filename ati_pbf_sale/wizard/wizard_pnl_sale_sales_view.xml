@@ -1,0 +1,83 @@
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_pnl_sale_sales_form'>
+            <field name="name">wizard.pnl.sale.sales.form</field>
+            <field name="model">wizard.pnl.sale.sales</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="salesperson" required="0" colspan="4"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="func_insert_data_prewiew" type="object" default_focus="1"
+                            string="Preview" class="oe_highlight" />
+                        <button type="object" name="func_print_excel" string="Print Excel" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='wizard_pnl_profit_sales_form'>
+            <field name="name">wizard.pnl.profit.sales.form</field>
+            <field name="model">wizard.pnl.profit.sales</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group col="4">
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="salesperson" required="0" colspan="4"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="func_insert_data_preview" type="object" default_focus="1"
+                            string="Preview" class="oe_highlight" />
+                        <button type="object" name="func_print_profit_excel" string="Print Excel" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='wizard_pnl_sale_sales_action'>
+            <field name="name">Laporan Laba/Rugi Penjualan Per Sales Produk</field>
+            <field name="res_model">wizard.pnl.sale.sales</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_pnl_sale_sales_form"/>
+            <field name="target">new</field>
+        </record>
+         <record model='ir.actions.act_window' id='wizard_pnl_profit_sales_action'>
+            <field name="name">Rekap Penjualan Profit Sales</field>
+            <field name="res_model">wizard.pnl.profit.sales</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_pnl_profit_sales_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Laporan Laba/Rugi Penjualan Per Sales Produk"
+            parent="sale.menu_sale_report"
+            id="menu_wizard_pnl_sale_sales"
+            action="wizard_pnl_sale_sales_action"
+            sequence="6"/>
+        <menuitem name="Rekap Penjualan Profit Sales"
+            parent="sale.menu_sale_report"
+            id="menu_wizard_pnl_profit_sales"
+            action="wizard_pnl_profit_sales_action"
+            sequence="7"/>
+
+<!--        <report-->
+<!--            id="wizard_pnl_sale_sales_xlsx"-->
+<!--            model="wizard.pnl.sale.sales"-->
+<!--            string="Laporan Laba/Rugi Penjualan Per Sales Produk"-->
+<!--            report_type="xlsx"-->
+<!--            name="ati_pbf_sale.pnl_sale_sales.xlsx"-->
+<!--            file="Laporan Laba/Rugi Penjualan Per Sales Produk.xlsx"-->
+<!--            menu="False"-->
+<!--            attachment_use="False"/>-->
+    </data>
+</odoo>

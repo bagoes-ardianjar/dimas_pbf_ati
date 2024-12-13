@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_product_product_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.product.product.form.inherit.ib</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="state" widget="statusbar"/>
+            </header>
+            <field name="detailed_type" position="before">
+                <field name="sku" string="Old SKU" readonly="0"/>
+                <field name="nie" readonly="0"/>
+                <field name="kode_bpom" readonly="0"/>
+                <field name="pabrik" readonly="0"/>
+                <field name="pabrik_reference" readonly="0"/>
+                <field name="jenis_obat" string="Golongan Obat" readonly="0"/>
+                <field name="distribution_type" readonly="0"/>
+                <field name="industry_code" readonly="0"/>
+                <field name="bentuk_sediaan" readonly="0"/>
+                <field name="kemasan" readonly="0"/>
+            </field>
+            <field name="taxes_id" position="after">
+                <field name="hna" readonly="0"/>
+            </field>
+<!--            added by ibad-->
+            <field name="default_code" position="before">
+                <label for="margin" string="Margin (%)" class="oe_inline"/>
+                <div>
+                    <field name="margin" string="Margin (%)" placeholder="percentages (%)" class="oe_inline" readonly="0"/>
+                    <span attrs="{'invisible': [('margin', '=', False)]}"> %</span>
+                </div>
+            </field>
+            <field name="hna" position="after">
+                <field name="harga_awal_ga" readonly="1"/>
+            </field>
+            <field name="default_code" position="before">
+                <field name="jenis_product" readonly="0"/>
+            </field>
+            <!-- added 12/11/2022 -->
+            <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                <button name="company_sales_price_view" type="object" class="oe_stat_button" icon="fa-pencil-square-o" >
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Company Sales Price</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//page[@name='general_information']/group[2]" position="after">
+                <group string="Composition">
+                    <field name="composition" nolabel="1"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='uom_id']" position='attributes'>
+                <attribute name="attrs">{'readonly': [('state','=','done')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='uom_po_id']" position='attributes'>
+                <attribute name="attrs">{'readonly': [('state','=','done')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- tree view -->
+    <!-- added 13/11/2022 -->
+    <record id="product_tree_view" model="ir.ui.view">
+        <field name="name">product.tree.view</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <header>
+                    <button name="action_manage_company_sales_price" string="SET COMPANY SALES PRICE" type="object" class="btn-secondary"/>
+                </header>
+            </xpath>
+            <field name="default_code" position="replace"/>
+            <field name="lst_price" position="replace"/>
+        </field>
+    </record>
+
+
+    <record id="purchase_category_tree_view_id" model="ir.ui.view">
+        <field name="name">purchase_category_tree_view_id</field>
+        <field name="model">ati.purchase.category</field>
+        <field name="arch" type="xml">
+            <tree string="Purchase Category" create="true" edit="true" delete="true" editable="bottom">
+                <field name="name" string="Name"/>
+                <field name="active" string="Active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_purchase_category_id" model="ir.actions.act_window">
+        <field name="name">Purchase Category</field>
+        <field name="res_model">ati.purchase.category</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <record id="action_purchase_category_tree_id" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="ati_pbf_product.purchase_category_tree_view_id"/>
+        <field name="act_window_id" ref="ati_pbf_product.action_purchase_category_id"/>
+    </record>
+
+
+    <menuitem
+        id="menuitem_purchase_category_id"
+        name="Purchase Category"
+        parent="stock.menu_stock_inventory_control"
+        sequence="120"
+        action="ati_pbf_product.action_purchase_category_id"/>
+
+
+    <record id="ati_inherit_product_template_from_view_id" model="ir.ui.view">
+        <field name="name">ati_inherit_product_template_from_view_id</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@name='general_information']/group[1]/group[2]/field[@name='categ_id']" position="after">
+                <field name="purchase_category_id"
+                       string="Purchase Category"
+                       options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

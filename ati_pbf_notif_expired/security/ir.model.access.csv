@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_picker,picker,ati_pbf_stock.model_picker,stock.group_stock_manager,1,1,1,1
+access_checker,checker,ati_pbf_stock.model_checker,stock.group_stock_manager,1,1,1,1

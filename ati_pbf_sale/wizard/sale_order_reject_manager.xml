@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="ati_reason_reject_sale_order_form_inherit_ib_manager" model="ir.ui.view">
+        <field name="name">ati.reason.reject.sale.order.form.inherit.ib.manager</field>
+        <field name="model">sale.order.reject.manager</field>
+        <field name="arch" type="xml">
+            <form string="Note">
+                <group>
+                    <group>
+                        <field name="name" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="reject_act_popup" type="object" class="oe_highlight" string="Reject"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

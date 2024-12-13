@@ -1,0 +1,32 @@
+<odoo>
+   <record id="type_product_supplied_tree" model="ir.ui.view">
+        <field name="name">Product Supplied Type</field>
+        <field name="model">type.product.supplied</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="type_product_supplied_actions" model="ir.actions.act_window">
+        <field name="name">Product Supplied Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">type.product.supplied</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="" />
+        <field name="view_id" ref="type_product_supplied_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new Type Product Supplied configuration
+          </p><p>
+            Add customization field for Type Product Supplied Configuration in Purchase module.
+            In this menu, we can set the list of Type Product Supplied.
+          </p>
+        </field>
+    </record> 
+
+        <menuitem
+           action="type_product_supplied_actions" id="menu_type_product_supplied_actions"
+           parent="purchase.menu_purchase_config" sequence="101"/>
+
+</odoo>

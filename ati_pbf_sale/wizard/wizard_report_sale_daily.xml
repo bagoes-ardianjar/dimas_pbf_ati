@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_report_sale_daily_form'>
+            <field name="name">wizard.report.sale.daily.form</field>
+            <field name="model">wizard.report.sale.daily</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                    </group>          
+                    <footer>
+                        <button name="button_generate_excel" type="object" default_focus="1"
+                            string="Excel Report" class="oe_highlight" icon="fa-download"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='wizard_report_sale_daily_action'>
+            <field name="name">Sale Daily Report</field>
+            <field name="res_model">wizard.report.sale.daily</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_report_sale_daily_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Laporan Penjualan Harian"
+            parent="sale.menu_sale_report"
+            id="menu_wizard_report_sale_daily"
+            action="wizard_report_sale_daily_action"
+            sequence="5"/>
+
+        <report
+            id="wizard_report_sale_daily_xlsx"
+            model="wizard.report.sale.daily"
+            string="Sale Daily Report"
+            report_type="xlsx"
+            name="ati_pbbf_sale.sale_daily.xlsx"
+            file="Sale Daily Report.xlsx"
+            menu="False"
+            attachment_use="False"/>
+
+        <report
+            id="wizard_report_sale_daily"
+            model="wizard.report.sale.daily"
+            string="Sale Daily Report"
+            name="ati_pbf_sale.sale_daily"
+            file="ati_pbf_sale.sale_daily"
+            report_type="qweb-html"
+            print_report_name = "Sale Daily Report"
+          />
+    </data>
+</odoo>

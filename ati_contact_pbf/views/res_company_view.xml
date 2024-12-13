@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="res_company_inherit_contact_pbf_form">
+            <field name="name">res.company.inherit.contact.pbf.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Additional Settings" name="additional_settings">
+                        <group>
+                            <group string="Setup Partner Expired Regist">
+                                <field name="remainder_email_user_ids" widget="many2many_tags" string="Destination User"/>
+                                <field name="remainder_email_mail_server_id" string="Mail Server"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

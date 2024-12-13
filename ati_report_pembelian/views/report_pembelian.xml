@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form untuk memilih report dan tanggal mulai dan tanggal akhir -->
+        <record id="report_pembelian_form" model="ir.ui.view">
+            <field name="name">report.pembelian.form</field>
+            <field name="model">report.pembelian</field>
+            <field name="arch" type="xml">
+                <form string="Report Pembelian">
+                    <group>
+                        <group>
+                            <field name="report_type" required="1"/>
+							<field name="company_id" attrs="{'invisible': [('report_type', 'not in', ('Per Item','Per Item (XLSX)'))], 'required': [('report_type', 'in', ('Per Item','Per Item (XLSX)'))]}" />
+							<field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="partner_id"
+                                   attrs="{'invisible': [('report_type', 'not in', ('Supplier (XLSX)','Supplier','Per Barang (XLSX)','Per Barang'))]}" />
+                            <field name="product_ids" widget="many2many_tags"
+                                   attrs="{'invisible': [('report_type', 'not in', ('Per Barang (XLSX)','Per Barang'))]}" />
+                            <field name="pabrik_id"
+                                   attrs="{'invisible': [('report_type', 'not in', ('Per Barang (XLSX)','Per Barang'))]}" />
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="action_print_report_pembelian" string="Generate Report" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action untuk membuka form diatas -->
+        <record model="ir.actions.act_window" id="action_open_report_pembelian_form">
+            <field name="name">Report Pembelian</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.pembelian</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_pembelian"
+            name="Report Pembelian"
+            action="action_open_report_pembelian_form"
+            parent="purchase.purchase_report_main"
+            sequence="99"/>
+
+        <record model="ir.ui.menu" id="ati_purchase_pbf.menu_wizard_report_purchase_daily">
+            <field name="active">False</field>
+        </record>
+
+        <record model="ir.ui.menu" id="ati_purchase_pbf.menu_wizard_vendor_purchase">
+            <field name="active">False</field>
+        </record>
+
+        <record model="ir.ui.menu" id="ati_report_sale.menu_report_po_peritem">
+            <field name="active">False</field>
+        </record>
+
+    </data>
+</odoo>

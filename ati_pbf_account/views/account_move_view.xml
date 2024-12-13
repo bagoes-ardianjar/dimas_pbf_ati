@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ati_account_move_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.account.move.form.inherit.ib</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <button name="button_draft" position="replace">
+                <field name="reset_access" invisible="1"/>
+                <button name="button_draft" string="Reset to Draft" type="object" groups="account.group_account_invoice"
+                                attrs="{'invisible' : ['|', ('show_reset_to_draft_button', '=', False), ('reset_access', '=', False)]}" data-hotkey="q" />
+            </button>
+
+            <button name="action_reverse" position="replace">
+                <button name="action_reverse" string='Add Credit Note'
+                                type='object' groups="account.group_account_invoice"
+                                attrs="{'invisible': ['|', '|', ('move_type', 'not in', ('out_invoice', 'in_invoice')), ('state', '!=', 'posted'), ('payment_state', '=', 'paid')]}"/>
+            </button>
+
+            <xpath expr="//group[@id='header_right_group']/field[@name='date']" position="replace">
+                <field name="date" string="Accounting Date"
+                    attrs="{
+                        'invisible': [('move_type', 'in', ('out_receipt'))],
+                        'readonly': [('state', '!=', 'draft')],
+                    }"/>
+            </xpath>
+
+            <xpath expr="//group[@id='other_tab_group']/group[2]/field[@name='company_id']" position="after">
+                <field name="source_document" string="Source Document" readonly="1"/>
+            </xpath>
+            <xpath expr="//group[@id='other_tab_group']/group[@name='sale_info_group']/field[@name='ref']" position="attributes">
+<!--                <attribute name="required">1</attribute>-->
+                <attribute name="attrs">{'required': [('move_type', 'in', ['out_refund','in_refund'])]}</attribute>
+            </xpath>
+
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name="tukar_faktur" readonly="1" attrs="{'invisible': [('move_type', 'not in', ('in_invoice'))]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_reference']" position="after">
+                <field name="purchase_person" attrs="{'invisible': [('move_type', 'in', ('out_invoice'))]}"/>
+                <field name="sales_person" attrs="{'invisible': [('move_type', 'in', ('in_invoice'))]}"/>
+                <field name="invoice_address_id" widget="res_partner_many2one"
+                                context="{'res_partner_search_mode':
+                                (context.get('default_move_type', 'entry') in ('out_invoice', 'out_refund', 'out_receipt')
+                                and 'customer') or (context.get('default_move_type', 'entry') in
+                                ('in_invoice', 'in_refund', 'in_receipt') and 'supplier') or False,'show_address': 1,
+                                'default_is_company': True, 'show_vat': True}"
+                   readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_uom_id']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="options">{'no_create': True,'no_open': True}</attribute>
+                <attribute name="widget">many2one_no_open</attribute>
+                <attribute name="no_external_link">True</attribute>
+            </xpath>
+<!--            <field name="partner_id" widget="res_partner_many2one"-->
+<!--                                context="{'res_partner_search_mode':-->
+<!--                                (context.get('default_move_type', 'entry') in ('out_invoice', 'out_refund', 'out_receipt')-->
+<!--                                and 'customer') or (context.get('default_move_type', 'entry') in-->
+<!--                                ('in_invoice', 'in_refund', 'in_receipt') and 'supplier') or False,'show_address': 1,-->
+<!--                                'default_is_company': True, 'show_vat': True}"-->
+<!--                   options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"-->
+<!--                   readonly="1"/>-->
+
+            <!-- <xpath expr="//button[@name='button_cancel']" position="after">
+                <button name="button_print_tanda_terima_barang" string="  Tanda Terima Barang" class="fa fa-download btn-primary" type="object" attrs="{'invisible':['|', ('move_type', '!=', 'in_invoice'), ('state', '!=', 'posted')]}"/>
+            </xpath> -->
+<!--            <button name="preview_invoice" position="before">-->
+<!--                <button name="approve_cn" string="Approve" type="object"-->
+<!--                        attrs="{'invisible' : [('state', '!=', 'waiting_approval')]}" />-->
+<!--            </button>-->
+        </field>
+    </record>
+
+    <record id="inherit_account_account_form_id" model="ir.ui.view">
+        <field name="name">inherit.account.account.form.id</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[@name='accounting']/group/group[1]/field[@name='allowed_journal_ids']" position="after">
+                <field name="cashflow_report"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="paperformat_b5_custom" model="report.paperformat">
+        <field name="name">Paperformat B5 Custom</field>
+        <field name="default" eval="True"/>
+        <field name="format">B5</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">76</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_vendor_bill_ttb_custom" model="ir.actions.report">
+        <field name="name">Surat Tanda Terima Barang</field>
+        <field name="paperformat_id" ref="paperformat_b5_custom" />
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ati_pbf_account.report_vendor_bill_ttb_custom</field>
+        <field name="report_file">ati_pbf_account.report_vendor_bill_ttb_custom</field>
+        <field name="print_report_name">'Tanda Terima Barang - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_account.model_account_move"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+</odoo>

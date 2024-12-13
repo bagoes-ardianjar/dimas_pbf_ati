@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <record id="pnl_sale_report_form_view_id" model="ir.ui.view">
+        <field name="name">pnl_sale_report_form_view_id</field>
+        <field name="model">pnl.sales.report.preview</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="func_print" string="Print" class="oe_highlight"/>
+<!--                    <button string="Cancel" class="oe_link" special="cancel" />-->
+                    <button type="object" name="func_cancel" string="Cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="start_date" string="Start Date" readonly="1"/>
+                            <field name="end_date" string="End Date" readonly="1"/>
+                            <field name="sales_person" string="Sales Person" readonly="1" attrs="{'invisible': [('sales_person','=', False)]}"/>
+                            <field name="sales" string="Sales Person" readonly="1" attrs="{'invisible': [('sales_person','!=', False)]}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Details">
+                                <field name="pnl_sales_preview_ids" readonly="1" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom">
+                                        <field name="tanggal" string="Tanggal" readonly="1"/>
+                                        <field name="no_penjualan" string="No. Penjualan" readonly="1"/>
+                                        <field name="no_order" string="No. Order" readonly="1"/>
+                                        <field name="pelanggan" string="Pelanggan" readonly="1"/>
+                                        <field name="sales_person" string="Sales Person" readonly="1"/>
+                                        <field name="product_id" string="Barang" readonly="1"/>
+                                        <field name="uom_id" string="Satuan" readonly="1"/>
+                                        <field name="qty" string="QTY" readonly="1"/>
+                                        <field name="harga_beli" string="Harga Beli" readonly="1"/>
+                                        <field name="harga_jual" string="Harga Jual" readonly="1"/>
+                                        <field name="total_beli" string="Total Beli" readonly="1"/>
+                                        <field name="total_jual" string="Total Jual" readonly="1"/>
+                                        <field name="profit" string="Profit" readonly="1"/>
+                                        <field name="persentase" string="Persentase" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="pnl_profit_report_form_view_id" model="ir.ui.view">
+        <field name="name">pnl_profit_report_form_view_id</field>
+        <field name="model">pnl.profit.report.preview</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="func_print" string="Print" class="oe_highlight"/>
+<!--                    <button string="Cancel" class="oe_link" special="cancel" />-->
+                    <button type="object" name="func_cancel" string="Cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="start_date" string="Start Date" readonly="1"/>
+                            <field name="end_date" string="End Date" readonly="1"/>
+                            <field name="sales_person" string="Sales Person" readonly="1" attrs="{'invisible': [('sales_person','=', False)]}"/>
+                            <field name="sales" string="Sales Person" readonly="1" attrs="{'invisible': [('sales_person','!=', False)]}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <notebook>
+                            <page string="Details">
+                                <field name="pnl_profit_preview_ids" readonly="1" nolabel="1" options="{'reload_on_botton':True}">
+                                    <tree edit="true" editable="bottom">
+                                        <field name="sales_person" string="Sales Person" readonly="1"/>
+                                        <field name="total_beli" string="Total Beli" readonly="1"  widget="monetary"/>
+                                        <field name="total_jual" string="Total Jual" readonly="1"/>
+                                        <field name="profit" string="Profit" readonly="1"/>
+                                        <field name="persentase" string="Persentase (%)" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

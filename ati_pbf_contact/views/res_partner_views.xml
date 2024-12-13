@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">ati.res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="l10n_id_pkp" position="after">
+                <field name="current_user" invisible="1"/>
+                <field name="invisible_panel" invisible="1"/>
+                <field name="pasien_panel" invisible="1"/>
+<!--                <field name="_is_panel" attrs="{'invisible':['|', ('type_partner', '=', 'supplier'), ('pasien_panel', '=', False), ('invisible_panel', '=', True)]}"/>-->
+                <field name="_is_panel" attrs="{'invisible':[('invisible_panel', '=', True)]}"/>
+                <field name="panel_ids" widget="many2many_tags" attrs="{'invisible': ['|', ('_is_panel', '!=', True), ('pasien_panel', '=', False)]}"/>
+<!--                <field name="jenis_order"/>-->
+            </field>
+        </field>
+    </record>
+</odoo>

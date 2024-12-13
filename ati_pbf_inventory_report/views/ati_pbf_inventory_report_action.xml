@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_pbf_inventory_report_action_id" model="ir.actions.act_window">
+        <field name="name">Laporan Triwulan E-Report Kemenkes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ati.pbf.inventory.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="ati_pbf_inventory_report.ati_pbf_inventory_report_wizard_view_id"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

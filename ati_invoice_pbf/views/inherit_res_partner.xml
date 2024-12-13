@@ -1,0 +1,31 @@
+<odoo>
+    <record id="inherit_res_partner_form_view_id" model="ir.ui.view">
+        <field name="name">inherit_res_partner_form_view_id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group[1]/group[1]/field[@name='vat']" position="attributes">
+                <attribute name="string">VAT/NPWP</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group[1]/group[1]/field[@name='vat']" position="attributes">
+                <attribute name="attrs">{'required': [('company_type', '=', 'company')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_nik_form_view_id" model="ir.ui.view">
+        <field name="name">inherit_nik_form_view_id</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_id_efaktur.res_partner_tax_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_id_nik']" position="attributes">
+<!--                <attribute name="attrs">{'required': [('company_type', '=', 'person')]}</attribute>-->
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='l10n_id_tax_name']" position="attributes">
+<!--                <attribute name="attrs">{'required': [('company_type', '=', 'person')]}</attribute>-->
+                <attribute name="required">0</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

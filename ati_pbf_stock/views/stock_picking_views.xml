@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ati_delivery_order_form_inherit" model="ir.ui.view">
+        <field name="name">ati.delivery.order.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="picking_type_id_name" invisible="1"/>
+                <field name="checker"/>
+                <field name="picker"/>
+                <field name="customer_invoice" string="No. Faktur"/>
+                <field name="jumlah_koli" string="Jumlah Koli"/>
+<!--                <field name="coli" attrs="{'invisible': [('picking_type_id_name', '!=', 'Delivery Orders')]}"/>-->
+            </field>
+            <field name="location_dest_id" position="after">
+<!--                <field name="expedition_name" string="Ekspedisi"/>-->
+<!--                <field name="plat_number" string="No Plat"/>-->
+<!--                <field name="driver_name" string="Supir"/>-->
+                <field name="current_user" string="current_user" invisible="1"/>
+                <field name="apj_helper_ids" string="apj_helper_ids" invisible="1"/>
+                <field name="apj" string="APJ" domain="[('id', 'in', apj_helper_ids)]"/>
+                <field name="kasir" string="Kasir" attrs="{'invisible': [('picking_type_id_name', '!=', 'Delivery Orders')]}"/>
+                <field name="is_no_backorder" invisible="1"/>
+                <field name="return_reason" attrs="{'invisible': [('picking_type_id_name', 'not in', ['Returns', 'Return:Delivery Orders'])]}" string="Reason"/>
+            </field>
+<!--            <xpath expr="/form/sheet/notebook/page[@name='note']" position="after">-->
+<!--                <page string="Koli" name="koli">-->
+<!--                    <field name="koli_ids" mode="tree">-->
+<!--                        <tree string="Koli" editable="bottom">-->
+<!--                            <field name="product_name_koli"/>-->
+<!--                            <field name="nomor_koli"/>-->
+<!--                            <field name="berat_koli"/>-->
+<!--                            <field name="jenis_koli"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+<!--                </page>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='date_done']" position="replace">
+                <field name="date_done" string="Effective Date" attrs="{'invisible': [('state', 'not in', ('done','assigned'))]}" readonly="0"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="delivery_status" readonly="1" attrs="{'invisible': [('picking_type_id_name', '=', 'Receipts')]}"/>
+            </xpath>
+            <xpath expr="//header/button[@name='button_validate']" position="after">
+                <field name="delivery_status" readonly="1" invisible="1"/>
+                <field name="one_click" invisible="1"/>
+                <field name="is_requested" invisible="1"/>
+                <field name="manager_do_report_user" invisible="1"/>
+                <button name="on_delivery" class="oe_highlight" type="object" string="On Delivery" attrs="{'invisible': ['|', '|', ('delivery_status', '!=', False), ('state', 'not in', ['done']),('picking_type_id_name', '=', 'Receipts')]}"/>
+                <button name="on_complete" class="oe_highlight" type="object" string="Complete" attrs="{'invisible': [('delivery_status', 'not in', ['On Delivery'])]}"/>
+                <button name="button_print_no_backorder" string="  Surat Penolakan" class="fa fa-download btn-primary" type="object" attrs="{'invisible':[('is_no_backorder', '=', False)]}"/>
+                <button name="button_report_delivery_order" string="  Report Delivery Order" class="fa fa-download btn-primary" type="object"
+                        attrs="{'invisible':['|', '|', '|', ('picking_type_code', '!=', 'outgoing'), ('picking_type_id_name', 'in', ['Returns', 'Return:Delivery Orders']), ('state', 'not in', ['done','assigned']), ('one_click', '=', True)]}"/>
+                <button name="button_report_retur" string="  Tanda Terima Retur" class="fa fa-download btn-primary" type="object"
+                        attrs="{'invisible':['|', ('picking_type_id_name', 'not in', ['Returns', 'Return:Delivery Orders']), ('state', 'not in', ['done'])]}"/>
+                <button name="request_approval_for_print_do" string="Request to DO Report" class="oe_highlight" type="object"
+                        attrs="{'invisible':['|', '|', '|', ('picking_type_code', '!=', 'outgoing'), ('state', 'not in', ['done','assigned']),
+                        ('one_click', '=', False), ('is_requested', '=', True)]}"/>
+                <button name="open_the_list_of_request_do_report" string="DO Report Request List" class="oe_highlight" type="object"
+                        attrs="{'invisible':['|', '|', ('picking_type_code', '!=', 'outgoing'), ('state', 'not in', ['done','assigned']),
+                        ('manager_do_report_user', '=', False)]}"/>
+            </xpath>
+            <field name="move_line_ids_without_package" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="move_line_ids_without_package" position="after">
+                <field name="move_line_ids_without_package" context="{'tree_view_ref': 'ati_pbf_stock.view_stock_move_line_detailed_operation_tree_ib', 'default_picking_id': id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id, 'default_company_id': company_id}" invisible="0"/>
+            </field>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="before">
+                <field name="product_on_location_id" widget="many2many_tags" invisible="1"/>
+                <field name="batch_on_location_id" widget="many2many_tags" invisible="1"/>
+            </xpath>
+<!--            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']" position="attributes">-->
+<!--                <attribute name="domain">[('type', 'in', ['product', 'consu']), '|',-->
+<!--                    ('company_id', '=', False),-->
+<!--                    ('company_id', '=', company_id),-->
+<!--                    ('id', '=', product_on_location_id)]</attribute>-->
+<!--            </xpath>-->
+            <xpath expr="//field[@name='location_id']" position="attributes">
+                <attribute name="domain">[('company_id', 'in', [company_id, False]), ('usage', 'not in', ['view'])]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='lot_ids']" position="attributes">
+                <attribute name="domain"></attribute>
+            </xpath>
+<!--            <xpath expr="//header/button[@name='button_validate']" position="replace">-->
+<!--                <button name="button_validate" attrs="{'invisible': ['|', '|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False), ('delivery_status', '=', False)]}"-->
+<!--                        string="Validate" type="object" class="oe_highlight" groups="stock.group_stock_user" data-hotkey="v"/>-->
+<!--            </xpath>-->
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ati_list_do_request_report_tree_view1Ibad" model="ir.ui.view">
+        <field name="name"></field>
+        <field name="model">mail.message</field>
+        <field name="arch" type="xml">
+            <form string="DO Ibad Request">
+                <field name="subject"/>
+                <field name="author_id"/>
+<!--                <button type="object" icon="fa-trash-o" name="unlink"/>-->
+            </form>
+        </field>
+    </record>
+
+    <record id="act_list_do_request_report" model="ir.actions.act_window">
+        <field name="name">Reverse Transfer</field>
+        <field name="res_model">stock.return.picking</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="ati_delivery_order_tree_inherit" model="ir.ui.view">
+        <field name="name">ati.delivery.order.tree.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="doreport_button_check" invisible="1"/>
+                <field name="is_admin" invisible="1"/>
+<!--                <button name="open_do_report_button" string="Open DO Report Button" type="object"-->
+<!--                        attrs="{'invisible':['|', '|', '|', ('picking_type_code', '!=', 'outgoing'), ('state', '!=', 'done'), ('doreport_button_check', '=', False), ('is_admin', '=', False)]}"/>-->
+            </field>
+            <xpath expr="//tree/field[@name='company_id']" position="after">
+                <field name="kasir" readonly="1" optional="show"/>
+                <field name="checker" readonly="1" optional="show"/>
+                <field name="picker" readonly="1" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ati_res_users_form_inherit" model="ir.ui.view">
+        <field name="name">ati.res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="after">
+                <group string="DO Button Report Manager">
+                    <field name="manager_approval" required="0" domain="[('user_ids', '!=', False)]"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ati_mail_compose_message_form_inherit" model="ir.ui.view">
+        <field name="name">ati.mail.compose.message.form.inherit</field>
+        <field name="model">mail.compose.message</field>
+        <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="mail_template_name" invisible="1"/>
+            </field>
+            <xpath expr="//field[@name='partner_ids']" position="attributes">
+                <attribute name="attrs">{'readonly': [('mail_template_name', '=', 'Stock Picking: Request to Delivery Order Report')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="paperformat_a4_custom" model="report.paperformat">
+        <field name="name">Paperformat A4 Custom</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">76</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_no_backorder_custom" model="ir.actions.report">
+        <field name="name">Surat Penolakan (No Backorder)</field>
+        <field name="paperformat_id" ref="paperformat_a4_custom" />
+        <field name="model">stock.picking</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_pbf_stock.report_no_backorder_custom</field>
+        <field name="report_file">ati_pbf_stock.report_no_backorder_custom</field>
+        <field name="print_report_name">'No Backorder - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+    <record id="action_report_delivery_order_custom" model="ir.actions.report">
+        <field name="name">Report Delivery Order</field>
+        <field name="paperformat_id" ref="paperformat_a4_custom" />
+        <field name="model">stock.picking</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_pbf_stock.report_delivery_order_custom</field>
+        <field name="report_file">ati_pbf_stock.report_delivery_order_custom</field>
+        <field name="print_report_name">'Delivery Order - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+    <record id="action_report_tanda_terima_retur" model="ir.actions.report">
+        <field name="name">Tanda Terima Retur</field>
+        <field name="paperformat_id" ref="paperformat_a4_custom" />
+        <field name="model">stock.picking</field>
+<!--        <field name="report_type">qweb-pdf</field>-->
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">ati_pbf_stock.report_tanda_terima_retur_custom</field>
+        <field name="report_file">ati_pbf_stock.report_tanda_terima_retur_custom</field>
+        <field name="print_report_name">'Return - %s' %(object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" eval="False"/>
+        <!-- <field name="binding_model_id" ref="ati_pbf_stock.model_stock_picking"/> -->
+        <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+    <record id="do_reportbutton_opened_wizard" model="ir.ui.view">
+        <field name="name">do.reportbutton.opened</field>
+        <field name="model">do.reportbutton.opened</field>
+        <field name="arch" type="xml">
+            <form string="Message">
+                <field name="name" />
+
+                <footer>
+                    <button string="OK" class="btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sh_message_popup_do_report_button_opened" model="ir.actions.act_window">
+        <field name="name">DO Report Button Opened</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">do.reportbutton.opened</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="do_reportbutton_denied_wizard" model="ir.ui.view">
+        <field name="name">do.reportbutton.denied</field>
+        <field name="model">do.reportbutton.denied</field>
+        <field name="arch" type="xml">
+            <form string="Message">
+                <field name="name" />
+
+                <footer>
+                    <button string="OK" class="btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sh_message_popup_do_report_button_denied" model="ir.actions.act_window">
+        <field name="name">Access Denied</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">do.reportbutton.denied</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="do_reportbutton_rejected_wizard" model="ir.ui.view">
+        <field name="name">do.reportbutton.rejected</field>
+        <field name="model">do.reportbutton.rejected</field>
+        <field name="arch" type="xml">
+            <form string="Message">
+                <field name="name" />
+
+                <footer>
+                    <button string="OK" class="btn-primary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sh_message_popup_do_report_button_rejected" model="ir.actions.act_window">
+        <field name="name">Rejected</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">do.reportbutton.rejected</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

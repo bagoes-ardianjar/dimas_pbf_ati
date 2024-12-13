@@ -1,0 +1,32 @@
+<odoo>
+   <record id="supplier_type_tree" model="ir.ui.view">
+        <field name="name">Supplier Type</field>
+        <field name="model">supplier.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="supplier_type_actions" model="ir.actions.act_window">
+        <field name="name">Supplier Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">supplier.type</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="" />
+        <field name="view_id" ref="supplier_type_tree"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new supplier type configuration
+          </p><p>
+            Add customization field for supplier type Configuration in Purchase module.
+            In this menu, we can set the list of supplier type.
+          </p>
+        </field>
+    </record> 
+
+        <menuitem
+           action="supplier_type_actions" id="menu_supplier_type_actions"
+           parent="purchase.menu_purchase_config" sequence="100"/>
+
+</odoo>

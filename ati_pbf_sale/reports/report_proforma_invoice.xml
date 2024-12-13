@@ -1,0 +1,249 @@
+<odoo>
+    <template id="report_proforma_invoice_pbf_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:30%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align:center; height:25px; font-weight:700;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px; font-weight:700;">
+                                <t t-if="company.name"><span t-field="company.name" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align:center; height:25px; font-weight:700;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="2" style="text-align:left; height:25px; font-weight:700;">
+                                <t t-if="company.street"><span t-field="company.street" /></t>
+                                <t t-if="company.street2"><span t-field="company.street2" /></t>
+                                <t t-if="company.city"><span t-field="company.city" /></t>
+                                <t t-if="company.state_id"><span t-field="company.state_id.name" /></t>
+                                <t t-if="company.country_id"><span t-field="company.country_id.name" /></t>
+                                <t t-if="company.zip"><span t-field="company.zip" /></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px; font-weight:700;"></td></tr>
+                        <tr>
+                            <td colspan="6" style="text-align:center; height:25px; font-size:15pt; font-weight:700;">
+                                <t><span>PROFORMA INVOICE</span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:5px; font-weight:700;"></td></tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px; font-weight:700;">
+                                <t><span>Tanggal :</span></t>
+                                <t t-if="doc.date_order"><span t-field="doc.date_order" /></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px; font-weight:700;">
+                                <t><span>Dokter : -</span></t>
+                            </td>
+                            <td colspan="2" style="text-align:center; height:25px; font-weight:700;">
+                                <t><span>Nomor :</span></t>
+                                <t t-if="doc.name"><span t-field="doc.name" /></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="6" style="text-align:left; height:3px; font-weight:700;"></td></tr>
+                        <tr>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:700;">
+                                <t><span>No</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px; font-weight:700;">
+                                <t><span>Nama Produk</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:700;">
+                                <t><span>Qty</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:700;">
+                                <t><span>Harga Satuan</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:700;">
+                                <t><span>Disc</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:700;">
+                                <t><span>Net Total</span></t>
+                            </td>
+                        </tr>
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="sorted(doc.order_line, key=lambda x: x.product_id.name)" t-as="l">
+                            <tr>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400;">
+                                    <t><span t-esc="i"/></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid black; padding-left: 5px; text-align:left; height:25px; font-weight:400;">
+                                    <t t-if="l.product_id"><span t-field="l.product_id.name" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid black; text-align:center; height:25px; font-weight:400;">
+                                    <t t-if="l.product_uom_qty"><span t-esc="int(l.product_uom_qty)" /></t>
+                                    <t t-if="l.product_uom"><span t-field="l.product_uom.name" /></t>
+                                </td>
+<!--                                <td colspan="1" style="border:1px solid black; padding-right: 5px; text-align:right; height:25px; font-weight:400;">-->
+<!--                                    <t><span t-esc="'{0:,.2f}'.format(l.price_unit + l.product_margin_amount + l.additional_margin).replace(',',',')" /></t>-->
+<!--                                </td>-->
+                                <td colspan="1" style="border:1px solid black; padding-right: 5px; text-align:right; height:25px; font-weight:400;">
+                                    <t><span t-esc="'{0:,.2f}'.format(l.harga_satuan_baru).replace(',',',')" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid black; padding-right: 5px; text-align:right; height:25px; font-weight:400;">
+                                    <t t-if="l.discount_amount"><span t-field="l.discount_amount" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid black; padding-right: 5px; text-align:right; height:25px; font-weight:400;">
+                                    <t t-if="l.price_subtotal"><span t-field="l.price_subtotal" /></t>
+                                </td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                        </t>
+                        <tr><td colspan="6" style="text-align:left; height:20px;"></td></tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:5px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="3" style="border-bottom:1px solid black; padding-left: 5px; text-align:left; height:5px; text-decoration: line-through;">
+                                <strong></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Tanggal Tempo : </span></t>
+                                <t t-if="doc.payment_term_id"><span t-esc="doc._payment_term_date().strftime('%d/%m/%Y')" /></t>
+                            </td>
+                            <td colspan="1" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="1" style="padding-left: 5px; text-align:left; height:25px;">
+                                <t><span>Sub Total</span></t>
+                            </td>
+                            <td colspan="2" style="padding-right: 5px; text-align:right; height:25px;">
+                                <span t-field="doc.amount_untaxed" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="1" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="1" style="padding-left: 5px; text-align:left; height:25px;">
+                                <t><span>Taxes</span></t>
+                            </td>
+                            <td colspan="2" style="padding-right: 5px; text-align:right; height:25px;">
+                                <span t-field="doc.amount_tax" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:5px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="3" style="border-bottom:1px solid black; padding-left: 5px; text-align:left; height:5px; text-decoration: line-through;">
+                                <strong></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="1" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="1" style="padding-left: 5px; text-align:left; height:25px;">
+                                <t><span>Grand Total</span></t>
+                            </td>
+                            <td colspan="2" style="padding-right: 5px; text-align:right; height:25px;">
+                                <span t-field="doc.amount_total" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+                <!-- <br></br>
+                <div class="clearfix" name="so_total_summary">
+                    <div id="total" class="row" name="total">
+                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                            <table class="table table-sm">
+                                <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)"/>
+                                <t t-call="account.document_tax_totals"/>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <br></br>
+                <br></br>
+                <div class="row" style="padding-left: 14px; padding-right: 12px; font-weight:700;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="text-align:left; height:25px; width:5%;"></td>
+                            <td style="text-align:left; height:25px; width:30%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:15%;"></td>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <!-- <t><span>Diterima oleh,</span></t> -->
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>Hormati Kami,</span></t>
+                            </td>
+                            <!-- <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td> -->
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>PBF Berkat Mahkota Putra</span></t>
+                            </td>
+                            <!-- <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td> -->
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr><td colspan="5" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <!-- <t><span>(</span></t>
+                                <t t-if="partner.name"><span t-field="partner.name" /></t>
+                                <t><span>)</span></t> -->
+                                <t><span></span></t>
+                            </td>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>(.........................................................)</span></t>
+                            </td>
+                            <!-- <td colspan="1" style="text-align:left; height:25px;">
+                                <t><span></span></t>
+                            </td> -->
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </t>
+    </template>
+    <template id="report_proforma_invoice_pbf_custom">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_pbf_sale.report_proforma_invoice_pbf_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

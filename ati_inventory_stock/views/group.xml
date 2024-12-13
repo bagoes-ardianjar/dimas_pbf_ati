@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="ati_hide_menu_id" model="res.groups">
+        <field name="name">Hide Menu</field>
+    </record>
+</odoo>

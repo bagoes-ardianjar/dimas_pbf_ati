@@ -1,0 +1,139 @@
+<odoo>
+    <template id="report_vendor_bill_ttb_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div class="row" style="padding-left: 14px; padding-right: 12px; font-weight:900;">
+                <!-- <div class="row" style="border-bottom: 1px solid black; padding-left: 14px; padding-right: 12px; font-weight:900;"> -->
+                    <table>
+                        <tr>
+                            <td style="text-align:left; height:25px; width:20%;"></td>
+                            <td style="text-align:left; height:25px; width:2%;"></td>
+                            <td style="text-align:left; height:25px; width:35%;"></td>
+                            <td style="text-align:left; height:25px; width:43%;"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" style="height: 100px; vertical-align:middle; "><img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="height: 100px;"/></td>
+                            <td colspan="2" style="text-align:left; height:25px; font-size:10pt;"><span t-field="company.name"/></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px; font-size:10pt;">
+                                <t t-if="company.street"><span t-field="company.street"/></t>
+                                <t t-if="company.street2"><span t-field="company.street2"/></t>
+                            </td>
+                            <td style="text-align:left; height:25px; padding-left: 30px; font-size:12pt;">
+                                <t><strong>No. : TTF/</strong></t>
+                                <t t-if="doc.invoice_date"><span t-esc="doc.invoice_date.strftime('%m%y')"/></t>
+                                <t><strong>/</strong></t>
+                                <t t-if="doc.name"><span t-esc="doc.get_six_digit_vbill()"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px; font-size:10pt;">
+                                <t t-if="company.city"><span t-field="company.city"/></t>
+                                <t t-if="company.state_id"><span t-field="company.state_id"/></t>
+                                <t t-if="company.zip"><span t-field="company.zip"/></t>
+                            </td>
+                            <td style="text-align:left; height:25px; padding-left: 30px;"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left; height:25px; font-size:10pt;"><t t-if="company.country_id"><span t-field="company.country_id"/></t></td>
+                            <td></td>
+                        </tr>
+                        <tr><td colspan="4" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="4" class="text-center" style="height:25px; font-size:16pt;"><strong>TANDA TERIMA</strong></td>
+                        </tr>
+                        <tr>
+                            <td><span>Telah terima dari </span></td>
+                            <td><span>:</span></td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t t-if="partner"><span t-field="partner.name"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>Alamat </span></td>
+                            <td><span>: </span></td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t t-if="partner.street"><span t-field="partner.street"/></t>
+                                <t t-if="partner.street2"><span t-field="partner.street2"/></t>
+                                <t t-if="partner.city"><span t-field="partner.city"/></t>
+                                <t t-if="partner.state_id"><span t-field="partner.state_id.name"/></t>
+                                <t t-if="partner.zip"><span t-field="partner.zip"/></t>
+                                <t t-if="partner.country_id"><span t-field="partner.country_id"/></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>Giro / AN </span></td>
+                            <td><span>: </span></td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>.....................................................................................................................................</span></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span>Berupa</span></td>
+                            <td><span>: </span></td>
+                            <td colspan="2" style="text-align:left; height:25px;">
+                                <t><span>Faktur No. ............................................................</span></t>
+                                <t><span>Rp. ..............................................</span></t>
+                            </td>
+                        </tr>
+                        <t t-foreach="range(10)" t-as="l">
+                            <tr>
+                                <td><span></span></td>
+                                <td><span></span></td>
+                                <td colspan="2" style="text-align:left; height:25px;">
+                                    <t><span>Faktur No. ............................................................</span></t>
+                                    <t><span>Rp. ..............................................</span></t>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr><td colspan="4" style="text-align:left; height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td colspan="1" style="text-align:left; height:25px; font-size:14pt;"><strong>Total Rp. ................................................ </strong></td>
+                        </tr>
+                        <tr><td style="text-align:left; height:25px;"></td><td></td></tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td style="text-align:left; height:25px;"><span>Tanggal Kembali : ......................... </span></td>
+                            <td style="text-align:left; height:25px;"><span>Tanggerang , .................................... </span></td>
+                        </tr>
+                        <tr><td style="text-align:left; height:25px;"></td><td></td></tr>
+                        <tr><td style="text-align:left; height:25px;"></td><td></td></tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px">
+                                <t><span>Yang Menerima,</span></t>
+                            </td>
+                            <td style="text-align:center; height:25px; padding-left: 30px;">
+                                <!-- <t t-if="company.city"><span t-field="company.city"/></t> -->
+                                <t><span>Yang Menyerahkan,</span></t>
+                            </td>
+                        </tr>
+                        <tr><td style="text-align:left; height:25px;"></td><td></td></tr>
+                        <tr><td style="text-align:left; height:25px;"></td><td></td></tr>
+                        <tr><td style="text-align:left; height:25px;"></td><td></td></tr>
+                        <tr>
+                            <td colspan="3" style="text-align:center; height:25px;">
+                                <t><span>(........................................)</span></t>
+                            </td>
+                            <td style="text-align:center; height:25px; padding-left: 30px;">
+                                <t><span>(........................................)</span></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="report_vendor_bill_ttb_custom">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_pbf_account.report_vendor_bill_ttb_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

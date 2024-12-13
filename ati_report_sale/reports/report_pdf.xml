@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+      
+      <!-- <report
+         id="action_report_koli"
+         string="Print Koli Transfer"
+         model="stock.picking.batch"
+         report_type="qweb-pdf"
+         paperformat="ati_report_sale.paperformat_report_a4_new"
+         file="ati_report_sale.koli_transfer_report"
+         name="ati_report_sale.koli_transfer_report"
+         print_report_name = "(object.name)"
+         
+      /> -->
+      <report
+        id="action_report_so_peritem"
+        model="x.report.penjualan.so"
+        string="Laporan Rekap Penjualan Per Item"
+        paperformat="ati_report_sale.paperformat_report_a4_new"
+        name="ati_report_sale.so_peritem_pdf_template"
+        file="ati_report_sale.so_peritem_pdf_template"
+        report_type="qweb-html"
+        print_report_name = "Laporan Rekap Penjualan Per Item"
+      />
+
+<!--      <report-->
+<!--        id="action_report_so_peritem_o"-->
+<!--        model="x.report.penjualan.so"-->
+<!--        string="Laporan Rekap Penjualan Per Item"-->
+<!--        paperformat="ati_report_sale.paperformat_report_a4_new"-->
+<!--        name="ati_report_sale.so_peritem_pdf_template"-->
+<!--        file="ati_report_sale.so_peritem_o_pdf_template"-->
+<!--        report_type="qweb-html"-->
+<!--        print_report_name = "Laporan Rekap Penjualan Per Item"-->
+<!--      />-->
+
+      <report
+        id="action_report_po_peritem"
+        model="x.report.pembelian.po"
+        string="Laporan Rekap Pembelian Per Item"
+        paperformat="ati_report_sale.paperformat_report_a4_new"
+        name="ati_report_sale.po_peritem_pdf_template"
+        file="ati_report_sale.po_peritem_pdf_template"
+        report_type="qweb-html"
+        print_report_name = "Laporan Rekap Pembelian Per Item"
+      />
+
+      <report
+         id="action_reportkoli"
+         string="Koli Transfer"
+         model="stock.picking.batch"
+         report_type="qweb-pdf"
+         file="ati_report_sale.koli_transfer_report"
+         name="ati_report_sale.koli_transfer_report"
+         print_report_name = "(object.name)"
+         
+      />
+
+      <report
+         id="action_report_po_peritem_xlsx"
+         model="x.report.pembelian.po"
+         string="Laporan Rekap Pembelian Per Item"
+         report_type="xlsx"
+         name="ati_report_sale.po_peritem_xlsx_template"
+         file="Laporan Rekap Pembelian Per Item.xlsx"
+         menu="False"
+         attachment_use="False"/>
+
+      <report
+         id="action_report_so_peritem_xlsx"
+         model="x.report.penjualan.so"
+         string="Laporan Rekap Penjualan Per Item"
+         report_type="xlsx"
+         name="ati_report_sale.so_peritem_xlsx_template"
+         file="Laporan Rekap Penjualan Per Item.xlsx"
+         menu="False"
+         attachment_use="False"/>
+   </data>
+</odoo>

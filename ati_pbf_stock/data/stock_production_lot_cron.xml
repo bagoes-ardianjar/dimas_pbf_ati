@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="update_batch_expiration_date" model="ir.cron">
+        <field name="name">Update Batch Expiration Date</field>
+        <field name="model_id" ref="ati_pbf_stock.model_stock_move_line"/>
+        <field name="state">code</field>
+        <field name="code">model._update_batch_expiration_date()</field>
+        <field name="active" eval="False"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,90 @@
+<odoo>
+  <data>
+   <record id="inherit_purchase_order_view_tree" model="ir.ui.view">
+        <field name="name">inherit_purchase_order_view_tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_invoiced']" position="after">
+<!--                modified by ibad-->
+                <field name="discount_1" string="Disc 1(%)"/>
+                <field name="discount_2" string="Disc 2(%)"/>
+<!--                -->
+                <field name="discount_3" string="Disc 3"/>
+                <field name="discount_4" string="Disc 4"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_received']" position="after">
+                <field name="outstanding_qty" readonly="1"/>
+<!--                <field name="product_uom" readonly="1" string="UoM"/>-->
+                <field name="hna" readonly="1"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom']" position="replace">
+                <field name="product_uom" invisible="1"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='hna']" position="before">
+                <field name="product_uom" readonly="1" string="UoM" options="{'no_open': True}"/>
+            </xpath>
+
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="replace">
+                 <field name="description_product" />
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='description_product']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                 <attribute name="width">280</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_qty']" position="attributes">
+                 <attribute name="width">80</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="width">80</attribute>
+                <attribute name="options">{'no_create': True,'no_open': True}</attribute>
+<!--                <attribute name="widget">many2one_no_open</attribute>-->
+<!--                <attribute name="no_external_link">True</attribute>-->
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/form/group/group[1]/div/field[@name='product_uom']" position="attributes">
+                <attribute name="width">80</attribute>
+                <attribute name="options">{'no_create': True,'no_open': True}</attribute>
+                <attribute name="readonly">1</attribute>
+<!--                <attribute name="widget">many2one_no_open</attribute>-->
+<!--                <attribute name="no_external_link">True</attribute>-->
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='discount_1']" position="attributes">
+                 <attribute name="width">50</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='discount_2']" position="attributes">
+                 <attribute name="width">50</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='taxes_id']" position="attributes">
+                 <attribute name="width">80</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_product_product_view_tree" model="ir.ui.view">
+        <field name="name">inherit_purchase_order_view_tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="purchase_price" optional="hide"/>
+                <field name="hna" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//field[@name='uom_id']" position="after">
+                  <field name="activate_product"  widget="boolean_toggle" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='virtual_available']" position="attributes">
+                  <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_template_variant_value_ids']" position="attributes">
+                  <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

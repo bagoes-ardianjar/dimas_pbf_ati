@@ -1,0 +1,9 @@
+<odoo>
+	<data>
+
+			<record model="res.groups" id="admin_apj">
+				<field name="name">Purchase Admin APJ</field>
+			</record>
+
+	</data>
+</odoo>

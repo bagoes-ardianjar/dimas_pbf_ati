@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="ati_res_users_form_inherit" model="ir.ui.view">
+            <field name="name">ati.res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]" position="after">
+                    <group string="DO Button Report Manager">
+                        <field name="manager_approval" required="0" domain="[('user_ids', '!=', False)]"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

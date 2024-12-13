@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  External Layout Custom For PPIC Module  -->
+    <template id="external_layout_faktur_penjualan">
+        <t t-if="not company">
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <t t-call="ati_pbf_sale.external_layout_standard_faktur_penjualan"><t t-raw="0"/></t>
+    </template>
+
+
+    <!--  External Layout Standard Custom For PPIC Module  -->
+    <template id="external_layout_standard_faktur_penjualan">
+        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+        <div t-attf-class="footer o_company_#{company.id}_layout">
+                <div t-if="report_type == 'pdf'" class="text-muted" style="text-align:center;">
+                    Page: <span class="page"/> of <span class="topage"/>
+                </div>
+        </div>
+    </template>
+
+
+    <!--  Report New Custom PPIC Module  -->
+    <template id="new_report_faktur_penjualan">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="ati_pbf_sale.external_layout_faktur_penjualan">
+                    <div class="page" style="font-family: Arial;">
+                        <table>
+                            <thead>
+                                <tr>
+                                  <td style="text-align:center; height:25px; width:5%;"/>
+                                  <td style="text-align:left; height:25px; width:20%;"/>
+                                  <td style="text-align:center; height:25px; width:8%;"/>
+                                  <td style="text-align:center; height:25px; width:6%;"/>
+                                  <td style="text-align:center; height:25px; width:10%;"/>
+                                  <td style="text-align:center; height:25px; width:10%;"/>
+                                  <td style="text-align:center; height:25px; width:8%;"/>
+                                  <td style="text-align:center; height:25px; width:7%;"/>
+                                  <td style="text-align:center; height:25px; width:7%;"/>
+                                  <td style="text-align:center; height:25px; width:4%;"/>
+                                  <td style="text-align:center; height:25px; width:15%;"/>
+                                </tr>
+                                <tr>
+                            <td colspan="5" style="padding-right:10px; text-align:left; height:25px; font-weight:600; font-size:11pt;">
+                                <t t-if="doc.company_id"><span t-field="doc.company_id.name"/></t>
+                                <br/>
+                                <t t-if="doc.company_id.street"><span t-field="doc.company_id.street"/></t>
+                                <t t-if="doc.company_id.street2"><span t-field="doc.company_id.street2"/></t>
+                                <t t-if="doc.company_id.city"><span t-field="doc.company_id.city"/></t>
+                                <t t-if="doc.company_id.state_id"><span t-field="doc.company_id.state_id.name"/></t>
+                                <t t-if="doc.company_id.country_id"><span t-field="doc.company_id.country_id.name"/></t>
+                                <t t-if="doc.company_id.zip"><span t-field="doc.company_id.zip"/></t>
+                                <br/>
+                                <br/>
+                                <t><span>Kepada Yth. </span></t>
+                                <br/>
+                                <t><span t-field="doc.partner_id.name"/></t>
+                                <br/>
+                                <t><span t-field="doc.partner_id.street"/></t>
+                            </td>
+                            <td colspan="4" style="padding-left:30px; text-align:left; height:25px; font-weight:600; font-size:11pt;">
+                                <t><span>No Izin Distribusi Alkes (IDAK)</span></t>
+                                <br/>
+                                <t><span>Masa Berlaku</span></t>
+                                <br/>
+                                <t><span>No Izin PBF</span></t>
+                                <br/>
+                                <t><span>Masa Berlaku</span></t>
+                                <br/>
+                                <t><span>Kasir</span></t>
+                            </td>
+                            <td colspan="1" style="text-align:center; height:25px; font-weight:600; font-size:11pt;">
+                                <t><span>:</span></t>
+                                <br/>
+                                <t><span>:</span></t>
+                                <br/>
+                                <t><span>:</span></t>
+                                <br/>
+                                <t><span>:</span></t>
+                                <br/>
+                                <t><span>:</span></t>
+                            </td>
+                            <td colspan="1" style="padding-left:0px text-align:left; height:25px; font-weight:600; font-size:11pt;">
+                                <t t-if="doc.company_id"><span t-field="doc.company_id.no_izin_pak_pusat"/></t>
+                                <br/>
+                                <t><span>18 Maret 2027</span></t>
+                                <br/>
+                                <t t-if="doc.company_id"><span t-field="doc.company_id.no_izin_pbf_pusat"/></t>
+                                <br/>
+                                <t><span>24 November 2026</span></t>
+                                <br/>
+<!--                                <t t-foreach="doc.picking_ids" t-as="picking">-->
+                                    <t t-if="doc.picking_ids"><span t-field="doc.picking_ids.kasir.name"/></t>
+<!--                                </t>-->
+                            </td>
+                        </tr>
+                        <tr><td colspan="9" style="text-align:left; height:25px; font-weight:100; font-size:11pt;"/></tr>
+                                <tr>
+                                    <td colspan="11" style="text-align:center; height:25px; font-size:14pt; font-weight:600;">
+                                        <t><span>FAKTUR PENJUALAN</span></t>
+                                    </td>
+                                </tr>
+                                <tr><td colspan="11" style="text-align:left; height:5px; font-weight:600;"/></tr>
+                                <tr>
+                                    <td colspan="3" style="text-align:left; height:25px; font-weight:600; font-size:11pt;">
+                                        <t><span>Tanggal :</span></t>
+<!--                                        <t t-if="doc.picking_ids.date_done">-->
+                                            <t t-set="last_date_done" t-value="False"/>
+                                            <t t-foreach="doc.picking_ids" t-as="picking">
+                                                <t t-if="picking.date_done">
+                                                    <t t-set="last_date_done" t-value="picking.date_done"/>
+                                                </t>
+                                            </t>
+                                            <t t-if="last_date_done">
+                                                <span t-esc="last_date_done.strftime('%d/%m/%Y')"/>
+                                            </t>
+                                            <t t-if="not last_date_done">
+                                                <span>-</span>
+                                            </t>
+<!--                                            <t t-set="last_date_done" t-value="doc.picking_ids[-1].date_done.strftime('%d/%m/%Y')"/>-->
+<!--                                            <t t-if="last_date_done">-->
+<!--                                                <span t-esc="last_date_done"/>-->
+<!--                                            </t>-->
+<!--                                        </t>-->
+<!--                                        <t t-if="not doc.picking_ids.date_done">-->
+<!--                                            <span>-</span>-->
+<!--                                        </t>-->
+
+<!--                                        <t t-if="doc.picking_ids.date_done">-->
+<!--                                            <span t-esc="doc.picking_ids[-1].date_done.strftime('%d/%m/%Y') or ''"/>-->
+<!--                                        </t>-->
+<!--                                        <t t-if="not doc.picking_ids.date_done">-->
+<!--                                            <span>-</span>-->
+<!--                                        </t>-->
+                                    </td>
+                                    <td colspan="3" style="text-align:center; height:25px; font-weight:600; font-size:11pt;">
+                                        <t><span>Dokter : -</span></t>
+                                    </td>
+                                    <td colspan="5" style="text-align:center; height:25px; font-weight:600; font-size:11pt;">
+                                        <t><span>Nomor :</span></t>
+                                        <t t-if="doc.name"><span t-field="doc.name"/></t>
+                                    </td>
+                                </tr>
+                                <tr style="border: 1px solid black;">
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                    <t><span>No</span></t>
+                                </td>
+                                    <td colspan="1" style="padding-left: 5px; text-align:left; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Nama Produk</span></t>
+                                    </td>
+                                    <td colspan="1" width="4%" style="padding-left: 5px; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Qty</span></t>
+                                    </td>
+                                    <td colspan="1" width="4%" style="text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>UoM</span></t>
+                                    </td>
+                                    <td colspan="1" style="padding-left: 5px; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Batch</span></t>
+                                    </td>
+                                    <td colspan="1" style="padding-left: 5px; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Exp. Date</span></t>
+                                    </td>
+                                    <td colspan="2" style="padding-left: 5px; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Harga Satuan</span></t>
+                                    </td>
+                                    <td colspan="2" width="10%" style="text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Disc</span></t>
+                                    </td>
+                                    <td colspan="1" style="text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                        <t><span>Net Total</span></t>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody style="border:1px solid black;">
+                            <t t-set="i" t-value="1"/>
+                            <t t-set="price_subtotal" t-value="0"/>
+                            <t t-set="tax" t-value="0"/>
+                            <t t-set="grand_total" t-value="0"/>
+                            <t t-set="total_rows" t-value="len(doc.sml_helper_ids)"/>
+                            <t t-set="row_count" t-value="0"/>
+<!--                            <t t-foreach="doc.sml_helper_ids" t-as="l">-->
+                            <t t-foreach="sorted(doc.sml_helper_ids, key=lambda x: x.product_id.name)" t-as="l">
+                                <t t-set="new_qty" t-value="doc.get_qty_return(l.id)"/>
+                                <t t-set="row_count" t-value="row_count + 1"/>
+                                <t t-if="l.move_id.sale_line_id.qty_delivered and l.qty_done != 0">
+                                     <tr style="border:0px solid white;">
+                                         <td colspan="1" style="border:0px solid white; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <t t-if="l.product_id">
+                                                  <t><span t-esc="i"/></t>
+                                              </t>
+                                             <t t-set="i" t-value="i+1"/>
+<!--                                             <t><span t-esc="i"/></t>-->
+                                        </td>
+                                         <td colspan="1" style="border:none; text-align:left; height:25px; font-weight:400; font-size:11pt; padding-left: 5px;">
+                                            <t t-if="l.product_id">
+                                              <t t-if="l.product_id.name == l.move_id.sale_line_id.name">
+                                                  <span t-field="l.product_id.name"/>
+                                              </t>
+                                              <t t-if="l.move_id.sale_line_id.name == False">
+                                                  <span t-field="l.product_id.name"/>
+                                              </t>
+                                              <t t-if="l.product_id.name != l.move_id.sale_line_id.name and l.move_id.sale_line_id.name != False">
+                                                  <span t-esc="str(l.product_id.name) + ' - ' + str(l.move_id.sale_line_id.name)"/>
+                                              </t>
+                                            </t>
+<!--                                            <t t-if="l.product_id"><span t-field="l.product_id.name"/><span>-</span><span t-field="l.move_id.sale_line_id.name"/></t>-->
+                                        </td>
+                                         <td colspan="1" width="4%" style="border:none; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+<!--                                            <t><span t-esc="int(l.qty_done)"/></t>-->
+<!--                                             <t t-set="new_qty" t-value="doc.get_qty_return(l.id)"/>-->
+<!--                                             <t t-if="new_qty[0]['qty_done']">-->
+<!--                                                 <span t-esc="new_qty[0]['qty_done']"/>-->
+<!--                                             </t>-->
+                                             <t t-if="new_qty[0]['qty_done']">
+                                                <t t-set="qty_done_rounded" t-value="new_qty[0]['qty_done'] % 1 == 0 and int(new_qty[0]['qty_done']) or round(new_qty[0]['qty_done'], 2)" />
+                                                <span t-esc="qty_done_rounded"/>
+                                              </t>
+                                        </td>
+                                         <td colspan="1" width="4%" style="border:none; text-align:center; height:25px; font-weight:400; font-size:11pt;;">
+                                            <t t-if="l.product_uom_id"><span t-field="l.product_uom_id.name"/></t>
+                                        </td>
+                                         <td colspan="1" style="border:none; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <t t-if="l.lot_id"><span t-field="l.lot_id.name"/></t>
+                                        </td>
+                                         <td colspan="1" style="border:none; text-align:center; height:25px; font-weight:400; font-size:11pt;">
+                                            <t t-if="l.expiration_date"><span t-esc="l.expiration_date.strftime('%d/%m/%Y')"/></t>
+                                        </td>
+                                         <td colspan="2" style="padding-right: 5px; border:none; text-align:right; height:25px; font-weight:400; font-size:11pt;">
+                                            <t>Rp <span t-esc="'{0:,.2f}'.format(l.harga_satuan).replace(',',',')"/></t>
+                                        </td>
+                                         <td colspan="2" width="10%" style="border:none; text-align:right; height:25px; font-weight:400; font-size:11pt;">
+                                            <t>Rp <span t-esc="'{0:,.2f}'.format(l.discount_amount).replace(',',',')"/></t>
+                                        </td>
+                                         <td colspan="1" style="border:none; text-align:right; height:25px; font-weight:400; font-size:11pt; padding-right: 5px;">
+                                             <t t-if="new_qty[0]['qty_done']">
+                                                 <t>Rp <span t-esc="'{0:,.2f}'.format(new_qty[0]['qty_done'] * (l.harga_satuan-l.discount_amount)).replace(',',',')"/></t>
+                                             </t>
+<!--                                             <t>Rp <span t-esc="'{0:,.2f}'.format(l.price_subtotal).replace(',',',')"/></t>-->
+                                        </td>
+                                    </tr>
+                                      <tr t-if="row_count == total_rows">
+                                        <td colspan="11" style="border-top: none; border-bottom: 1px solid black;"/>
+                                    </tr>
+                                    <t t-if="new_qty[0]['qty_done']">
+                                        <t t-set="price_subtotal" t-value="price_subtotal+(new_qty[0]['qty_done'] * (l.harga_satuan-l.discount_amount))"/>
+<!--                                        <t>Rp <span t-esc="'{0:,.2f}'.format(new_qty[0]['qty_done'] * l.harga_satuan).replace(',',',')"/></t>-->
+                                    </t>
+<!--                                    <t t-set="price_subtotal" t-value="price_subtotal+l.price_subtotal"/>-->
+                                    <t t-set="tax" t-value="l.tax * (price_subtotal - doc.global_discount)/100"/>
+                                    <t t-set="grand_total" t-value="price_subtotal+tax-doc.global_discount"/>
+                                </t>
+<!--                                <t t-set="price_subtotal" t-value="price_subtotal+l.price_subtotal"/>-->
+<!--                                <t t-set="tax" t-value="l.tax * (price_subtotal - doc.global_discount)/100"/>-->
+<!--                                <t t-set="grand_total" t-value="price_subtotal+tax-doc.global_discount"/>-->
+<!--                                <t t-set="i" t-value="i+1"/>-->
+                            </t>
+
+                            <tr style="border:0px solid white;"><td colspan="11" style="border:0px solid white; text-align:left; height:20px;"/></tr>
+                            <tr>
+                                <td colspan="5" style="text-align:center; height:5px;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="6" style="border-bottom:1px solid black; padding-left: 5px; text-align:left; height:5px; text-decoration: line-through;">
+                                    <strong/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" style="padding-left: 5px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Tanggal Tempo : </span></t>
+                                    <t t-if="doc.payment_term_id"><span t-esc="doc._payment_term_date().strftime('%d/%m/%Y')"/></t>
+                                </td>
+                                <td colspan="2" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="3" style="padding-left: 5px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Sub Total</span></t>
+                                </td>
+                                <td colspan="3" style="padding-right: 5px; text-align:right; height:25px; font-size:11pt; font-weight:600;">
+                                    Rp <span t-esc="'{0:,.2f}'.format(round(price_subtotal,2))"/>
+                                </td>
+                            </tr>
+                            <tr style="border:0px solid white;">
+                                <td colspan="3" style="text-align:left; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="2" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="3" style="padding-left: 5px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Taxes</span></t>
+                                </td>
+                                <td colspan="3" style="padding-right: 5px; text-align:right; height:25px; font-size:11pt; font-weight:600;">
+                                    Rp <span t-esc="'{0:,.2f}'.format(round(tax,2))"/>
+                                </td>
+                            </tr>
+                            <tr style="border:0px solid white;">
+                                <td colspan="3" style="text-align:left; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="2" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="3" style="padding-left: 5px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Global Discount</span></t>
+                                </td>
+                                <td colspan="3" style="padding-right: 5px; text-align:right; height:25px; font-size:11pt; font-weight:600;">
+                                    Rp <span t-esc="'{0:,.2f}'.format(round(doc.global_discount,2))"/>
+                                </td>
+                            </tr>
+                            <tr style="border:0px solid white;">
+                                <td colspan="5" style="text-align:center; height:5px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="6" style="border-bottom:1px solid black; padding-left: 5px; text-align:left; height:5px; text-decoration: line-through;">
+                                    <strong/>
+                                </td>
+                            </tr>
+                            <tr style="border:0px solid white;">
+                                <td colspan="3" style="text-align:left; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="2" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="3" style="padding-left: 5px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Grand Total</span></t>
+                                </td>
+                                <td colspan="3" style="padding-right: 5px; text-align:right; height:25px; font-size:11pt; font-weight:600;">
+                                    Rp <span t-esc="'{0:,.2f}'.format(round(grand_total,2))"/>
+                                </td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                              <tr>
+                                <td colspan="11" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                            </tr>
+                            <br/>
+                            <br/>
+                            <tr>
+                                <td colspan="3" style="text-align:center; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Diterima oleh,</span></t>
+                                </td>
+                                <td colspan="8" style="text-align:center; height:25px; font-size:11pt; font-weight:600;">
+                                    <t><span>Hormat Kami,</span></t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="8" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                            </tr>
+                            <tr><td colspan="3" style="text-align:left; height:25px; font-size:11pt;"/></tr>
+                            <tr><td colspan="8" style="text-align:left; height:25px; font-size:11pt;"/></tr>
+                            <tr>
+                                <td colspan="3" style="text-align:center; height:25px; font-size:11pt; font-weight:600;">
+                                    <br/>
+                                    <t><span>(</span></t>
+                                    <t t-if="doc.partner_id.name"><span t-field="doc.partner_id.name"/></t>
+                                    <t><span>)</span></t>
+                                </td>
+                                <td colspan="4" style="padding-left:5px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <br/>
+                                    <t><span>APJ PHARMA : Nurul Ainis Sakinah, S.Farm</span></t>
+                                    <br/>
+                                    <t><span>SIPA : 446.84/1476-DPMPTSP/OL/2023</span></t>
+                                    <br/>
+                                    <t><span>No Izin PBF : 81202160511610003</span></t>
+                                    <br/>
+                                    <t><span>Exp: 28 September 2025</span></t>
+                                </td>
+                                <td colspan="4" style="padding-left:10px; text-align:left; height:25px; font-size:11pt; font-weight:600;">
+                                    <br/>
+                                    <t><span>APJ ALKES : Dewi Rizki Astuti</span></t>
+                                    <br/>
+                                    <t><span>SIPA : 446.84/0234-DPMPTSP/OL/2022</span></t>
+                                    <br/>
+                                    <t><span>Exp: 01 Desember 2026</span></t>
+                                </td>
+                            </tr>
+                            <tr><td colspan="3" style="text-align:left; height:25px; font-size:11pt;"/></tr>
+                            <tr><td colspan="8" style="text-align:left; height:25px; font-size:11pt;"/></tr>
+                            <tr>
+                                <td colspan="1" style="text-align:center; height:25px; font-size:11pt;">
+                                    <t><span/></t>
+                                </td>
+                                <td colspan="10" style="text-align:left; font-size:13px; height:25px; font-size:10pt;">
+                                    <t><span>Note : MAAF, BARANG YANG SUDAH DIBELI TIDAK DAPAT DITUKAR ATAU DIKEMBALIKAN</span></t>
+                                </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

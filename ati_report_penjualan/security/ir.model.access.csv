@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_penjualan_perbarang,action_report_penjualan_perbarang,model_report_penjualan_perbarang,base.group_user,1,1,1,1
+access_report_penjualan_perfaktur,action_report_penjualan_perfaktur,model_report_penjualan_perfakturr,base.group_user,1,1,1,1
+access_report_penjualan,action_report_penjualan,model_report_penjualan,base.group_user,1,1,1,1
+access_report_outstanding_penjualan,action_report_outstanding_penjualan,model_report_outstanding_penjualan,base.group_user,1,1,1,1
+access_report_alkes,action_report_alkes,model_report_alkes,base.group_user,1,1,1,1

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_jenis_obat_tree_view" model="ir.ui.view">
+        <field name="name">jenis.obat.tree</field>
+        <field name="model">jenis.obat</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name"/>
+                <button type="object" icon="fa-trash-o" name="unlink"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

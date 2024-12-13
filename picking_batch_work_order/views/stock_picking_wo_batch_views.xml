@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_tree_wo_batch" model="ir.ui.view">
+        <field name="name">stock_picking_batch.picking.tree.wo.batch</field>
+        <field name="model">stock.picking</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="1001"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="scheduled_date"/>
+                <field name="location_id"/>
+                <field name="backorder_id"/>
+                <field name="origin"/>
+                <field name="satuan"/>
+                <field name="jumlah_koli"/>
+                <field name="nomor_koli"/>
+                <field name="state"/>
+                <field name="keterangan"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="stock_picking_work_order_batch_form" model="ir.ui.view">
+        <field name="name">stock.picking.work.order.batch.form</field>
+        <field name="model">stock.picking.work.order.batch</field>
+        <field name="arch" type="xml">
+            <form string="Surat Jalan">
+                <!-- <header>
+                </header> -->
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                            <field name="user_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
+                            <field name="picking_type_id" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="expedition_name"/>
+                            <field name="plat_number_id"/>
+                            <field name="res_driver_id"/>
+                            <field name="allowed_picking_ids" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Koli">
+                            <field name="picking_ids" widget="many2many" mode="tree">
+                                <tree string="Koli" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="scheduled_date"/>
+                                    <field name="backorder_id"/>
+                                    <field name="origin"/>
+                                    <field name="nomor_koli"/>
+                                    <field name="satuan"/>
+                                    <field name="jumlah_koli"/>
+                                    <field name="state"/>
+                                    <field name="keterangan"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <!-- <page string="Koli" name="koli">
+                            <field name="koli_ids" mode="tree">
+                                <tree string="Koli" editable="bottom">
+                                    <field name="picking_id"/>
+                                    <field name="nomor_koli"/>
+                                    <field name="jumlah_koli"/>
+                                </tree>
+                            </field>
+                        </page> -->
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_picking_work_order_batch_tree" model="ir.ui.view">
+        <field name="name">stock.picking.work.order.batch.tree</field>
+        <field name="model">stock.picking.work.order.batch</field>
+        <field name="arch" type="xml">
+            <tree string="Surat Jalan" multi_edit="1" sample="1">
+                <field name="name" decoration-bf="1"/>
+                <field name="partner_id"/>
+                <field name="scheduled_date"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="picking_type_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="stock_picking_work_order_batch_filter" model="ir.ui.view">
+        <field name="name">stock.picking.work.order.batch.filter</field>
+        <field name="model">stock.picking.work.order.batch</field>
+        <field name="arch" type="xml">
+            <search string="Search Surat Jalan">
+                <field name="name" string="Surat Jalan"/>
+                <field name="picking_type_id" invisible="1"/>
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Responsible" name="group_user" domain="[]" context="{'group_by': 'user_id'}"/>
+                    <filter string="Customer" name="group_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="stock_picking_work_order_batch_action" model="ir.actions.act_window">
+        <field name="name">Surat Jalan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.picking.work.order.batch</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="stock_picking_work_order_batch_filter"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create Surat Jalan
+          </p>
+        </field>
+    </record>
+
+    <menuitem action="stock_picking_work_order_batch_action" id="picking_work_order_batch_menu" parent="stock.menu_stock_warehouse_mgmt" sequence="7"/>
+</odoo>

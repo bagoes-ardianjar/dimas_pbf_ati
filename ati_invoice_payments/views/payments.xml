@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_invoice_inherit" model="ir.ui.view">
+			<field name="name">view_invoice_inherit</field>
+			<field name="model">account.payment</field>
+			<field name="inherit_id" ref="account.view_account_payment_form" />
+			<field name="arch" type="xml">
+	            <field name="date" position="attributes"> 
+	                <attribute name="attrs">{'invisible': [('is_giro', '=', True)]}</attribute>
+	            </field>
+				<field name="payment_method_line_id" position="after">
+					<field name="payment_method" invisible="1"/>
+					<field name="temp_bill" widget="many2many_tags" invisible="1"/>
+					<field name="is_giro" attrs="{'readonly':[('state', '=','posted')],'invisible': [('payment_method', '!=', 'Transfer')]}" />
+					<field name="no_check" attrs="{'invisible': [('is_giro', '=', False)],'readonly':[('state', '=','posted')]}" />
+					<field name="tgl_giro" attrs="{'invisible': [('is_giro', '=', False)],'readonly':[('state', '=','posted')]}" />
+				</field>
+				<xpath expr="//button[@name='action_post']" position="after">
+					<button name="button_print_tanda_terima_barang" string="  Tanda Terima Faktur" class="fa fa-download btn-primary" type="object" invisible="1"/>
+				</xpath>
+				<xpath expr="//field[@name='ref']" position="after">
+					<field name="no_credit_note" invisible="0" readonly="1"/>
+<!--					<field name="amount_faktur" invisible="0" readonly="1"/>-->
+				</xpath>
+			</field>
+		</record>
+		<record id="paperformat_b5_payment_custom" model="report.paperformat">
+			<field name="name">Paperformat Payment B5 Custom</field>
+			<field name="default" eval="True"/>
+			<field name="format">B5</field>
+			<field name="page_height">0</field>
+			<field name="page_width">0</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">10</field>
+			<field name="margin_bottom">10</field>
+			<field name="margin_left">7</field>
+			<field name="margin_right">7</field>
+			<field name="header_line" eval="False"/>
+			<field name="header_spacing">76</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="action_report_payment_ttb_custom" model="ir.actions.report">
+			<field name="name">Tanda Tukar Faktur</field>
+			<field name="paperformat_id" ref="paperformat_b5_payment_custom" />
+			<field name="model">account.payment</field>
+			<field name="report_type">qweb-pdf</field>
+			<field name="report_name">ati_invoice_payments.report_payment_ttb_container</field>
+			<field name="report_file">ati_invoice_payments.report_payment_ttb_container</field>
+			<field name="print_report_name">'Tanda Tukar Faktur - %s' %(object.name)</field>
+			<field name="binding_type">report</field>
+<!--			<field name="binding_model_id" eval="False"/>-->
+			 <field name="binding_model_id" ref="ati_invoice_payments.model_account_payment"/>
+			<!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+		</record>
+	</data>
+</odoo>

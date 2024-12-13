@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form untuk memilih report dan tanggal mulai dan tanggal akhir -->
+        <record id="report_alkes_form" model="ir.ui.view">
+            <field name="name">report.alkes.form</field>
+            <field name="model">report.alkes</field>
+            <field name="arch" type="xml">
+                <form string="Report Alkes">
+                    <group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="golongan_obat" />
+                        </group>
+                    </group>
+                    <footer>
+                        <!-- Tombol untuk mulai download report -->
+                        <button name="action_print_report_alkes" string="Generate Report" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action untuk membuka form diatas -->
+        <record model="ir.actions.act_window" id="action_open_report_alkes_form">
+            <field name="name">Report Alkes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.alkes</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_report_alkes"
+            name="Report Alkes"
+            action="action_open_report_alkes_form"
+            parent="sale.menu_sale_report"
+            sequence="99"/>
+
+    </data>
+</odoo>

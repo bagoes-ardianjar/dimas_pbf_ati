@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+user_customer_partner,access_customer_partner,model_customer_partner,base.group_user,1,1,1,1
+access_ati_historical_m_margin,access_ati_historical_m_margin,model_ati_historical_m_margin,,1,1,1,1

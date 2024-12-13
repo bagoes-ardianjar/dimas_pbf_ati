@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="report_kartu_stock_form" model="ir.ui.view">
+            <field name="name">Report Kartu Stock</field>
+            <field name="model">report.kartu.stock</field>
+            <field name="arch" type="xml">
+                <form string="Report Kartu Stock">
+                    <group>
+                        <group>
+                            <field name="warehouse_id" string="Warehouse" required="1"/>
+                            <field name="product_id" string="Product" required="1"/>
+                            <label for="start_date" string="Period"/>
+                            <div class="o_row">
+                                <field name="start_date" required="1"/>
+                                <span> to </span>
+                                <field name="end_date" required="1"/>
+                            </div>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="view_report_pdf" string="View Report" type="object" class="btn-primary"/>
+                        <button name="download_report" string="Download Report" type="object" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-default"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_report_kartu_stock" model="ir.actions.act_window">
+            <field name="name">Report Kartu Stock</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">report.kartu.stock</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <report
+            id="ati_inventory_report.kartu_stock"
+            model="report.kartu.stock"
+            string="Kartu Stock"
+            report_type="xlsx"
+            name="ati_inventory_report.kartu_stock.xlsx"
+            file="Kartu Stock.xlsx"
+            menu="True"
+            attachment_use="False"/>
+
+        <menuitem name="Report Kartu Stock" action="action_report_kartu_stock" id="generate_report_kartu_stock" parent="stock.menu_warehouse_report" sequence="2"/>
+    </data>
+</odoo>

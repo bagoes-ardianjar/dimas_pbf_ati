@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        
+        <!-- <record id="tree_button_approve_hr_expense_sheet" model="ir.ui.view">
+            <field name="name">tree_button_approve_hr_expense_sheet</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/header/button[@name='approve_expense_sheets']" position="replace">
+                    <button name="approve_expense_sheets" string="Approve Report" type="object"
+                                groups="hr_expense.group_hr_expense_team_approver"
+                                invisible="not context.get('search_default_submitted',0)"/>
+                </xpath>
+            </field>
+        </record> -->
+
+        <record id="form_button_approve_hr_expense_sheet" model="ir.ui.view">
+            <field name="name">form_button_approve_hr_expense_sheet</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/header/button[@name='approve_expense_sheets']" position="replace">
+                    <button name="approve_expense_sheets"
+                            string="Approve"
+                            type="object"
+                            data-hotkey="v"
+                            class="oe_highlight o_expense_sheet_approve"
+                            attrs="{'invisible': [('state', '!=', 'submit')]}"
+                            groups="hr_expense.group_hr_expense_team_approver"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

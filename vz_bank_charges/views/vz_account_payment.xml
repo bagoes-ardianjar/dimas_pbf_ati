@@ -1,0 +1,12 @@
+<odoo>
+    <record id="matching_account_payment_bank_charges_form" model="ir.ui.view">
+        <field name="name">account.payment.bank.charge</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='amount_div']" position="after">
+                <field name="vz_bank_charge" string="Bank Charge" attrs="{'invisible':[('vz_bank_charge','=',0)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

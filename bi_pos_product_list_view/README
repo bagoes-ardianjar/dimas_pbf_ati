@@ -1,0 +1,5 @@
+date: 4/08/2022
+version : 15.0.0.1
+improvement:-
+	- Add config setting for visibile for product details and add product type and product forecase quantity in  list screen
+

@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_account_payment_register_form_inherit" model="ir.ui.view">
+        <field name="name">account.payment.form.multi.inherited</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="vz_bank_charge" string="Bank Charges" attrs="{'invisible':[('is_bank','!=',True)]}"/>
+                <field name="is_bank" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

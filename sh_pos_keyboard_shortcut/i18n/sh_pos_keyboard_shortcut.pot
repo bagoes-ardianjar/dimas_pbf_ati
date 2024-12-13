@@ -1,0 +1,835 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_pos_keyboard_shortcut
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-12 12:08+0000\n"
+"PO-Revision-Date: 2021-04-12 12:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__+10
+msgid "+10"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__+20
+msgid "+20"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__+50
+msgid "+50"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__add_new_order
+#, python-format
+msgid "Add New Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen_type__all
+msgid "All"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Close"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Common Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__config_id
+msgid "Config"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__create_customer
+msgid "Create Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Create New Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Create New Order After Receipt Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__create_uid
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__create_uid
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__create_date
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__create_date
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen_type__customer_screen
+msgid "Customer Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Customer Screen Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__delete_orderline
+msgid "Delete OrderLine"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__delete_payment_line
+msgid "Delete Payment Line"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Delete selected OrderLine"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Delete selected PayamentLine"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Description"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Destroy Current Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__destroy_current_order
+msgid "Destroy Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__name
+msgid "Display Key"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_pos_config__display_name
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__display_name
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__display_name
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__edit_customer
+#, python-format
+msgid "Edit Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_pos_config__sh_enable_shortcut
+msgid "Enable Shortcut Key"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__go_customer_screen
+#, python-format
+msgid "Go to Customer Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__go_order_screen
+#, python-format
+msgid "Go to Order Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__go_payment_screen
+#, python-format
+msgid "Go to Payment Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__go_to_previous_screen
+#, python-format
+msgid "Go to Previous Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_pos_config__id
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__id
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__id
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__id
+msgid "ID"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__name
+#, python-format
+msgid "Key"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__sh_key_ids
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__sh_pos_key_ids
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__sh_key_ids
+msgid "Keys"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_pos_config____last_update
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key____last_update
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp____last_update
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__write_uid
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__write_uid
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key__write_date
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_keyboard_key_temp__write_date
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__next_order
+msgid "Next Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen_type__order_screen
+msgid "Order Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#, python-format
+msgid "Order Screen Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_pos_config__sh_payment_shortcut_keys_screen
+msgid "POS Payment Method Shortcut Key"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model_terms:ir.ui.view,arch_db:sh_pos_keyboard_shortcut.view_pos_config_form
+msgid "POS Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_pos_config__sh_shortcut_keys_screen
+msgid "POS Shortcut Key"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__payment_config_id
+msgid "Payment Config"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__payment_method_id
+msgid "Payment Method"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Payment Method Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_payment_shortcut_screen_type__payment_screen
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen_type__payment_screen
+msgid "Payment Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Payment Screen Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model,name:sh_pos_keyboard_shortcut.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen_type__product_screen
+msgid "Product Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Product Screen Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen_type__receipt_screen
+msgid "Receipt Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Receipt Screen Shortcut"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__save_customer
+msgid "Save Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Save Customer Detail"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__search_customer
+#, python-format
+msgid "Search Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__search_order
+#, python-format
+msgid "Search Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__search_product
+#, python-format
+msgid "Search Product"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_discount_mode
+#, python-format
+msgid "Select Discount Mode"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_down_customer
+#, python-format
+msgid "Select Down Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_down_order
+#, python-format
+msgid "Select Down Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_down_orderline
+#, python-format
+msgid "Select Down OrderLine"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_down_payment_line
+#, python-format
+msgid "Select Down Payment Line"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_order
+#, python-format
+msgid "Select Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_price_mode
+#, python-format
+msgid "Select Price Mode"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_quantity_mode
+#, python-format
+msgid "Select Quantity Mode"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_up_customer
+#, python-format
+msgid "Select Up Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_up_order
+#, python-format
+msgid "Select Up Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_up_orderline
+#, python-format
+msgid "Select Up OrderLine"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__select_up_payment_line
+#, python-format
+msgid "Select Up Payment Line"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__set_customer
+#, python-format
+msgid "Set Customer"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__sh_shortcut_screen
+msgid "Shortcut Screen"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__sh_payment_shortcut_screen_type
+#: model:ir.model.fields,field_description:sh_pos_keyboard_shortcut.field_sh_pos_keyboard_shortcut__sh_shortcut_screen_type
+msgid "Shortcut Screen Type"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/action_button.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Shortcut Tips"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#, python-format
+msgid "Undo Customer Detail"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#. openerp-web
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/popup.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: code:addons/sh_pos_keyboard_shortcut/static/src/xml/pos.xml:0
+#: model:ir.model.fields.selection,name:sh_pos_keyboard_shortcut.selection__sh_pos_keyboard_shortcut__sh_shortcut_screen__validate_order
+#, python-format
+msgid "Validate Order"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model,name:sh_pos_keyboard_shortcut.model_sh_keyboard_key
+msgid "sh.keyboard.key"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model,name:sh_pos_keyboard_shortcut.model_sh_keyboard_key_temp
+msgid "sh.keyboard.key.temp"
+msgstr ""
+
+#. module: sh_pos_keyboard_shortcut
+#: model:ir.model,name:sh_pos_keyboard_shortcut.model_sh_pos_keyboard_shortcut
+msgid "sh.pos.keyboard.shortcut"
+msgstr ""

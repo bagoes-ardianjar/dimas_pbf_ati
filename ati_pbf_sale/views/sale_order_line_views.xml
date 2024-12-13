@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ati_sale_order_line_tree_inherit_on_so_line" model="ir.ui.view">
+        <field name="name">ati.sale.order.line.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', 'not in', ['draft', 'sent'])]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('state', '=', 'done')]</attribute>
+                <attribute name="width">500</attribute>
+                <attribute name="widget">many2one_no_open</attribute>
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                <field name="product_margin_percent" readonly="1"/>
+                <field name="product_margin_amount" readonly="1" optional="hide"/>
+                <field name="additional_margin" widget="percentage" readonly="1"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True,'no_open': True}</attribute>
+                <attribute name="widget">many2one_no_open</attribute>
+                <attribute name="no_external_link">True</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="outstanding_qty" optional="hide"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='discount']" position="after">
+                <field name="special_discount" invisible="1"/>
+                <field name="discount_amount" widget="monetary" attrs="{'readonly': ['|', ('special_discount', '=', False), ('state', 'not in', ['draft', 'sent'])]}"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='discount']" position="replace">
+                <field name="discount" string="Disc.%" groups="product.group_discount_per_so_line" optional="show" readonly="1" digits="[12,2]"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="string">Price</attribute>
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='additional_margin']" position="after">
+<!--                <field name="harga_satuan" readonly="1" optional="show"/>-->
+                <field name="harga_satuan_baru" readonly="1" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" context="{'search_view_ref': 'account.account_tax_view_search'}" domain="[('type_tax_use','=','sale'), ('company_id','=',parent.company_id), ('country_id', '=', parent.tax_country_id)]" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="width">200</attribute>
+            </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='outstanding_qty']" position="attributes">
+                <attribute name="width">200</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="width">200</attribute>
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                <attribute name="width">300</attribute>
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_margin_percent']" position="attributes">
+                <attribute name="width">100</attribute>
+                <attribute name="string">Prod Margin(%)</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                <attribute name="width">300</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='additional_margin']" position="attributes">
+                <attribute name="width">100</attribute>
+                <attribute name="string">Add Margin(%)</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ati_reason_product_template_approval_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.reason.product.template.approval.form.inherit.ib</field>
+        <field name="model">product.template.approval</field>
+        <field name="arch" type="xml">
+            <form string="Note">
+                <group>
+                    <group>
+                        <field name="name" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="approve_act_popup" type="object" class="oe_highlight" string="Approve"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="ati_reason_reject_product_template_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.reason.reject.product.template.form.inherit.ib</field>
+        <field name="model">product.template.reject</field>
+        <field name="arch" type="xml">
+            <form string="Note">
+                <group>
+                    <group>
+                        <field name="name" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="reject_act_popup" type="object" class="oe_highlight" string="Reject"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="ati_product_template_form_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.product.template.form.inherit.ib</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="state" widget="statusbar"/>
+            </header>
+            <xpath expr="//header/button[@name='action_open_label_layout']" position="before">
+                <button name="submit" type="object" class="oe_highlight" string="Submit"
+                        attrs="{'invisible': [('state', 'not in', ('draft'))]}" groups="ati_pbf_product.product_template_approval_user"/>
+                <button name="approve" type="object" class="oe_highlight" string="Approve"
+                        attrs="{'invisible': [('state', 'not in', ('waiting'))]}" groups="ati_pbf_product.product_template_approval_manager"/>
+                <button name="reject" type="object" class="oe_highlight" string="Reject"
+                        attrs="{'invisible': [('state', 'not in', ('waiting'))]}" groups="ati_pbf_product.product_template_approval_manager"/>
+            </xpath>
+<!--            <xpath expr="/form" position="attributes">-->
+<!--                <attribute name="create">false</attribute>-->
+<!--                <attribute name="edit">false</attribute>-->
+<!--            </xpath>-->
+            <field name="detailed_type" position="before">
+                <field name="new_sku" readonly="1"/>
+                <field name="sku" string="Old SKU"/>
+                <field name="nie"/>
+                <field name="kode_bpom"/>
+                <field name="pabrik"/>
+                <field name="pabrik_reference"/>
+                <field name="jenis_obat" string="Golongan Obat"/>
+                <field name="distribution_type"/>
+                <field name="industry_code"/>
+                <field name="bentuk_sediaan"/>
+            </field>
+            <field name="taxes_id" position="after">
+                <field name="hna"/>
+            </field>
+<!--            added by ibad-->
+            <field name="categ_id" position="before">
+                <label for="margin" string="Margin (%)" class="oe_inline"/>
+                <div>
+                    <field name="margin" string="Margin (%)" placeholder="percentages (%)" class="oe_inline"/>
+                    <span attrs="{'invisible': [('margin', '=', False)]}"> %</span>
+                </div>
+                <field name="harga_jual" string="Harga Jual" readonly="1" widget="monetary"/>
+                <field name="harga_jual_incl_ppn" string="Harga Jual (Incl. Taxes)" invisible="1" widget="monetary"/>
+            </field>
+            <field name="default_code" position="before">
+                <field name="jenis_product"/>
+            </field>
+            <field name="default_code" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+<!--            <field name="is_admin" invisible="1"/>-->
+            <field name="list_price" position="before">
+                <field name="is_admin" invisible="1"/>
+            </field>
+            <field name="list_price" position="attributes">
+                <attribute name="attrs">{'readonly': [('is_admin', '=', False)]}</attribute>
+            </field>
+            <xpath expr="//field[@name='hna']" position="after">
+                <field name="harga_awal_ga" widget="monetary"/>
+            </xpath>
+<!--            <field name="description" position="before">-->
+<!--                <field name="composition"/>-->
+<!--            </field>-->
+            <xpath expr="//page[@name='general_information']/group[2]" position="after">
+                <group string="Composition">
+                    <field name="composition" nolabel="1"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='bentuk_sediaan']" position="after">
+                <field name="kemasan"/>
+            </xpath>
+
+            <xpath expr="//page[6]" position="after">
+                <page string="Historical Margin" name="ati_historical_margin_product">
+                    <field readonly="1" name="historical_margin_ids" nolable="1" options="{'reload_on_button': True, 'no_open': True, 'no_create': True}">
+                        <tree string="Historical">
+                            <field name="product_tmpl_id" string="Product"
+                                   options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+                            <field name="change_date" string="Change Date"/>
+                            <field name="margin" string="Margin"
+                                   options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+                            <field name="user_id" string="User"
+                                   options="{'always_reload': True,'limit': 10, 'no_create': true, 'create': false, 'create_edit': false, 'no_open_edit':true, 'no_open': true}"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='uom_id']" position='attributes'>
+                <attribute name="attrs">{'readonly': [('state','=','done')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='uom_po_id']" position='attributes'>
+                <attribute name="attrs">{'readonly': [('state','=','done')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="ati_product_template_tree_inherit_ib" model="ir.ui.view">
+        <field name="name">ati.product.template.tree.inherit.ib</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="uom_id" position="after">
+                <field name="state" invisible="1"/>
+                <field name="is_other_user" invisible="1"/>
+                <field name="is_manager" invisible="1"/>
+<!--                <field name="activate_product" widget="boolean_toggle" required="1" attrs="{-->
+<!--                    'invisible': ['|', ('state', '!=', 'done'), ('is_other_user', '=', True)],-->
+<!--                }"/>-->
+<!--            </field>-->
+            <field name="activate_product" widget="boolean_toggle" required="1" attrs="{
+                    'readonly': [('is_manager', '!=', True)],
+                }"/>
+            </field>
+            <field name="standard_price" position="before">
+                <field name="hna" invisible="0"/>
+            </field>
+            <field name="standard_price" position="after">
+                <field name="margin"/>
+                <field name="harga_jual"/>
+                <field name="harga_jual_incl_ppn"/>
+                <field name="purchase_price" invisible="0"/>
+            </field>
+            <field name="default_code" position="replace"/>
+            <field name="responsible_id" position="replace"/>
+            <field name="list_price" position="replace"/>
+<!--            <xpath expr="/tree" position="attributes">-->
+<!--                <attribute name="create">false</attribute>-->
+<!--                <attribute name="edit">false</attribute>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+    <record id="product_supplierinfo_tree_view2_ib" model="ir.ui.view">
+        <field name="name">product_supplierinfo_tree_view2_ib</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2"/>
+        <field name="arch" type="xml">
+            <field name="price" position="after">
+                <field name="price_include_ppn" string="Price Include PPN"/>
+                <field name="effective_date"/>
+                <field name="hna"/>
+                <field name="discount_1"/>
+                <field name="discount_2"/>
+                <field name="discount_3"/>
+                <field name="discount_4"/>
+            </field>
+            <field name="price" position="replace">
+                <field name="price" string="Price Exclude PPN"/>
+            </field>
+        </field>
+    </record>
+</odoo>

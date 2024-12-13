@@ -1,0 +1,213 @@
+<odoo>
+    <template id="report_tanda_terima_retur_document_custom">
+        <t t-set="i" t-value="1" />
+        <t t-set="j" t-value="1" />
+        <t t-set="company" t-value="doc.company_id"></t>
+        <t t-set="partner" t-value="doc.partner_id"></t>
+        <t t-call="web.basic_layout">
+            <div class="page container-fluid">
+                <header style="text-align:center;">
+                    <table style="width:100%;">
+                        <tr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <td style="width:25%;">
+                                        <img src='/web/binary/company_logo' alt="logo" style="width:90%;display:inline;margin-top:130px;"/>
+                                    </td>
+                                </div>
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4">
+                                    <td style="text-align:left;font-size:20px;width:100%;margin-top:-100px;margin-left:80px;">
+                                        <t t-if="doc.company_id"><span t-field="doc.company_id.name" style="padding-top:-100px;"/></t><br/>
+                                        <span style="font-size:17px;">Kantor Pusat :</span> <t t-if="doc.company_id.street"><span t-field="doc.company_id.street" style="font-size:17px;"/></t>,
+                                        <t t-if="doc.company_id.street2"><span t-field="doc.company_id.street2" style="font-size:17px;"/></t>,
+                                        <t t-if="doc.company_id.city"><span t-field="doc.company_id.city" style="font-size:17px;"/></t><br/>
+                                        <span style="font-size:17px;">IZIN PBF PUSAT : </span> <t t-if="doc.company_id.no_izin_pbf_pusat"><span t-field="doc.company_id.no_izin_pbf_pusat"
+                                                         style="font-size:17px;text-align:left;"/></t>
+                                        <span style="font-size:17px;">Telp : </span> <t t-if="doc.company_id.phone"><span t-field="doc.company_id.phone"
+                                                             style="font-size:17px;text-align:left;"/></t><br/>
+                                        <span style="font-size:17px;">IZIN PAK PUSAT : </span> <t t-if="doc.company_id.no_izin_pak_pusat"><span t-field="doc.company_id.no_izin_pak_pusat"
+                                                             style="font-size:17px;text-align:left;"/></t><br/>
+                                        <span style="font-size:17px;">Email : </span> <t t-if="doc.company_id.email"><span t-field="doc.company_id.email"
+                                                             style="font-size:17px;text-align:left;"/></t>
+                                    </td>
+                                </div>
+                            </div>
+                        </tr>
+                        <tr>
+                            <td><t><span></span></t></td>
+                            <td style="text-align:right;word-wrap:break-word;">
+                                <br/>
+                                <t><span>NO. FORM :</span></t>
+                                <t t-if="doc.name"><span t-field="doc.name" /></t>
+                            </td>
+                        </tr>
+                    </table>
+                </header>
+                <div class="row" style="padding-left:14px;padding-right:12px;">
+                    <table style="width:100%;">
+                        <tr><td colspan="5" style="text-align:left;height:25px;"></td></tr>
+                        <tr>
+                            <td colspan="6" style="text-align:center;height:25px;font-size:18pt;">
+                                <t><span>TANDA TERIMA PENGEMBALIAN PRODUK (RETUR)</span></t>
+                            </td>
+                        </tr>
+                        <tr><td colspan="5" style="text-align:left;height:5px;"></td></tr>
+                        <tr>
+                            <td rowspan="2" style="text-align:left;height:25px;width:60%;border:1px solid;">
+                                <t><span>Nama Supplier / Customer :</span></t>
+                                <t t-if="doc.partner_id"><span t-field="doc.partner_id.name" /></t>
+                            </td>
+                            <td style="text-align:left;height:25px;border:1px solid;">
+                                <t><span>Tanggal :</span></t>
+                                <t t-if="doc.date_done"><span t-field="doc.date_done" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;height:25px;border:1px solid;">
+                                <t><span>No. Retur :</span></t>
+                                <t t-if="doc.name"><span t-field="doc.name" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;height:25px;width:60%;border:1px solid;">
+                                <t><span>Email Supplier / Customer :</span></t>
+                                <t t-if="doc.partner_id"><span t-field="doc.partner_id.email" /></t>
+                            </td>
+                            <td style="text-align:left;height:25px;border:1px solid;">
+                                <t><span>No. Faktur :</span></t>
+                                <t t-if="doc.customer_invoice"><span t-field="doc.customer_invoice" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:left;height:25px;width:60%;border:1px solid;">
+                                <t><span>Alamat Supplier / Customer :</span></t>
+                                <t t-if="doc.partner_id.street"><span t-field="doc.partner_id.street" /></t>
+                                <t t-if="doc.partner_id.street2"><span t-field="doc.partner_id.street2" /></t>
+                                <t t-if="doc.partner_id.city"><span t-field="doc.partner_id.city" /></t>
+                                <t t-if="doc.partner_id.state_id"><span t-field="doc.partner_id.state_id.name" /></t>
+                                <t t-if="doc.partner_id.zip"><span t-field="doc.partner_id.zip" /></t>
+                                <t t-if="doc.partner_id.country_id"><span t-field="doc.partner_id.country_id.name" /></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;height:25px;">
+                                <br/>
+                                <t><span>Data Barang yang Diretur</span></t>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row" style="padding-left:14px;padding-right:12px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td colspan="1" style="border:1px solid;text-align:center;height:25px;width:5%;font-weight:700;">
+                                <t><span>No</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid;padding-left:5px;text-align:left;height:25px;width:25%;font-weight:700;">
+                                <t><span>Nama Barang</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid;padding-left:5px;text-align:center;height:25px;width:10%;font-weight:700;">
+                                <t><span>Jumlah Barang</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid;text-align:center;height:25px;width:10%;font-weight:700;">
+                                <t><span>Satuan Barang</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid;text-align:center;height:25px;width:18%;font-weight:700;">
+                                <t><span>No Batch</span></t>
+                            </td>
+                            <td colspan="1" style="border:1px solid;text-align:center;height:25px;width:15%;font-weight:700;">
+                                <t><span>ED</span></t>
+                            </td>
+                            <td style="border:1px solid;text-align:center;height:25px;width:37%;font-weight:700;">
+                                <t><span>Alasan Retur</span></t>
+                            </td>
+                        </tr>
+                        <t t-foreach="doc.move_line_ids_without_package" t-as="l">
+                            <tr>
+                                <td colspan="1" style="border:1px solid;text-align:center;height:25px;font-weight:400;">
+                                    <t><span t-esc="i"/></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid;padding-left:5px;text-align:left;height:25px;font-weight:400;">
+                                    <t t-if="l.product_id"><span t-field="l.product_id.name" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid;padding-left:5px;text-align:center;height:25px;font-weight:400;">
+                                    <t><span t-esc="l.qty_done" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid;text-align:center;height:25px;font-weight:400;">
+                                    <t t-if="l.product_uom_id"><span t-esc="l.product_uom_id.name" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid;text-align:center;height:25px;font-weight:400;">
+                                    <t t-if="l.lot_id"><span t-esc="l.lot_id.name" /></t>
+                                </td>
+                                <td colspan="1" style="border:1px solid;text-align:center;height:25px;font-weight:400;">
+                                    <t t-if="l.expiration_date"><span t-esc="l.expiration_date" /></t>
+                                </td>
+                                <td t-attf-rowspan="j" style="border:1px solid;text-align:center;height:25px;font-weight:400;">
+                                    <t t-if="doc.return_reason"><span t-esc="doc.return_reason.name" /></t>
+                                </td>
+                            </tr>
+                            <t t-set="i" t-value="i+1"/>
+                            <t t-set="j" t-value="j+1"/>
+                        </t>
+                    </table>
+                    <br/>
+                    <br/>
+                </div>
+                <div class="row" style="padding-left:14px;padding-right:12px;">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="text-align:center;height:25px;">
+                                <br/>
+                                <br/>
+                                <t><span>Hormat Kami,</span></t><br/>
+                                <t t-if="doc.company_id"><span t-field="doc.company_id.name"/></t>
+                            </td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;">
+                                <br/>
+                                <br/>
+                                <t><span>Penerima Barang,</span></t>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr><td style="text-align:center;height:25px;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t><span>(..............................................................................)</span></t>
+                            </td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;"></td>
+                            <td style="text-align:center;height:25px;">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <t><span>(..............................................................................)</span></t>
+                            </td></tr>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="report_tanda_terima_retur_custom">
+        <t t-call="web.html_container">
+	        <t t-foreach="docs" t-as="doc">
+	            <t t-call="ati_pbf_stock.report_tanda_terima_retur_document_custom"/>
+	        </t>
+	    </t>
+    </template>
+</odoo>

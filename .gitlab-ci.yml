@@ -1,0 +1,51 @@
+image: swiguna/quasar:v1.0.0
+
+stages:
+  # - version 
+  - deploy
+
+# version:
+#   stage: version
+#   image: registry.gitlab.com/juhani/go-semrel-gitlab:v0.21.1
+#   # image: swiguna/go-semrel-gitlab:yarn-git
+#   variables:
+#     GSG_TAG_PREFIX: "master"
+#   services: []
+#   script:
+#     - ls -l
+#     - cat CHANGELOG.md || true
+#     - release next-version --allow-current > .next-version
+#     - release changelog
+
+#     - ls -l
+#     - cat .next-version
+#     - cat CHANGELOG.md
+
+#     - release commit-and-tag CHANGELOG.md --create-tag-pipeline
+#   artifacts:
+#     paths:
+#       - .next-version
+#       - CHANGELOG.md
+#   only:
+#     - masterr
+
+deploy:
+  stage: deploy
+  script:
+    - cd /
+    - ./git_pull.sh
+  only:
+    - dev
+  tags:
+    - pbf-dev
+
+deploy-prod:
+  stage: deploy
+  script:
+    - cd /
+    - ./git_pull.sh
+  only:
+    - main
+  tags:
+    - pbfprod
+    

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ProductLists" owl="1">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-textinput">
+                <div class="popup popup-selection pos_order_details"
+                     style="background: #805068; max-width:100% !important;">
+                    <p class="title" style="background-color: #805068;color:black;">Add More Products</p>
+                    <div class='selection scrollable-y touch-scrollable' style="background: #FFFFFF;">
+                        <div style="padding: 2%;background-color: #FFFFFF">
+                            <div>
+                                <table bgcolor="#E1B4C4">
+                                   <thead bgcolor="#E1B4C4" style="width: 5%;"> Your Combo: <t
+                                           t-esc="already_selected_combo.display_name"/></thead>
+                                    <tr>
+                                            <th bgcolor="#e2f3f7" style="width: 5%;"><b>Product</b></th>
+                                        <th bgcolor="#e2f3f7" style="width: 5%;"><b>Quantity</b></th>
+                                        <th bgcolor="#e2f3f7" style="width: 5%;"><b>Price</b></th>
+
+                                        </tr>
+                                    <tbody>
+                                      <t t-foreach="already_product_inside_combo" t-as="data">
+                                          <tr>
+                                             <td><t t-esc="data.display_name"/></td>
+
+                                              <td><t t-esc="qty_updated_dict[data.id]"/></td>
+                                              <td><t t-esc="env.pos.format_currency(qty_updated_dict[data.id]*data.lst_price)"/></td>
+                                          </tr>
+                                      </t>
+                                    </tbody>
+                                    </table>
+                                <div><p></p></div>
+                                <div>
+                                    <p>Selected products</p>
+                                    <p id="added" name="added" class="added"></p>
+                                </div>
+                                <div>
+                                    <input id="search_combo" placeholder="Search..." type="text" class="product_combo_search" t-on-keyup="updateComboProducts"/>
+                                </div>
+                                <div><p></p></div>
+                            </div>
+
+                            <table>
+                                    <thead style="color: white;">
+												<tr>
+													<th bgcolor="#FFD2E2" style="width: 5%;"><b>Product</b></th>
+                                                    <th bgcolor="#FFD2E2" style="width: 1%;"><b></b></th>
+                                                    <th bgcolor="#FFD2E2" style="width: 5%;"><b>quantity</b></th>
+                                                    <th bgcolor="#FFD2E2" style="width: 1%;"><b></b></th>
+                                                    <th bgcolor="#FFD2E2" style="width: 5%;"><b>Price</b></th>
+                                                    <th bgcolor="#FFD2E2" style="width: 5%;"><b>Action</b></th>
+												</tr>
+                                     </thead>
+                                <tbody>
+                                    <t t-foreach="all_products_pos" t-as="access" t-key="access.id">
+                                    <tr t-att-data-booking_tr="access.id">
+                                                <td><t t-esc="access.display_name"/></td>
+                                        <td><div class="" id="minus_qty_btn_pos" name="minus_qty_btn_product"
+                                                  t-on-click="_onClicQtyMinus(access.id)"
+                                                  t-att-data-checkout="access.id"><i class="fa fa-minus" role="img" ></i></div></td>
+                                        <td><input t-att-data-booking_td="access.id" t-att-value="access.uom_id[0]"/></td>
+                                        <td><div class="" id="qty_add_btn_pos" name="qty_add_btn_product"
+                                                  t-on-click="_onClickQtyAdd(access.id)"
+                                                  t-att-data-checkout="access.id"><i class="fa fa-plus" role="img" ></i></div></td>
+                                        <td><t t-esc="env.pos.format_currency(access.lst_price)"/>/
+                                            <t t-esc="access.uom_id[1]"/></td>
+                                        <td><div class="" id="add_btn_pos" name="add_btn_product" t-on-click="_onClickAddMore(access.id,all_products_pos,access.display_name,access.uom_id[1],access.lst_price,already_selected_combo)" t-att-data-checkout="access.id"
+                                                 ><i class="fa fa-plus" role="img" ></i></div></td>
+                                    </tr>
+                                    </t>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="button cancel" style="background: #51263c;color:#FFFFFF;"
+                             t-on-click="_onClickAdd(already_product_inside_combo,already_selected_combo)">
+                         Add
+                        </div>
+                        <div class="button cancel" style="background: #9e3c6d ;color:#FFFFFF;" t-on-click="cancel">
+                           Cancel
+                        </div>
+                        <p class="title" style="background-color: #805068;color:black;"> Total price:  <a t-att-data-total_price="already_selected_combo.id" style="display:None;"><t t-esc="total_charge"/></a><span
+                                t-att-data-total_price="already_selected_combo.id"><t  t-esc="env.pos.format_currency(total_charge)"/></span>
+                            <span class="title"
+                                  style="background-color: #805068;color:black;">  Additional Charge:</span>
+                            <span name="additional_charge" t-att-data-booking_td="already_selected_combo.id"
+                                  id="addedcharge" class="addedcharge" style="width:20%"><t t-esc="env.pos.format_currency(additional_charge)"/></span></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

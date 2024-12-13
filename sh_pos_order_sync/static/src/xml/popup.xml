@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TemplateReceiverPopupWidget" owl="1">
+        <div role="dialog" class="modal-dialog sh_modal_dialog">
+            <div class="popup popup-text popup-lg product-configurator-popup select_receiver_popup">
+                <header class="title">
+                    Select Session
+                </header>
+                <div class="main-body touch-scrollable scrollable-y note_body sh_main_body">
+                    <div class="main_div_pos_session">
+                        <table class="session_table">
+                            <t t-if="env.pos.all_session">
+                                <t t-foreach="env.pos.all_session" t-as="each_session">
+                                    <t
+                                        t-if="each_session.config_id[0] and env.pos.db.config_by_id[each_session.config_id[0]].user_type == 'receive' or env.pos.db.config_by_id[each_session.config_id[0]].user_type == 'both' and each_session.config_id[0] != env.pos.config.id"
+                                    >
+                                        <tr t-att-data-value="each_session.config_id[0]" class="session_row" t-on-click="onClickSessionRow">
+                                            <td>
+                                                <t t-if="env.pos.db.config_by_id[each_session.config_id[0]].sh_nick_name">
+                                                    <t t-esc="env.pos.db.config_by_id[each_session.config_id[0]].sh_nick_name" />
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-esc="env.pos.db.config_by_id[each_session.config_id[0]].name" />
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+                <footer class="footer sh_select_receiver_footer">
+                    <t t-if="env.pos.config.sh_allow_multiple_selection">
+                        <div class="button confirm" t-on-click="confirm">
+                            Send
+                        </div>
+                    </t>
+                    <div class="button cancel" t-on-click="cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

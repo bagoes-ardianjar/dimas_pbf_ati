@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_vendor_payment_form'>
+            <field name="name">wizard.vendor.payment.form</field>
+            <field name="model">wizard.vendor.payment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                        <field name="category" required="0"/>
+                    </group>
+                    <footer>
+                        <button name="button_generate_excel" type="object" default_focus="1"
+                            string="Excel Report" class="oe_highlight" icon="fa-download"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='wizard_vendor_payment_action'>
+            <field name="name">Laporan Tukar Faktur</field>
+            <field name="res_model">wizard.vendor.payment</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wizard_vendor_payment_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Laporan Tukar Faktur"
+            parent="account.menu_finance_reports"
+            id="menu_wizard_vendor_payment"
+            action="wizard_vendor_payment_action"
+            sequence="5"/>
+
+        <report
+            id="wizard_vendor_payment_xlsx"
+            model="wizard.vendor.payment"
+            string="Laporan Tukar Faktur"
+            report_type="xlsx"
+            name="ati_invoice_payments.vendor_payment.xlsx"
+            file="Laporan Tukar Faktur.xlsx"
+            menu="False"
+            attachment_use="False"/>
+    </data>
+</odoo>
