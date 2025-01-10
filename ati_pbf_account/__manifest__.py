@@ -20,6 +20,8 @@
     ],
     'data': [
         'reports/vendor_bill_ttb_report.xml',
+        'reports/report_action_invoice.xml',
+        'reports/report_invoice.xml',
         'views/account_move_view.xml',
         'views/account_payment_view.xml',
         'views/ati_invoice_date_cron.xml',

@@ -17,7 +17,7 @@
             <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='qty_received']" position="after">
                 <field name="outstanding_qty" readonly="1"/>
 <!--                <field name="product_uom" readonly="1" string="UoM"/>-->
-                <field name="hna" readonly="1"/>
+                <field name="hna" string="harga" readonly="1"/>
             </xpath>
 
             <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom']" position="replace">

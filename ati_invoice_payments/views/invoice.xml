@@ -31,6 +31,16 @@
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="ref" optional='hide' string="No Faktur Supplier" invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')"/>
             </xpath>
+
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="partner_id" string="vendor"
+                       invisible="context.get('default_move_type') not in ('in_invoice', 'in_refund','in_receipt')"
+                />
+            </xpath>
+
+            <xpath expr="//tree/field[@name='invoice_partner_display_name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record> 
 

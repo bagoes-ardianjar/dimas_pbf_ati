@@ -15,7 +15,7 @@
                 <attribute name="no_external_link">True</attribute>
             </xpath>
             <field name="partner_id" position="attributes">
-                <attribute name="string">Supplier</attribute>
+                <attribute name="string">Supplierrrrr</attribute>
             </field>
             <field name="partner_ref" position="after">
                 <field name="type_po"/>

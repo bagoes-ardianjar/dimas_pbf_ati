@@ -6,6 +6,11 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
     _description = 'Account Move'
 
+    def action_print_invoice(self):
+        """Logika untuk mencetak laporan."""
+        return self.env.ref('ati_pbf_account.action_report_invoice_account_bill_ids').report_action(self)
+        # return self.env.ref('account.account_invoices').report_action(self)
+
     def func_update_display_name_am(self):
         self._cr.execute("""(
             select 
@@ -554,3 +559,8 @@ class inherit_account_account(models.Model):
     _description = 'Account Account'
 
     cashflow_report = fields.Boolean(string='Cashflow Report', default=True, store=True)
+
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    harga_normal = fields.Float(string="Harga Normal")

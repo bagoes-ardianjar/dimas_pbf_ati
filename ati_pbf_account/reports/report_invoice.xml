@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <template id="invoice_account_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                 <div class="page">
+                     <header style="width: 100%;">
+                         <div style="text-align:center;">
+                             <p style="font-size: 20px;">
+                                 <span><b>PT Berkat Mahkota Putra</b></span>
+                             </p>
+                             <p style="margin-top: -15px; ">
+                                 <span style="font-size:14px;">Pergudangan Taman Tekno Blok K2 No 19 20 Setu,Kec. Setu Tangerang Selatan BT 15314</span>
+                             </p>
+                             <hr size="2" width="100%" color="black"></hr>
+                         </div>
+
+                         <div style="text-align:center;">
+                             <p>
+                                 <span style="font-size:20px;"><b>Laporan Invoice</b></span>
+                             </p>
+                         </div>
+                     </header>
+                </div>
+                <div>
+                        <style>
+                            table, tr, td {
+                                border: 1px solid black;
+                                border-collapse: collapse;
+                            }
+                        </style>
+                        <table width="100%">
+                            <tr style="padding-100px;">
+                                <td style="padding-2px;">Vendor Bill</td>
+                                <td colspan="5" style="padding-2px; text-align:left; border:none;"><span t-field="o.name"/></td>
+                            </tr>
+                            <tr style="padding-100px;">
+                                <td style="padding-2px;">Vendor</td>
+                                <td colspan="5" style="padding-2px; text-align:left; border:none;"><span t-field="o.partner_id"/></td>
+                            </tr>
+                            <tr>
+                                <td width="5%" style="text-align:center; font-family:sans; background-color:grey; height:30px;"><strong>No.</strong></td>
+                                <td width="30%" style="text-align:center; font-family:sans; background-color:grey; height:30px;"><strong>Product</strong></td>
+                                <td width="15%" style="text-align:center; font-family:sans; background-color:grey; height:30px;"><strong>Quantity</strong></td>
+                                <td width="15%" style="text-align:center; font-family:sans; background-color:grey; height:30px;"><strong>UoM</strong></td>
+                                <td width="20%" style="text-align:center; font-family:sans; background-color:grey; height:30px;"><strong>Price</strong></td>
+                                <td width="35%" style="text-align:center; font-family:sans; background-color:grey; height:30px;"><strong>SubTotal</strong></td>
+                            </tr>
+                            <t t-set="no" t-value="1"/>
+                            <t t-foreach="o.invoice_line_ids" t-as="line">
+                                <tr>
+                                    <td width="5%" style="text-align:center;">
+                                        <span t-esc="no"/>
+                                    </td>
+                                    <t t-set="no" t-value="no + 1"/>
+                                    <td style="text-align:left"><span t-field="line.product_id"/></td>
+                                    <td style="text-align:center"><span t-field="line.quantity"/></td>
+                                    <td style="text-align:center"><span t-field="line.product_uom_id"/></td>
+                                    <td style="text-align:right"><span t-field="line.ati_price_unit"/></td>
+                                    <td style="text-align:right"><span t-field="line.price_subtotal"/></td>
+<!--                                    <td colspan="1" style="padding-5px; text-align:right;" width="20%"><span  t-esc="line.qty_material"/></td>-->
+                                </tr>
+                            </t>
+                        </table>
+    <!--                    <table width="100%">-->
+    <!--                        <tr style="text-align:center; border-left:none; font-family:sans; background-color:none; height:30px;"><strong></strong></tr>-->
+    <!--                    </table>-->
+<!--                        <footer style="width: 100%; text-align: right; padding-right: 0px;">-->
+<!--                            <p style="font-size: 14px;">-->
+<!--                                <span>Eni Priyono (+62 821 1247 3841)</span>-->
+<!--                            </p>-->
+<!--                        </footer>-->
+                    </div>
+            </t>
+        </t>
+    </template>
+</odoo>

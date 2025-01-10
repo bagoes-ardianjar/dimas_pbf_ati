@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--      <report-->
+<!--        id="action_invoice_account_ids"-->
+<!--        model="account.move"-->
+<!--        name="ati_pbf_account.invoice_account_template"-->
+<!--        file="ati_pbf_account.invoice_account_template"-->
+<!--        report_type="qweb-html"-->
+<!--      />-->
+   <report
+        id="action_report_invoice_account_bill_ids"
+        model="account.move"
+        string="Laporan Invoice Account Bill"
+        name="ati_pbf_account.invoice_account_template"
+        file="ati_pbf_account.invoice_account_template"
+        report_type="qweb-html"
+      />
+</odoo>

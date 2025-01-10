@@ -17,6 +17,12 @@
                                 attrs="{'invisible': ['|', '|', ('move_type', 'not in', ('out_invoice', 'in_invoice')), ('state', '!=', 'posted'), ('payment_state', '=', 'paid')]}"/>
             </button>
 
+            <xpath expr="//button[@name='action_reverse']" position="after">
+                <button name="action_print_invoice" string="Print Invoice"
+                        type="object" class="btn-secondary"
+                        groups="account.group_account_invoice"/>
+            </xpath>
+
             <xpath expr="//group[@id='header_right_group']/field[@name='date']" position="replace">
                 <field name="date" string="Accounting Date"
                     attrs="{
@@ -54,6 +60,7 @@
                 <attribute name="widget">many2one_no_open</attribute>
                 <attribute name="no_external_link">True</attribute>
             </xpath>
+
 <!--            <field name="partner_id" widget="res_partner_many2one"-->
 <!--                                context="{'res_partner_search_mode':-->
 <!--                                (context.get('default_move_type', 'entry') in ('out_invoice', 'out_refund', 'out_receipt')-->
@@ -112,5 +119,34 @@
         <field name="binding_model_id" eval="False"/>
         <!-- <field name="binding_model_id" ref="ati_pbf_account.model_account_move"/> -->
         <!-- <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> -->
+    </record>
+
+<!--    <record id="action_report_vendor_bill_ttb_custom" model="ir.actions.report">-->
+<!--        <field name="name">Surat Tanda Terima Barang</field>-->
+<!--        <field name="paperformat_id" ref="paperformat_b5_custom" />-->
+<!--        <field name="model">account.move</field>-->
+<!--        <field name="report_type">qweb-pdf</field>-->
+<!--        <field name="report_name">ati_pbf_account.report_vendor_bill_ttb_custom</field>-->
+<!--        <field name="report_file">ati_pbf_account.report_vendor_bill_ttb_custom</field>-->
+<!--        <field name="print_report_name">'Tanda Terima Barang - %s' %(object.name)</field>-->
+<!--        <field name="binding_type">report</field>-->
+<!--        <field name="binding_model_id" eval="False"/>-->
+<!--        &lt;!&ndash; <field name="binding_model_id" ref="ati_pbf_account.model_account_move"/> &ndash;&gt;-->
+<!--        &lt;!&ndash; <field name="groups_id" eval="[(4, ref('account.group_account_readonly')), (4, ref('account.group_account_invoice'))]"/> &ndash;&gt;-->
+<!--    </record>-->
+
+    <record id="inherit_account_move_line_id_new" model="ir.ui.view">
+        <field name="name">inherit_account_move_line_id_new</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/notebook/page[@id='invoice_tab']/field[@name='invoice_line_ids']/tree/field[@name='ati_price_unit']" position="after">
+                <field name="harga_normal"/>
+            </xpath>
+
+            <xpath expr="////form/sheet/notebook/page[@id='invoice_tab']/field[@name='invoice_line_ids']/tree/field[@name='ati_price_unit']" position="attributes">
+                <attribute name="string">Harga</attribute>
+            </xpath>
+        </field>
     </record>
 </odoo>

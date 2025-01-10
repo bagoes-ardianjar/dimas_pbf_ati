@@ -110,13 +110,16 @@ class res_partner(models.Model):
             get_nama = rec._get_name()
             if rec.type_partner == 'customer':
                 rec.browse(rec.ids).read(["name", "code_customer", "street", "street2", "city", "state_id", "zip", "country_id"])
-                new_name = ('[' + rec.code_customer + ']' if rec.code_customer else '') + get_nama
+                # new_name = ('[' + rec.code_customer + ']' if rec.code_customer else '') + get_nama
+                new_name = ('[' + rec.code_customer + ']' if rec.code_customer else '') + rec.name
             elif rec.type_partner == 'supplier':
                 rec.browse(rec.ids).read(["name", "code_bmp", "street", "street2", "city", "state_id", "zip", "country_id"])
-                new_name = ('[' + rec.code_bmp + ']' if rec.code_bmp else '') + get_nama
+                # new_name = ('[' + rec.code_bmp + ']' if rec.code_bmp else '') + get_nama
+                new_name = ('[' + rec.code_bmp + ']' if rec.code_bmp else '') + rec.name
             else:
                 # new_name = rec.name + get_nama
-                new_name = get_nama
+                # new_name = get_nama
+                new_name = rec.name
             if rec._origin.id != False:
                 if rec.name:
                     if "'" in rec.name or '"' in rec.name:
